@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infotexts language="Russian" nowhitespace="false" translatedname="Русский">
+  <afflictionname.immunodeficiency>Иммунодефицит</afflictionname.immunodeficiency>
+  <afflictiondescription.immunodeficiency></afflictiondescription.immunodeficiency>
+  <afflictionname.immuneresponse>Иммунный Ответ</afflictionname.immuneresponse>
+  <afflictiondescription.immuneresponse></afflictiondescription.immuneresponse>
+  <afflictionname.infectionseverity>Тяжесть Инфекции</afflictionname.infectionseverity>
+  <afflictiondescription.infectionseverity></afflictiondescription.infectionseverity>
+  <afflictionname.infectionlevel>Уровень Инфекции</afflictionname.infectionlevel>
+  <afflictiondescription.infectionlevel></afflictiondescription.infectionlevel>
+  <afflictionname.limbstrep>Стрептококковая Инфекция</afflictionname.limbstrep>
+  <afflictiondescription.limbstrep></afflictiondescription.limbstrep>
+  <afflictionname.bloodstrep>Стрептококковая Инфекция</afflictionname.bloodstrep>
+  <afflictiondescription.bloodstrep></afflictiondescription.bloodstrep>
+  <afflictionname.limbstaph>Стафилококковая Инфекция</afflictionname.limbstaph>
+  <afflictiondescription.limbstaph></afflictiondescription.limbstaph>
+  <afflictionname.bloodstaph>Стафилококковая Инфекция</afflictionname.bloodstaph>
+  <afflictiondescription.bloodstaph></afflictiondescription.bloodstaph>
+  <afflictionname.limbmrsa>МРЗС Инфекция</afflictionname.limbmrsa>
+  <afflictiondescription.limbmrsa></afflictiondescription.limbmrsa>
+  <afflictionname.bloodmrsa>МРЗС Инфекция</afflictionname.bloodmrsa>
+  <afflictiondescription.bloodmrsa></afflictiondescription.bloodmrsa>
+  <afflictionname.limbpseudo>Псевдомонадная Инфекция</afflictionname.limbpseudo>
+  <afflictiondescription.limbpseudo></afflictiondescription.limbpseudo>
+  <afflictionname.bloodpseudo>Псевдомонадная Инфекция</afflictionname.bloodpseudo>
+  <afflictiondescription.bloodpseudo></afflictiondescription.bloodpseudo>
+  <afflictionname.limbprovo>Провобактериальная Инфекция</afflictionname.limbprovo>
+  <afflictiondescription.limbprovo></afflictiondescription.limbprovo>
+  <afflictionname.bloodprovo>Провобактериальная Инфекция</afflictionname.bloodprovo>
+  <afflictiondescription.bloodprovo></afflictiondescription.bloodprovo>
+  <entityname.ampicillin>Ампициллин</entityname.ampicillin>
+  <entitydescription.ampicillin>Антибиотик класса аминопенициллинов, используемый для лечения различных бактериальных инфекций.</entitydescription.ampicillin>
+  <entityname.augmentin>Аугментин</entityname.augmentin>
+  <entitydescription.augmentin>Антибиотик класса аминопенициллинов в сочетании с ингибитором бета-лактамаз.</entitydescription.augmentin>
+  <entityname.vancomycin>Ванкомицин</entityname.vancomycin>
+  <entitydescription.vancomycin>Гликопептидный антибиотик, используемый для лечения различных грамположительных бактериальных инфекций.</entitydescription.vancomycin>
+  <entityname.gentamicin>Гентамицин</entityname.gentamicin>
+  <entitydescription.gentamicin>Аминогликозидный антибиотик, используемый для лечения различных грамотрицательных бактериальных инфекций.</entitydescription.gentamicin>
+  <entityname.cotrim>Ко-тримоксазол</entityname.cotrim>
+  <entitydescription.cotrim>Комбинированный антибиотик, используемый для лечения широкого спектра бактериальных инфекций.</entitydescription.cotrim>
+  <entityname.imipenem>Имипенем</entityname.imipenem>
+  <entitydescription.imipenem>Комбинированный карбапенемный антибиотик, применяемый против широкого спектра бактериальных инфекций.</entitydescription.imipenem>
+  <afflictionname.afampicillin>Ампициллин</afflictionname.afampicillin>
+  <afflictiondescription.afampicillin></afflictiondescription.afampicillin>
+  <afflictionname.afaugmentin>Аугментин</afflictionname.afaugmentin>
+  <afflictiondescription.afaugmentin></afflictiondescription.afaugmentin>
+  <afflictionname.afvancomycin>Ванкомицин</afflictionname.afvancomycin>
+  <afflictiondescription.afvancomycin></afflictiondescription.afvancomycin>
+  <afflictionname.afgentamicin>Гентамицин</afflictionname.afgentamicin>
+  <afflictiondescription.afgentamicin></afflictiondescription.afgentamicin>
+  <afflictionname.afcotrim>Ко-тримоксазол</afflictionname.afcotrim>
+  <afflictiondescription.afcotrim></afflictiondescription.afcotrim>
+  <afflictionname.afimipenem>Имипенем</afflictionname.afimipenem>
+  <afflictiondescription.afimipenem></afflictiondescription.afimipenem>
+  <afflictionname.pusyellow>Гнойное Выделение</afflictionname.pusyellow>
+  <afflictiondescription.pusyellow>Из раны сочится желтовато-белый гной.</afflictiondescription.pusyellow>
+  <afflictionname.pusgreen>Гнойное Выделение</afflictionname.pusgreen>
+  <afflictiondescription.pusgreen>Из раны сочится зеленоватый гной с неприятным запахом.</afflictiondescription.pusgreen>
+  <afflictionname.abscess>Абсцесс</afflictionname.abscess>
+  <afflictiondescription.abscess>Под кожей скапливается большой очаг гноя.</afflictiondescription.abscess>
+  <entityname.cultureanalyzer>Сборщик Образцов</entityname.cultureanalyzer>
+  <entitydescription.cultureanalyzer>Собирает образцы бактерий и помещает их в культуральную пробику.</entitydescription.cultureanalyzer>
+  <entityname.culturetube>Пробирка Культуральная</entityname.culturetube>
+  <entitydescription.culturetube>Пробирка с богатой питательной средой, в которой растут колонии бактерий.</entitydescription.culturetube>
+  <afflictionname.pneumonia>Пневмония</afflictionname.pneumonia>
+  <afflictiondescription.pneumonia></afflictiondescription.pneumonia>
+  <afflictionname.necfasc>Некротизирующий фасциит</afflictionname.necfasc>
+  <afflictiondescription.necfasc>Цвет кожи портится, а мягкие ткани отмирают.</afflictiondescription.necfasc>
+  <afflictionname.cellulitis>Флегмона</afflictionname.cellulitis>
+  <afflictiondescription.cellulitis>Участок кожи красный и болезненный.</afflictiondescription.cellulitis>
+  <entityname.incubatorcrate>Инкубационный ящик</entityname.incubatorcrate>
+  <entitydescription.incubatorcrate>Ящик, в котором можно выращивать культуры благодаря способности регулировать оптимальные условия хранения.</entitydescription.incubatorcrate>
+  <entityname.streptubeunk>Образец культуры (Неизвестный)</entityname.streptubeunk>
+  <entitydescription.streptubeunk>Культуральная пробирка с неизвестным образцом.</entitydescription.streptubeunk>
+  <entityname.streptube>Образец культуры (Стрептококк)</entityname.streptube>
+  <entitydescription.streptube>Культуральная пробирка со штаммом стрептококка.</entitydescription.streptube>
+  <entityname.staphtubeunk>Образец культуры (Неизвестный)</entityname.staphtubeunk>
+  <entitydescription.staphtubeunk>Культуральная пробирка с неизвестным образцом.</entitydescription.staphtubeunk>
+  <entityname.staphtube>Образец культуры (Стафилококк)</entityname.staphtube>
+  <entitydescription.staphtube>Культуральная пробирка со штаммом стафилококка.</entitydescription.staphtube>
+  <entityname.mrsatubeunk>Образец культуры (Неизвестный)</entityname.mrsatubeunk>
+  <entitydescription.mrsatubeunk>Культуральная пробирка с неизвестным образцом.</entitydescription.mrsatubeunk>
+  <entityname.mrsatube>Образец культуры (МРЗС)</entityname.mrsatube>
+  <entitydescription.mrsatube>Культуральная пробирка с образцом МРЗС.</entitydescription.mrsatube>
+  <entityname.pseudotubeunk>Образец культуры (Неизвестный)</entityname.pseudotubeunk>
+  <entitydescription.pseudotubeunk>Культуральная пробирка с неизвестным образцом.</entitydescription.pseudotubeunk>
+  <entityname.pseudotube>Образец культуры (Псевдомонады)</entityname.pseudotube>
+  <entitydescription.pseudotube>Культуральная пробирка с образцом псевдомонад.</entitydescription.pseudotube>
+  <entityname.provotubeunk>Образец культуры (Неизвестный)</entityname.provotubeunk>
+  <entitydescription.provotubeunk>Культуральная пробирка с неизвестным образцом.</entitydescription.provotubeunk>
+  <entityname.provotube>Образец культуры (Провобактер)</entityname.provotube>
+  <entitydescription.provotube>Культуральная пробирка с образцом провобактерий.</entitydescription.provotube>
+  <entityname.emptytubeunk>Образец культуры (Неизвестный)</entityname.emptytubeunk>
+  <entitydescription.emptytubeunk>Культуральная пробирка с неизвестным образцом.</entitydescription.emptytubeunk>
+  <entityname.cultureanalyzingterminal>Анализатор Культур</entityname.cultureanalyzingterminal>
+  <entitydescription.cultureanalyzingterminal>Машина, изучающая биохимические характеристики колоний бактерий для выявления патогенов.</entitydescription.cultureanalyzingterminal>
+  <cultureanalyzer.analyze>Проанализировать</cultureanalyzer.analyze>
+  <cultureanalyzer.info>Вставьте образец полностью выращенной культуры для анализа типа.</cultureanalyzer.info>
+  <entityname.incubatorterminal>Инкубатор</entityname.incubatorterminal>
+  <entitydescription.incubatorterminal>Машина, способная выращивать культуры, поддерживая оптимальные условия для роста бактерий.</entitydescription.incubatorterminal>
+  <afflictionname.afstrepvac>Вакцина против стрептококков</afflictionname.afstrepvac>
+  <afflictiondescription.afstrepvac>Иммунная система пациента готова к борьбе со стрептококковыми инфекциями.</afflictiondescription.afstrepvac>
+  <entityname.strepvac>Вакцина против стрептококков</entityname.strepvac>
+  <entitydescription.strepvac>Вакцина, которая подготавливает иммунную систему к борьбе со штаммами стрептококка.</entitydescription.strepvac>
+  <afflictionname.afstaphvac>Вакцина против стафилококков</afflictionname.afstaphvac>
+  <afflictiondescription.afstaphvac>Иммунная система пациента готова к борьбе со стафилококковыми инфекциями.</afflictiondescription.afstaphvac>
+  <entityname.staphvac>Вакцина против стафилококков</entityname.staphvac>
+  <entitydescription.staphvac>Вакцина, которая подготавливает иммунную систему к борьбе со штаммами стафилококков.</entitydescription.staphvac>
+  <afflictionname.afpseudovac>Вакцина против псевдомонад</afflictionname.afpseudovac>
+  <afflictiondescription.afpseudovac>Иммунная система пациента готова к борьбе с псевдомонадными инфекциями.</afflictiondescription.afpseudovac>
+  <entityname.pseudovac>Вакцина против псевдомонад</entityname.pseudovac>
+  <entitydescription.pseudovac>Вакцина, которая подготавливает иммунную систему к борьбе со штаммами псевдомонад.</entitydescription.pseudovac>
+  <afflictionname.afprovovac>Вакцина против провобактер</afflictionname.afprovovac>
+  <afflictiondescription.afprovovac>Иммунная система пациента подготовлена и готова к борьбе с провобактериальными инфекциями.</afflictiondescription.afprovovac>
+  <entityname.provovac>Вакцина против провобактер</entityname.provovac>
+  <entitydescription.provovac>Вакцина, которая подготавливает иммунную систему к борьбе со штаммами провобактерий.</entitydescription.provovac>
+  <entityname.weaponstrep>Оружейный стрептококк</entityname.weaponstrep>
+  <entitydescription.weaponstrep>Шприц, наполненный штаммом стрептококка с целью инфицирования цели.</entitydescription.weaponstrep>
+  <entityname.weaponstaph>Оружейный стафилококк</entityname.weaponstaph>
+  <entitydescription.weaponstaph>Шприц, наполненный штаммом стафилококка с целью заражения цели.</entitydescription.weaponstaph>
+  <entityname.weaponmrsa>Оружейный МРЗС</entityname.weaponmrsa>
+  <entitydescription.weaponmrsa>Шприц, наполненный штаммом МРЗС с целью инфицирования цели.</entitydescription.weaponmrsa>
+  <entityname.weaponpseudo>Оружейные псевдомонады</entityname.weaponpseudo>
+  <entitydescription.weaponpseudo>Шприц, наполненный штаммом псевдомонады с целью заражения объекта.</entitydescription.weaponpseudo>
+  <entityname.weaponprovo>Оружейные провобактерии</entityname.weaponprovo>
+  <entitydescription.weaponprovo>Шприц, заполненный штаммом провобактерий с целью инфицирования цели.</entitydescription.weaponprovo>
+</infotexts>

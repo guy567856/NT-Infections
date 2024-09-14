@@ -3,6 +3,7 @@
   <Afflictions file="%ModDir%/Xml/Afflictions.xml" />
   <Item file="%ModDir%/Xml/items.xml" />
   <Text file="%ModDir%/Localization/English/English.xml" />
+  <Text file="%ModDir%/Localization/Russian/Russian.xml" />
   <Other file="%ModDir%/Lua/Autorun/init.lua" />
   <Other file="%ModDir%/Lua/Scripts/items.lua" />
   <Other file="%ModDir%/Lua/Scripts/humanupdate.lua" />

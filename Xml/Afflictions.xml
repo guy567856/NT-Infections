@@ -22,10 +22,6 @@
     <Affliction name="" identifier="systemicresponse" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afdextromethorphan" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.1" />
-        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>
 <!--vaccines-->
     <Affliction name="" identifier="afstrepvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1200" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />
@@ -67,10 +63,30 @@
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,0" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--communicable disease-->
+    <Affliction name="" identifier="germlevel" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
     <Affliction name="" identifier="europancough" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="viralseverity" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="5">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="afremdesivir" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.2">
+            <StatusEffect target="Character" comparison="and">
+                <Conditional ishuman="true" />
+                <Affliction identifier="liverdamage" strength="0.05" />
+            </StatusEffect>
+        </Effect>
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="viralantibodies" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.05" />
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="afdextromethorphan" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.1" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--infections types-->

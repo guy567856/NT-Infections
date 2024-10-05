@@ -113,21 +113,6 @@ function NTI.LimbInfectionLevel(character, limb)
     return HF.GetAfflictionStrengthLimb(character, limb, "infectionlevel", 0)
 end
 
---return the tag of the infection in a limb
-function NTI.LimbInfectionName(character, limb)
-    if not NTI.LimbIsInfected(character, limb) then
-        return nil
-    end
-
-    for i = 1, #NTI.InfTable do
-        if HF.GetAfflictionStrengthLimb(character, limb, NTI.InfTable[i], 0) > 0 then
-            return NTI.InfTable[i]
-        end
-    end
-
-    return nil
-end
-
 --return the infection level of a limb from a list of infections
 function NTI.LimbInfectionLevelList(character, limb, list)
     for i = 1, #list do
@@ -261,6 +246,7 @@ function NTI.BloodInfUpdate(character, antibiotic_list, vaccine)
     return 0.75 * ab - response - ((HF.GetAfflictionStrength(character, vaccine, 0) / 2400) * immune_level)
 end
 
+--check if a character is wearing a specific tag from a list on their head
 function NTI.WearingNeededHead(character, tagval)
     local result = 0
 
@@ -274,6 +260,7 @@ function NTI.WearingNeededHead(character, tagval)
     return result
 end
 
+--ibidem but for outer wear
 function NTI.WearingNeededOuter(character, tagval)
     local result = 0
 
@@ -287,6 +274,7 @@ function NTI.WearingNeededOuter(character, tagval)
     return result
 end
 
+--for when a new ai npc spawns, give a chance to randomly infect them
 function NTI.BotViralStarter(character)
     local val = math.random(40)
     NTI.InfectCharacterViral(character, "europancough", val)
@@ -295,8 +283,8 @@ end
 
 Hook.Add("characterCreated", "NTI.StartWithInfection", function(createdCharacter)
     Timer.Wait(function()
-        if (createdCharacter.IsHuman and not createdCharacter.IsDead and not createdCharacter.IsPlayer) then
-            if math.random() < 0.02 then
+        if (createdCharacter.IsHuman and not createdCharacter.IsDead and not createdCharacter.IsPlayer and not createdCharacter.IsOnPlayerTeam) then
+            if math.random() < 0.01 then
                 NTI.BotViralStarter(createdCharacter)
             end
         end

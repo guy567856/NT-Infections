@@ -134,4 +134,10 @@
     <entitydescription.dextromethorphan>An antitussive solution used to relieve a cough.</entitydescription.dextromethorphan>
     <afflictionname.afdextromethorphan>Dextromethorphan</afflictionname.afdextromethorphan>
     <afflictiondescription.afdextromethorphan></afflictiondescription.afdextromethorphan>
+    <entityname.remdesivir>Remdesivir</entityname.remdesivir>
+    <entitydescription.remdesivir>A broad-spectrum antiviral drug, commonly used to treat cases of Europan cough.</entitydescription.remdesivir>
+    <afflictionname.afremdesivir>Remdesivir</afflictionname.afremdesivir>
+    <afflictiondescription.afremdesivir></afflictiondescription.afremdesivir>
+    <afflictionname.viralantibodies>Viral Antibodies</afflictionname.viralantibodies>
+    <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
 </infotexts>

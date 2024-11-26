@@ -127,7 +127,16 @@
     </Affliction>
 <!--antibiotics-->
     <Affliction name="" identifier="afampicillin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.25">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
+            <StatusEffect target="Character" comparison="and">
+                <Conditional ishuman="true" />
+                <Affliction identifier="kidneydamage" strength="0.05" />
+            </StatusEffect>
+        </Effect>
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="afaugmentin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.06" />
@@ -135,8 +144,8 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afaugmentin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.25">
+    <Affliction name="" identifier="afvancomycin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.08" />
@@ -144,38 +153,29 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afvancomycin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.25">
-            <StatusEffect target="Character" comparison="and">
-                <Conditional ishuman="true" />
-                <Affliction identifier="kidneydamage" strength="0.11" />
-            </StatusEffect>
-        </Effect>
-        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>
     <Affliction name="" identifier="afgentamicin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.25">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
-                <Affliction identifier="kidneydamage" strength="0.12" />
+                <Affliction identifier="kidneydamage" strength="0.09" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="afcotrim" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.25">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
-                <Affliction identifier="kidneydamage" strength="0.09" />
+                <Affliction identifier="kidneydamage" strength="0.07" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="afimipenem" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.25">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
-                <Affliction identifier="kidneydamage" strength="0.09" />
+                <Affliction identifier="kidneydamage" strength="0.07" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />

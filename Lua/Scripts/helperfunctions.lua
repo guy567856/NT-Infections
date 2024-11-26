@@ -59,7 +59,7 @@ NTI.InfInfo = { --{limbname, bloodname, probability, speed, antibiotics[name, le
 limbname - the initial infection that is limb specific, will progress to blood infection at higher levels
 bloodname - the blood infection version on the infection
 probability - the "number of names put into the hat" that will have the chance to be pulled from the list of random infections
-speed - speed at which the infection progresses calculated as: initial_speed + (infection_severity / 5) clamped to a max of 1.05
+speed - speed at which the infection progresses calculated as: initial_speed + (infection_severity * 0.15) clamped to a max of 1.05
 antibiotics - a list of antibiotics that have an effect on said disease. the number provided is the denominator, so antibiotics are calculated as: infection_speed * (1 / antibiotic_value)...
 sample - the item that is returned when using a culture sampler
 vaccine - the vaccine affliction name that will have an effect on this disease
@@ -214,10 +214,42 @@ function NTI.InfectCharacterRandom(character, limb)
         return
     end
 
+    local inflst = NTI.InfPickerForm(character)
     local randomval = math.random(5)
-    HF.SetAfflictionLimb(character, NTI.InfPicker[math.random(#NTI.InfPicker)], limb, 2)
+    HF.SetAfflictionLimb(character, inflst[math.random(#inflst)], limb, 2)
     HF.SetAfflictionLimb(character, "infectionseverity", limb, randomval)
     HF.SetAfflictionLimb(character, "infectionlevel", limb, 1)
+end
+
+--make a list for the probability of which infection is picked (already gotten infections will be more likely)
+function NTI.InfPickerForm(character)
+    local lst = {}
+
+    for i = 1, #NTI.InfInfo do
+        local infection = NTI.InfInfo[i]
+        local scalar = 1
+
+        if NTI.CheckAllLimbsFor(character, infection[1]) then
+            scalar = 3
+        end
+
+        for j = 1, (infection[3] * scalar) do
+            table.insert(lst, 1, infection[1])
+        end
+    end
+
+    return lst
+end
+
+--return a boolean if the body has a certain limb affliction yet
+function NTI.CheckAllLimbsFor(character, tag)
+    for limb in limbtypes do
+        if HF.GetAfflictionStrengthLimb(character, limb, tag, 0) > 0 then
+            return true
+        end
+    end
+
+    return false
 end
 
 --infect viral infection with random severity
@@ -241,7 +273,7 @@ end
 --decomposing the blood updating shit
 function NTI.BloodInfUpdate(character, antibiotic_list, vaccine)
     local immune_level = HF.GetAfflictionStrength(character, "immunity", 0) / 100
-    local response = HF.GetAfflictionStrength(character, "systemicresponse", 0) / 200
+    local response = HF.GetAfflictionStrength(character, "systemicresponse", 0) / 160
     local ab = NTI.GetAntibioticValue(character, antibiotic_list)
     return 0.75 * ab - response - ((HF.GetAfflictionStrength(character, vaccine, 0) / 2400) * immune_level)
 end

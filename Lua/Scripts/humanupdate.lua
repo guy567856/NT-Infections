@@ -47,7 +47,7 @@ Timer.Wait(function()
         if c.stats.stasis then return end
         local bloodinf = NTI.BloodInfectionLevel(c.character)
         if bloodinf > 0 then
-            c.afflictions[i].strength = c.afflictions[i].strength + HF.Clamp(bloodinf / 200, 0, 1) + (NTI.GetTotalNecValue(c.character) / 400)
+            c.afflictions[i].strength = c.afflictions[i].strength + HF.Clamp(bloodinf / 250, 0, 1) + (NTI.GetTotalNecValue(c.character) / 500)
             return
         end
         c.afflictions[i].strength = c.afflictions[i].strength - NT.Deltatime
@@ -268,7 +268,7 @@ Timer.Wait(function()
                         local anticough = HF.BoolToNum(HF.HasAffliction(c.character, "afdextromethorphan"), 5)
 
                         local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 20) + head + outer + anticough
-                         + HF.Clamp(20 - HF.GetAfflictionStrength(c.character, "europancough", 0), 0, 20) + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam and not targetcharacter.IsPlayer, 20)
+                         + HF.Clamp(20 - HF.GetAfflictionStrength(c.character, "europancough", 0), 0, 20) + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam and not targetcharacter.IsPlayer, 25)
 
                         if (HF.Chance(1 / chance)) then
                             NTI.InfectCharacterViral(targetcharacter, "europancough", 1)
@@ -306,13 +306,13 @@ Timer.Wait(function()
                 vac = inf_info[7]
                 bld = inf_info[2]
             end
-            local inc = HF.Clamp(spd + (HF.GetAfflictionStrengthLimb(c.character, type, "infectionseverity", 1) / 5), 0, 1.05) * ab
+            local inc = HF.Clamp(spd + (HF.GetAfflictionStrengthLimb(c.character, type, "infectionseverity", 1) * 0.15), 0, 1.05) * ab
             - (HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100)
             - ((HF.GetAfflictionStrength(c.character, vac, 0) / 2400) * (c.afflictions.immunity.strength / 100))
 
             limbaff[i].strength = limbaff[i].strength + inc
 
-            if limbaff[i].strength > 50 and (HF.Chance(((limbaff[i].strength - 50) / 50)^5) or HF.Chance(HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) / 1000)) and HF.GetAfflictionStrength(c.character, bld, 0) <= 0 then
+            if limbaff[i].strength > 50 and (HF.Chance(((limbaff[i].strength - 50) / 100)^4) or HF.Chance(HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) / 1000)) and HF.GetAfflictionStrength(c.character, bld, 0) <= 0 then
                 HF.SetAffliction(c.character, bld, 1)
             end
         end

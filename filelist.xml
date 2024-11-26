@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="NT Infections" modversion="0.9.3" corepackage="False" steamworkshopid="3286567141" gameversion="1.6.18.1">
+<contentpackage name="NT Infections" modversion="0.9.5" corepackage="False" steamworkshopid="3286567141" gameversion="1.6.19.1">
   <Afflictions file="%ModDir%/Xml/Afflictions.xml" />
   <Item file="%ModDir%/Xml/items.xml" />
   <Text file="%ModDir%/Localization/English/English.xml" />

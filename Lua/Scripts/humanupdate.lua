@@ -263,12 +263,12 @@ Timer.Wait(function()
                 for _, targetcharacter in pairs(Character.CharacterList) do
                     local distance = HF.CharacterDistance(c.character,targetcharacter)
                     if targetcharacter ~= c.character and targetcharacter.IsHuman and distance < 300 and not HF.HasAffliction(targetcharacter, "europancough") then
-                        local head = NTI.WearingNeededHead(targetcharacter, {{"sterile", 7}, {"diving", 3}}) + NTI.WearingNeededHead(c.character, {{"sterile", 7}, {"diving", 3}})
-                        local outer = NTI.WearingNeededOuter(targetcharacter, {{"diving", 3}, {"divinghelmet", 3}}) + NTI.WearingNeededOuter(c.character, {{"diving", 3}, {"divinghelmet", 3}})
+                        local head = NTI.WearingNeededHead(targetcharacter, {{"sterile", 7}, {"diving", 5}}) + NTI.WearingNeededHead(c.character, {{"sterile", 7}, {"diving", 5}})
+                        local outer = NTI.WearingNeededOuter(targetcharacter, {{"diving", 5}, {"divinghelmet", 5}}) + NTI.WearingNeededOuter(c.character, {{"diving", 5}, {"divinghelmet", 5}})
                         local anticough = HF.BoolToNum(HF.HasAffliction(c.character, "afdextromethorphan"), 5)
 
                         local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 20) + head + outer + anticough
-                         + HF.Clamp(20 - HF.GetAfflictionStrength(c.character, "europancough", 0), 0, 20) + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam and not targetcharacter.IsPlayer, 25)
+                         + HF.Clamp(20 - HF.GetAfflictionStrength(c.character, "europancough", 0), 0, 20) + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam and not targetcharacter.IsPlayer, 30)
 
                         if (HF.Chance(1 / chance)) then
                             NTI.InfectCharacterViral(targetcharacter, "europancough", 1)

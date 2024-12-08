@@ -48,11 +48,11 @@ NTI.VirusTable = {
 
 --list of infections including their limb and blood tags as well as other various information (look below)
 NTI.InfInfo = { --{limbname, bloodname, probability, speed, antibiotics[name, level], sample, vaccine}
-    {"limbstaph", "bloodstaph", 4, 0.35, NTI.anti_staph, "staphtubeunk", "afstaphvac"},
-    {"limbstrep", "bloodstrep", 3, 0.35, NTI.anti_strep, "streptubeunk", "afstrepvac"},
-    {"limbmrsa", "bloodmrsa", 2, 0.35, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"},
-    {"limbprovo", "bloodprovo", 3, 0.35, NTI.anti_provo, "provotubeunk", "afprovovac"},
-    {"limbpseudo", "bloodpseudo", 1, 0.35, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"},
+    {"limbstaph", "bloodstaph", 4, 0.30, NTI.anti_staph, "staphtubeunk", "afstaphvac"},
+    {"limbstrep", "bloodstrep", 3, 0.30, NTI.anti_strep, "streptubeunk", "afstrepvac"},
+    {"limbmrsa", "bloodmrsa", 2, 0.30, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"},
+    {"limbprovo", "bloodprovo", 3, 0.30, NTI.anti_provo, "provotubeunk", "afprovovac"},
+    {"limbpseudo", "bloodpseudo", 1, 0.30, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"},
 }
 
 --[[
@@ -66,15 +66,11 @@ vaccine - the vaccine affliction name that will have an effect on this disease
 ]]--
 
 NTI.InfTable = {} --list of infection names
-NTI.InfPicker = {} --list of infection names that will be picked from at random
 
 --fill in the two previous tables
 for i = 1, #NTI.InfInfo do
     local infection = NTI.InfInfo[i]
     table.insert(NTI.InfTable, 1, infection[1])
-    for j = 1, infection[3] do
-        table.insert(NTI.InfPicker, 1, infection[1])
-    end
 end
 
 --helper functions

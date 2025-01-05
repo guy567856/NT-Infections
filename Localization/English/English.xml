@@ -124,4 +124,20 @@
     <entitydescription.weaponpseudo>A syringe filled with a strain of pseudomonas with the purpose of infecting a target.</entitydescription.weaponpseudo>
     <entityname.weaponprovo>Weaponized provobacter</entityname.weaponprovo>
     <entitydescription.weaponprovo>A syringe filled with a strain of provobacter with the purpose of infecting a target.</entitydescription.weaponprovo>
+    <afflictionname.systemicresponse>Systemic Response</afflictionname.systemicresponse>
+    <afflictiondescription.systemicresponse></afflictiondescription.systemicresponse>
+    <afflictionname.europancough>Europan Cough</afflictionname.europancough>
+    <afflictiondescription.europancough></afflictiondescription.europancough>
+    <afflictionname.viralseverity>Viral Severity</afflictionname.viralseverity>
+    <afflictiondescription.viralseverity></afflictiondescription.viralseverity>
+    <entityname.dextromethorphan>Dextromethorphan</entityname.dextromethorphan>
+    <entitydescription.dextromethorphan>An antitussive solution used to relieve a cough.</entitydescription.dextromethorphan>
+    <afflictionname.afdextromethorphan>Dextromethorphan</afflictionname.afdextromethorphan>
+    <afflictiondescription.afdextromethorphan></afflictiondescription.afdextromethorphan>
+    <entityname.remdesivir>Remdesivir</entityname.remdesivir>
+    <entitydescription.remdesivir>A broad-spectrum antiviral drug, commonly used to treat cases of Europan cough.</entitydescription.remdesivir>
+    <afflictionname.afremdesivir>Remdesivir</afflictionname.afremdesivir>
+    <afflictiondescription.afremdesivir></afflictiondescription.afremdesivir>
+    <afflictionname.viralantibodies>Viral Antibodies</afflictionname.viralantibodies>
+    <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
 </infotexts>

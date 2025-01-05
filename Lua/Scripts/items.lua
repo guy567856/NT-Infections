@@ -1,7 +1,7 @@
 Timer.Wait(function()
     --additional hematology tags
     NTI.MoreHematologyDetectable = {
-        "afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac"
+        "afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac","afdextromethorphan","afremdesivir"
     }
 
     --add all disease's bloodtags to the hematology analyzer

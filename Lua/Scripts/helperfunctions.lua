@@ -42,37 +42,36 @@ NTI.anti_provo = {
     {"afgentamicin", 16},
 }
 
+NTI.VirusTable = {
+    "europancough"
+}
+
 --list of infections including their limb and blood tags as well as other various information (look below)
 NTI.InfInfo = { --{limbname, bloodname, probability, speed, antibiotics[name, level], sample, vaccine}
-    {"limbstaph", "bloodstaph", 4, 0.35, NTI.anti_staph, "staphtubeunk", "afstaphvac"},
-    {"limbstrep", "bloodstrep", 3, 0.35, NTI.anti_strep, "streptubeunk", "afstrepvac"},
-    {"limbmrsa", "bloodmrsa", 2, 0.35, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"},
-    {"limbprovo", "bloodprovo", 3, 0.35, NTI.anti_provo, "provotubeunk", "afprovovac"},
-    {"limbpseudo", "bloodpseudo", 1, 0.35, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"},
+    {"limbstaph", "bloodstaph", 4, 0.30, NTI.anti_staph, "staphtubeunk", "afstaphvac"},
+    {"limbstrep", "bloodstrep", 3, 0.30, NTI.anti_strep, "streptubeunk", "afstrepvac"},
+    {"limbmrsa", "bloodmrsa", 2, 0.30, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"},
+    {"limbprovo", "bloodprovo", 3, 0.30, NTI.anti_provo, "provotubeunk", "afprovovac"},
+    {"limbpseudo", "bloodpseudo", 1, 0.30, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"},
 }
 
 --[[
 limbname - the initial infection that is limb specific, will progress to blood infection at higher levels
 bloodname - the blood infection version on the infection
 probability - the "number of names put into the hat" that will have the chance to be pulled from the list of random infections
-speed - speed at which the infection progresses calculated as: initial_speed + (infection_severity / 5) clamped to a max of 1.05
+speed - speed at which the infection progresses calculated as: initial_speed + (infection_severity * 0.15) clamped to a max of 1.05
 antibiotics - a list of antibiotics that have an effect on said disease. the number provided is the denominator, so antibiotics are calculated as: infection_speed * (1 / antibiotic_value)...
 sample - the item that is returned when using a culture sampler
 vaccine - the vaccine affliction name that will have an effect on this disease
 ]]--
 
 NTI.InfTable = {} --list of infection names
-NTI.InfPicker = {} --list of infection names that will be picked from at random
 
 --fill in the two previous tables
 for i = 1, #NTI.InfInfo do
     local infection = NTI.InfInfo[i]
     table.insert(NTI.InfTable, 1, infection[1])
-    for j = 1, infection[3] do
-        table.insert(NTI.InfPicker, 1, infection[1])
-    end
 end
-
 
 --helper functions
 
@@ -108,21 +107,6 @@ end
 --return the infection level of a limb
 function NTI.LimbInfectionLevel(character, limb)
     return HF.GetAfflictionStrengthLimb(character, limb, "infectionlevel", 0)
-end
-
---return the tag of the infection in a limb
-function NTI.LimbInfectionName(character, limb)
-    if not NTI.LimbIsInfected(character, limb) then
-        return nil
-    end
-
-    for i = 1, #NTI.InfTable do
-        if HF.GetAfflictionStrengthLimb(character, limb, NTI.InfTable[i], 0) > 0 then
-            return NTI.InfTable[i]
-        end
-    end
-
-    return nil
 end
 
 --return the infection level of a limb from a list of infections
@@ -199,7 +183,6 @@ function NTI.TriggerUnsterilityEvent(character)
     local type = NTI.DetermineDirtiestLimb(character)
 
     if type ~= nil then
-        print("infection occurred!")
         NTI.InfectCharacterRandom(character, type)
     end
 end
@@ -227,15 +210,111 @@ function NTI.InfectCharacterRandom(character, limb)
         return
     end
 
+    local inflst = NTI.InfPickerForm(character)
     local randomval = math.random(5)
-    HF.SetAfflictionLimb(character, NTI.InfPicker[math.random(#NTI.InfPicker)], limb, 2)
+    HF.SetAfflictionLimb(character, inflst[math.random(#inflst)], limb, 2)
     HF.SetAfflictionLimb(character, "infectionseverity", limb, randomval)
     HF.SetAfflictionLimb(character, "infectionlevel", limb, 1)
+end
+
+--make a list for the probability of which infection is picked (already gotten infections will be more likely)
+function NTI.InfPickerForm(character)
+    local lst = {}
+
+    for i = 1, #NTI.InfInfo do
+        local infection = NTI.InfInfo[i]
+        local scalar = 1
+
+        if NTI.CheckAllLimbsFor(character, infection[1]) then
+            scalar = 3
+        end
+
+        for j = 1, (infection[3] * scalar) do
+            table.insert(lst, 1, infection[1])
+        end
+    end
+
+    return lst
+end
+
+--return a boolean if the body has a certain limb affliction yet
+function NTI.CheckAllLimbsFor(character, tag)
+    for limb in limbtypes do
+        if HF.GetAfflictionStrengthLimb(character, limb, tag, 0) > 0 then
+            return true
+        end
+    end
+
+    return false
+end
+
+--infect viral infection with random severity
+function NTI.InfectCharacterViral(character, virus, level)
+    local randomval = math.random(5)
+    HF.SetAffliction(character, "viralseverity", randomval)
+    HF.SetAffliction(character, virus, level)
+end
+
+--return boolean if character has a virus
+function NTI.HasViralInfection(character)
+    for i = 1, #NTI.VirusTable do
+        if HF.HasAffliction(character, NTI.VirusTable[i]) then
+            return true
+        end
+    end
+
+    return false
 end
 
 --decomposing the blood updating shit
 function NTI.BloodInfUpdate(character, antibiotic_list, vaccine)
     local immune_level = HF.GetAfflictionStrength(character, "immunity", 0) / 100
+    local response = HF.GetAfflictionStrength(character, "systemicresponse", 0) / 160
     local ab = NTI.GetAntibioticValue(character, antibiotic_list)
-    return 1 * ab - (immune_level / 2) - ((HF.GetAfflictionStrength(character, vaccine, 0) / 3600) * immune_level)
+    return 0.75 * ab - response - ((HF.GetAfflictionStrength(character, vaccine, 0) / 2400) * immune_level)
 end
+
+--check if a character is wearing a specific tag from a list on their head
+function NTI.WearingNeededHead(character, tagval)
+    local result = 0
+
+    for i = 1, #tagval do
+        local tag = tagval[i]
+        if (HF.ItemHasTag(HF.GetHeadWear(character),tag[1])) then
+            result = result + tag[2]
+        end
+    end
+
+    return result
+end
+
+--ibidem but for outer wear
+function NTI.WearingNeededOuter(character, tagval)
+    local result = 0
+
+    for i = 1, #tagval do
+        local tag = tagval[i]
+        if (HF.ItemHasTag(HF.GetOuterWear(character),tag[1])) then
+            result = result + tag[2]
+        end
+    end
+
+    return result
+end
+
+--for when a new ai npc spawns, give a chance to randomly infect them
+function NTI.BotViralStarter(character)
+    local val = math.random(40)
+    NTI.InfectCharacterViral(character, "europancough", val)
+    HF.SetAffliction(character, "systemicresponse", val / 2)
+end
+
+Hook.Add("characterCreated", "NTI.StartWithInfection", function(createdCharacter)
+    Timer.Wait(function()
+        if (createdCharacter.IsHuman and not createdCharacter.IsDead and not createdCharacter.IsPlayer and not createdCharacter.IsOnPlayerTeam) then
+            if math.random() < 0.01 then
+                NTI.BotViralStarter(createdCharacter)
+            end
+        end
+    end, 2000)
+end)

@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
+<!--misc-->
+    <Item name="" identifier="dextromethorphan" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.4" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
+        <PreferredContainer primary="medcab" spawnprobability="0.2" />
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
+        <Price baseprice="40" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        </Price>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="2">
+            <RequiredSkill identifier="medical" level="20" />
+            <RequiredItem identifier="carbon" />
+            <RequiredItem identifier="opium" />
+        </Fabricate>
+        <Deconstruct />
+        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="468,6,32,62" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="468,6,32,62" depth="0.6" origin="0.5,0.5" />
+        <Body width="35" height="70" density="20" />
+        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+            <RequiredSkill identifier="medical" level="10" />
+            <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
+            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="afdextromethorphan" amount="8" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="afdextromethorphan" amount="6" />
+            </StatusEffect>
+            <StatusEffect type="OnBroken" target="This">
+                <Remove />
+            </StatusEffect>
+        </MeleeWeapon>
+        <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+        <SkillRequirementHint identifier="medical" level="10" />
+    </Item>
+    <Item name="" identifier="remdesivir" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
+        <PreferredContainer primary="medcab" spawnprobability="0.2" />
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
+        <Price baseprice="60" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        </Price>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
+            <RequiredSkill identifier="medical" level="40" />
+            <RequiredItem identifier="carbon" />
+            <RequiredItem identifier="cyanide" />
+        </Fabricate>
+        <Deconstruct />
+        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="472,80,24,48" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="472,80,24,48" depth="0.6" origin="0.5,0.5" />
+        <Body width="24" height="48" density="20" />
+        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+            <RequiredSkill identifier="medical" level="50" />
+            <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
+            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="afremdesivir" amount="6" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="afremdesivir" amount="6" />
+                <Affliction identifier="liverdamage" amount="0.5" />
+            </StatusEffect>
+            <StatusEffect type="OnBroken" target="This">
+                <Remove />
+            </StatusEffect>
+        </MeleeWeapon>
+        <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+        <SkillRequirementHint identifier="medical" level="50" />
+    </Item>
 <!--antibiotics-->
     <Item name="" identifier="ampicillin" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
@@ -645,7 +715,7 @@
         <Price baseprice="350" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
             <RequiredSkill identifier="medical" level="80" />
             <RequiredItem identifier="streptube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
@@ -675,14 +745,14 @@
         <Price baseprice="350" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
             <RequiredSkill identifier="medical" level="80" />
             <RequiredItem identifier="staphtube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
             <RequiredItem identifier="tonicliquid" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
             <RequiredSkill identifier="medical" level="80" />
             <RequiredItem identifier="mrsatube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
@@ -712,7 +782,7 @@
         <Price baseprice="350" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
             <RequiredSkill identifier="medical" level="80" />
             <RequiredItem identifier="pseudotube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
@@ -742,7 +812,7 @@
         <Price baseprice="350" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
             <RequiredSkill identifier="medical" level="80" />
             <RequiredItem identifier="provotube" amount="3" />
             <RequiredItem identifier="antiparalysis" />

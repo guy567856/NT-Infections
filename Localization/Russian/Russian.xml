@@ -124,4 +124,20 @@
   <entitydescription.weaponpseudo>Шприц, наполненный штаммом псевдомонады с целью заражения объекта.</entitydescription.weaponpseudo>
   <entityname.weaponprovo>Оружейные провобактерии</entityname.weaponprovo>
   <entitydescription.weaponprovo>Шприц, заполненный штаммом провобактерий с целью инфицирования цели.</entitydescription.weaponprovo>
+  <afflictionname.systemicresponse>Системный ответ</afflictionname.systemicresponse>
+  <afflictiondescription.systemicresponse></afflictiondescription.systemicresponse>
+  <afflictionname.europancough>Европианский Кашель</afflictionname.europancough>
+  <afflictiondescription.europancough></afflictiondescription.europancough>
+  <afflictionname.viralseverity>Тяжесть Вируса</afflictionname.viralseverity>
+  <afflictiondescription.viralseverity></afflictiondescription.viralseverity>
+  <entityname.dextromethorphan>Декстрометорфан</entityname.dextromethorphan>
+  <entitydescription.dextromethorphan>Противокашлевый раствор, используемый для облегчения кашля.</entitydescription.dextromethorphan>
+  <afflictionname.afdextromethorphan>Декстрометорфан</afflictionname.afdextromethorphan>
+  <afflictiondescription.afdextromethorphan></afflictiondescription.afdextromethorphan>
+  <entityname.remdesivir>Ремдесивир</entityname.remdesivir>
+  <entitydescription.remdesivir>Противовирусный препарат широкого спектра действия, обычно используемый для лечения европианского кашля.</entitydescription.remdesivir>
+  <afflictionname.afremdesivir>Ремдесивир</afflictionname.afremdesivir>
+  <afflictiondescription.afremdesivir></afflictiondescription.afremdesivir>
+  <afflictionname.viralantibodies>Антитела к Вирусам</afflictionname.viralantibodies>
+  <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
 </infotexts>

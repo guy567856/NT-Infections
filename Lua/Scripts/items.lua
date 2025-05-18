@@ -7,12 +7,12 @@ Timer.Wait(function()
     --add all disease's bloodtags to the hematology analyzer
     for i = 1, #NTI.InfInfo do
         local infection = NTI.InfInfo[i]
-        table.insert(NTI.MoreHematologyDetectable, 1, infection[2])
+        NTC.AddHematologyAffliction(infection[2])
     end
 
     --add the new hematology tags into the nt hematology list
     for i = 1, #NTI.MoreHematologyDetectable do
-        table.insert(NT.HematologyDetectable, 1, NTI.MoreHematologyDetectable[i])
+        NTC.AddHematologyAffliction(NTI.MoreHematologyDetectable[i])
     end
 
     --culture analyzer item

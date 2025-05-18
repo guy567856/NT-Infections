@@ -54,11 +54,11 @@
         <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="0.5" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="necfasc" description="" healableinmedicalclinic="false" limbspecific="true" maxstrength="100" showinhealthscannerthreshold="700" showiconthreshold="1" type="damage" isbuff="false" iconcolors="200,50,0,255;200,50,0,255">
+    <Affliction name="" identifier="necfasc" description="" healableinmedicalclinic="false" limbspecific="true" maxstrength="100" showinhealthscannerthreshold="700" showiconthreshold="1" type="gaze" isbuff="false" iconcolors="200,50,0,255;200,50,0,255">
         <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="1" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="2,0" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="cellulitis" description="" healableinmedicalclinic="false" limbspecific="true" maxstrength="100" showinhealthscannerthreshold="700" showiconthreshold="1" type="damage" isbuff="false" iconcolors="200,50,0,255;200,50,0,255">
+    <Affliction name="" identifier="cellulitis" description="" healableinmedicalclinic="false" limbspecific="true" maxstrength="100" showinhealthscannerthreshold="700" showiconthreshold="1" type="gaze" isbuff="false" iconcolors="200,50,0,255;200,50,0,255">
         <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="0.1" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,0" sheetelementsize="128,128" origin="0,0" />
     </Affliction>

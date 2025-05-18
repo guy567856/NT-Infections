@@ -210,9 +210,7 @@ Timer.Wait(function()
                         local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 20) + head + outer + anticough
                          + HF.Clamp(20 - HF.GetAfflictionStrength(c.character, "europancough", 0), 0, 20) + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam and not targetcharacter.IsPlayer, 30)
 
-                        print(chance)
                         if (HF.Chance(1 / chance)) then
-                            print("infection occurred!")
                             NTI.InfectCharacterViral(targetcharacter, "europancough", 1)
                         end
                     end

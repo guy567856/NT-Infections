@@ -90,28 +90,6 @@ Timer.Wait(function()
         limbaff[i].strength = limbaff[i].strength + (HF.BoolToNum(c.afflictions.sepsis.strength > 50 or HF.HasAfflictionLimb(c.character, "necfasc", type, 10), 2) - HF.BoolToNum(c.stats.sedated,100)) * NT.Deltatime
     end}
 
---pneumonia and europan cough causing hypoxemia
-    NT.Afflictions.hypoxemia={update=function(c,i)
-        if c.stats.stasis then return end
-        -- completely cancel out hypoxemia regeneration if penumothorax is full as well as pneumonia and europan cough
-        c.stats.availableoxygen = math.min(c.stats.availableoxygen,100-c.afflictions.pneumothorax.strength/2,100-c.afflictions.pneumonia.strength/2, 100-c.afflictions.europancough.strength/3)
-
-        local hypoxemiagain = NTC.GetMultiplier(c.character,"hypoxemiagain")
-        local regularHypoxemiaChange = (-c.stats.availableoxygen+50) / 8
-        if regularHypoxemiaChange > 0 then
-            -- not enough oxygen, increase hypoxemia
-            regularHypoxemiaChange = regularHypoxemiaChange * hypoxemiagain
-        else
-            -- enough oxygen, decrease hypoxemia
-            regularHypoxemiaChange = HF.Lerp(regularHypoxemiaChange * 2,0,HF.Clamp((50-c.stats.bloodamount)/50,0,1))
-        end
-        c.afflictions.hypoxemia.strength = HF.Clamp(c.afflictions.hypoxemia.strength + (
-            - math.min(0,(c.afflictions.bloodpressure.strength-70) / 7) * hypoxemiagain    -- loss because of low blood pressure (+10 at 0 bp)
-            - math.min(0,(c.stats.bloodamount-60) / 4) * hypoxemiagain      -- loss because of low blood amount (+15 at 0 blood)
-            + regularHypoxemiaChange                                -- change because of oxygen in lungs (+6.25 <> -12.5)
-        )* NT.Deltatime,0,100)
-    end}
-
 --europan cough to cause lung damage
     local lungdam_temp = NT.Afflictions.lungdamage.update
     NT.Afflictions.lungdamage={update=function(c,i)
@@ -127,6 +105,12 @@ Timer.Wait(function()
         if c.afflictions[i].strength > 0 then NTC.SetSymptomFalse(c.character, "sym_cough", 2) end
         if c.afflictions[i].strength > 80 then NTC.SetSymptomTrue(c.character, "sym_nausea", 2) end
         if c.afflictions[i].strength > 90 then HF.AddAffliction(c.character,"psychosis",1) end
+    end}
+
+--zinc supplement
+    NT.Afflictions.afzincsupplement={update=function(c,i)
+        if c.afflictions[i].strength > 80 then NTC.SetSymptomTrue(c.character, "sym_nausea", 2) end
+        if c.afflictions[i].strength > 90 then NTC.SetSymptomTrue(c.character, "sym_vomiting", 2) end
     end}
 
 --immunocompromised affliction
@@ -155,23 +139,14 @@ Timer.Wait(function()
     NT.Afflictions.systemicresponse={update=function(c,i)
         if c.stats.stasis then return end
 
-        if (NTI.BloodIsInfected(c.character) or HF.HasAffliction(c.character, "europancough")) then
+        if (NTI.BloodIsInfected(c.character) or HF.HasAffliction(c.character, "virallevel")) then
             c.afflictions[i].strength = c.afflictions[i].strength + ((c.afflictions.immunity.strength - 50) / 100)
         else
             c.afflictions[i].strength = c.afflictions[i].strength - 1
         end
     end}
 
---viral infection severity for viral infection stuff
-    NT.Afflictions.viralseverity={update=function(c,i)
-        if c.afflictions[i].strength > 0 then
-            if (not NTI.HasViralInfection(c.character)) then
-                c.afflictions[i].strength = 0
-            end
-        end
-    end}
-
---europan cough test
+--viral infections
     NT.Afflictions.afremdesivir={update=function(c,i)
         if c.afflictions[i].strength > 70 then NTC.SetSymptomTrue(c.character, "sym_nausea", 2) end
         if c.afflictions[i].strength > 75 then NTC.SetSymptomTrue(c.character, "sym_jaundice", 2) end
@@ -179,54 +154,109 @@ Timer.Wait(function()
     end}
 
     NT.Afflictions.europancough={update=function(c,i)
-        if c.afflictions[i].strength > 15 then NTC.SetSymptomTrue(c.character, "sym_cough", 2) end
-        if c.afflictions[i].strength > 25 then NTC.SetSymptomTrue(c.character, "sym_fever", 2) end
-        if c.afflictions[i].strength > 60 then NTC.SetSymptomTrue(c.character, "sym_weakness", 2) end
-        if c.afflictions[i].strength > 40 then NTC.SetSymptomTrue(c.character, "dyspnea", 2) end
-        if c.afflictions[i].strength > 50 then 
-            if c.afflictions.respiratoryarrest.strength<=0 then NTC.SetSymptomTrue(c.character, "sym_wheezing", 2) end
-            NTC.SetSymptomTrue(c.character, "sym_nausea", 2)
+        local level = HF.GetAfflictionStrength(c.character, "virallevel", 0)
+
+        if (level <= 0) then
+            c.afflictions[i].strength = 0
+            return
         end
-        if c.afflictions[i].strength > 90 then NTC.SetSymptomTrue(c.character, "triggersym_respiratoryarrest", 2) end
+
+        if (c.afflictions[i].strength <= 0) then return end
+
+        NTI.CheckSymptom(c.character, "sym_cough", level, 10, 0.2)
+        NTI.CheckSymptom(c.character, "fever", level, 30, 0.1)
+        NTI.CheckSymptom(c.character, "sym_weakness", level, 50, 0.01)
+        NTI.CheckSymptom(c.character, "dyspnea", level, 60, 0.01)
+        NTI.CheckSymptom(c.character, "sym_nausea", level, 70, 0.025)
+        if c.afflictions.respiratoryarrest.strength <= 0 then
+            NTI.CheckSymptom(c.character, "sym_wheezing", level, 70, 0.01)
+        end
+        if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then
+            NTI.CheckSymptom(c.character, "sym_headache", level, 75, 0.025)
+            NTI.CheckSymptom(c.character, "pain_chest", level, 90, 0.025)
+        end
+    end}
+
+    NT.Afflictions.influenza={update=function(c,i)
+        local level = HF.GetAfflictionStrength(c.character, "virallevel", 0)
+
+        if (level <= 0) then
+            c.afflictions[i].strength = 0
+            return
+        end
+
+        if (c.afflictions[i].strength <= 0) then return end
+
+        NTI.CheckSymptom(c.character, "sym_cough", level, 15, 0.2)
+        NTI.CheckSymptom(c.character, "fever", level, 30, 0.1)
+        NTI.CheckSymptom(c.character, "sym_nausea", level, 50, 0.025)
+        if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then
+            NTI.CheckSymptom(c.character, "sym_headache", level, 80, 0.025)
+        end
+    end}
+
+    NT.Afflictions.commoncold={update=function(c,i)
+        local level = HF.GetAfflictionStrength(c.character, "virallevel", 0)
+
+        if (level <= 0) then
+            c.afflictions[i].strength = 0
+            return
+        end
+
+        if (c.afflictions[i].strength <= 0) then return end
+
+        NTI.CheckSymptom(c.character, "sym_cough", level, 10, 0.2)
+        if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then
+            NTI.CheckSymptom(c.character, "sym_headache", level, 60, 0.05)
+        end
+        NTI.CheckSymptom(c.character, "fever", level, 80, 0.025)
+    end}
+
+--current progress of a viral infection
+    NT.Afflictions.virallevel={update=function(c,i)
         if c.stats.stasis then return end
-        if c.afflictions[i].strength > 75 and c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then NTC.SetSymptomTrue(c.character, "sym_headache", 2) end
-        if c.afflictions[i].strength > 80 and c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then NTC.SetSymptomTrue(c.character, "pain_chest", 2) end
 
-        if (c.afflictions[i].strength > 0) then
-            local coughmed = HF.BoolToNum(HF.HasAffliction(c.character, "afdextromethorphan"), 50) + HF.BoolToNum(HF.HasAffliction(c.character, "analgesia"), 50)
-            c.stats.speedmultiplier = c.stats.speedmultiplier*(1 - (c.afflictions[i].strength / (150 + coughmed)))
+        if c.afflictions[i].strength > 0 then
+            local virus_info = NTI.GetVirusInfo(c.character)
 
-            local gain = (0.4 + (HF.GetAfflictionStrength(c.character, "viralseverity", 0) / 10)) * (1 - HF.BoolToNum(HF.HasAffliction(c.character, "afremdesivir"), 0.75))
-            c.afflictions[i].strength = c.afflictions[i].strength + gain - (gain + (0.1 + HF.BoolToNum(HF.HasAffliction(c.character, "viralantibodies", 0), 0.3))) * (HF.GetAfflictionStrength(c.character, "systemicresponse", 0) / 100)
+            if virus_info == nil then
+                c.afflictions[i].strength = 0
+                return
+            end
 
-            if (HF.Chance(0.05)) then
+            local meds = NTI.GetTotalMedValue(c.character, virus_info[5])
+            local gain = (virus_info[3] + (HF.GetAfflictionStrength(c.character, virus_info[1], 0) / 20)) * NTI.GetAntibioticValue(c.character, virus_info[4])
+            local def = (gain + 0.1 + HF.BoolToNum(HF.HasAffliction(c.character, "viralantibodies", 0), 0.5)) * (HF.GetAfflictionStrength(c.character, "systemicresponse", 0) / 100)
+            c.stats.speedmultiplier = c.stats.speedmultiplier * (1 - virus_info[6] * (c.afflictions[i].strength / (100 + meds)))
+
+            if (HF.Chance(0.1)) then
                 for _, targetcharacter in pairs(Character.CharacterList) do
-                    local distance = HF.CharacterDistance(c.character,targetcharacter)
-                    if targetcharacter ~= c.character and targetcharacter.IsHuman and distance < 300 and not HF.HasAffliction(targetcharacter, "europancough") then
-                        local head = NTI.WearingNeededHead(targetcharacter, {{"sterile", 7}, {"diving", 9}}) + NTI.WearingNeededHead(c.character, {{"sterile", 7}, {"diving", 9}})
-                        local outer = NTI.WearingNeededOuter(targetcharacter, {{"diving", 9}, {"divinghelmet", 9}}) + NTI.WearingNeededOuter(c.character, {{"diving", 9}, {"divinghelmet", 9}})
-                        local anticough = HF.BoolToNum(HF.HasAffliction(c.character, "afdextromethorphan"), 5)
+                    if targetcharacter ~= c.character and targetcharacter.IsHuman then
+                        local distance = HF.CharacterDistance(c.character,targetcharacter)
 
-                        local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 20) + head + outer + anticough
-                         + HF.Clamp(20 - HF.GetAfflictionStrength(c.character, "europancough", 0), 0, 20) + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam and not targetcharacter.IsPlayer, 30)
+                        if distance < 300 and not HF.HasAffliction(targetcharacter, "virallevel") then
+                            local head = NTI.WearingNeededHead(targetcharacter, NTI.head_protection) + NTI.WearingNeededHead(c.character, NTI.head_protection)
+                            local outer = NTI.WearingNeededOuter(targetcharacter, NTI.outer_protection) + NTI.WearingNeededOuter(c.character, NTI.outer_protection)
 
-                        if (HF.Chance(1 / chance)) then
-                            NTI.InfectCharacterViral(targetcharacter, "europancough", 1)
+                            local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 30) * (1 / math.max(0.1, virus_info[7])) + head + outer
+                                + (meds / 50)
+                                + HF.Clamp(20 - c.afflictions[i].strength / 2, 0, 20)
+                                + HF.BoolToNum(not targetcharacter.IsPlayer, 20)
+                                + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam, 20)
+
+                            if (HF.Chance(1 / chance)) then
+                                NTI.InfectCharacterViral(targetcharacter, virus_info[1], 1)
+                            end
                         end
                     end
                 end
             end
 
-            if (c.afflictions[i].strength <= 0) then
+            c.afflictions[i].strength = c.afflictions[i].strength + gain - def
+
+            if c.afflictions[i].strength <= 0 then
                 HF.SetAffliction(c.character, "viralantibodies", 100)
             end
-        end
-    end}
-
---determines how fast an infection will progress
-    NT.LimbAfflictions.infectionseverity={update=function(c,limbaff,i,type)
-        if not NTI.LimbIsInfected(c.character, type) then
-            limbaff[i].strength = 0
         end
     end}
 
@@ -240,15 +270,17 @@ Timer.Wait(function()
             local spd = 0
             local vac = "none"
             local bld = "none"
+            local name = "none"
             if (inf_info ~= nil) then
                 ab = NTI.GetAntibioticValue(c.character, inf_info[5])
                 spd = inf_info[4]
                 vac = inf_info[7]
                 bld = inf_info[2]
+                name = inf_info[1]
             end
-            local inc = HF.Clamp(spd + (HF.GetAfflictionStrengthLimb(c.character, type, "infectionseverity", 1) * 0.15), 0, 1.05) * ab
+            local inc = HF.Clamp(spd + (HF.GetAfflictionStrengthLimb(c.character, type, name, 1) * 0.075), 0, 1.05) * ab
             - (HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100)
-            - ((HF.GetAfflictionStrength(c.character, vac, 0) / 2400) * (c.afflictions.immunity.strength / 100))
+            - ((HF.GetAfflictionStrength(c.character, vac, 0) / 2000) * (c.afflictions.immunity.strength / 100))
 
             limbaff[i].strength = limbaff[i].strength + inc
 
@@ -340,15 +372,8 @@ Timer.Wait(function()
 
     NT.LimbAfflictions.pusyellow={update=function(c,limbaff,i,type)
         local inflev = NTI.LimbInfectionLevelList(c.character, type, pusyellowcauses)
-        local wound = limbaff.burn.strength
-        + limbaff.lacerations.strength
-        + limbaff.gunshotwound.strength
-        + limbaff.bitewounds.strength
-        + limbaff.explosiondamage.strength
-        + HF.GetAfflictionStrengthLimb(c.character, type, "suturedw", 0)
-        + HF.GetAfflictionStrengthLimb(c.character, type, "surgeryincision", 0)
 
-        if wound > 0 and inflev > 25 then
+        if inflev > 25 and NTI.HasWound(c, limbaff, type) then
             if limbaff[i].strength <= 0 then
                 limbaff[i].strength = HF.BoolToNum(HF.Chance((inflev/400)^2), 2)
             end
@@ -363,15 +388,8 @@ Timer.Wait(function()
 
     NT.LimbAfflictions.pusgreen={update=function(c,limbaff,i,type)
         local inflev = NTI.LimbInfectionLevelList(c.character, type, pusgreencauses)
-        local wound = limbaff.burn.strength
-        + limbaff.lacerations.strength
-        + limbaff.gunshotwound.strength
-        + limbaff.bitewounds.strength
-        + limbaff.explosiondamage.strength
-        + HF.GetAfflictionStrengthLimb(c.character, type, "suturedw", 0)
-        + HF.GetAfflictionStrengthLimb(c.character, type, "surgeryincision", 0)
 
-        if wound > 0 and inflev > 25 then
+        if inflev > 25 and NTI.HasWound(c, limbaff, type) then
             if limbaff[i].strength <= 0 then
                 limbaff[i].strength = HF.BoolToNum(HF.Chance((inflev/400)^2), 2)
             end
@@ -386,15 +404,8 @@ Timer.Wait(function()
 
     NT.LimbAfflictions.abscess={update=function(c,limbaff,i,type)
         local inflev = NTI.LimbInfectionLevelList(c.character, type, abscesscauses)
-        local wound = limbaff.burn.strength
-        + limbaff.lacerations.strength
-        + limbaff.gunshotwound.strength
-        + limbaff.bitewounds.strength
-        + limbaff.explosiondamage.strength
-        + HF.GetAfflictionStrengthLimb(c.character, type, "suturedw", 0)
-        + HF.GetAfflictionStrengthLimb(c.character, type, "surgeryincision", 0)
 
-        if wound <= 0 and inflev > 25 then
+        if inflev > 25 and not NTI.HasWound(c, limbaff, type) then
             if limbaff[i].strength <= 0 then
                 limbaff[i].strength = HF.BoolToNum(HF.Chance((inflev/400)^2), 2)
             end
@@ -408,18 +419,23 @@ Timer.Wait(function()
         if c.stats.stasis then return end
 
         local bil = NTI.BloodInfectionLevel(c.character)
+        local vir = HF.GetAfflictionStrength(c.character, "virallevel", 0)
 
         if c.afflictions[i].strength <= 0 then
-            if HF.Chance(1 / (250 + c.afflictions.immunity.strength)) and bil > 0 then
+            if not (bil > 0 or vir > 75) then return end
+
+            if HF.Chance(1 / (250 + c.afflictions.immunity.strength - bil - (vir / 2))) then
                 c.afflictions[i].strength = 1
                 return
             end
         else
-            if c.afflictions[i].strength > 10 then NTC.SetSymptomTrue(c.character, "dyspnea", 2) end
-            if c.afflictions[i].strength > 5 then NTC.SetSymptomTrue(c.character, "sym_cough", 2) end
-            if c.afflictions[i].strength > 40 and c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then NTC.SetSymptomTrue(c.character, "pain_chest", 2) end
-            if c.afflictions[i].strength > 90 then NTC.SetSymptomTrue(c.character, "triggersym_respiratoryarrest", 2) end
-            c.afflictions[i].strength = c.afflictions[i].strength + (-(c.afflictions.immunity.strength / 500) + HF.Clamp(bil / 100, 0, 1))
+            NTI.CheckSymptom(c.character, "sym_cough", c.afflictions[i].strength, 5, 0.2)
+            NTI.CheckSymptom(c.character, "dyspnea", c.afflictions[i].strength, 10, 0.1)
+            if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then 
+                NTI.CheckSymptom(c.character, "pain_chest", c.afflictions[i].strength, 40, 0.1)
+            end
+            NTI.CheckSymptom(c.character, "triggersym_respiratoryarrest", c.afflictions[i].strength, 80, 0.1)
+            c.afflictions[i].strength = c.afflictions[i].strength + (-(c.afflictions.immunity.strength / 500) + HF.Clamp((bil / 100) + (vir / 200), 0, 1))
         end
     end}
 

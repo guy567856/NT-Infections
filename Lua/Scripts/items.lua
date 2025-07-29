@@ -1,7 +1,7 @@
 Timer.Wait(function()
     --additional hematology tags
     NTI.MoreHematologyDetectable = {
-        "afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac","afdextromethorphan","afremdesivir"
+        "afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac","afdextromethorphan","afremdesivir","afzincsupplement","afceftazidime"
     }
 
     --add all disease's bloodtags to the hematology analyzer
@@ -20,54 +20,69 @@ Timer.Wait(function()
         local containedItem = item.OwnInventory.GetItemAt(0)
 
         if containedItem ~= nil then
-            HF.RemoveItem(containedItem)
-            local inf = nil
-
-            local puspresent = HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusyellow", 0)
-            + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
-            + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "abscess", 0)
-
-            if puspresent <= 0 and not HF.HasAfflictionLimb(targetCharacter, "retractedskin", limb.type, 0) then
-                HF.DMClient(HF.CharacterToClient(usingCharacter),"Culture Sampler\n\nBlood sample found.",Color(127,255,127,255))
-
-                inf = NTI.GetInfectionInfoBloodRandom(targetCharacter)
-            elseif puspresent > 0 then
-                HF.DMClient(HF.CharacterToClient(usingCharacter),"Culture Sampler\n\nPus sample found.",Color(127,255,127,255))
-
-                inf = NTI.GetInfectionInfoLimb(targetCharacter, limb.type)
-
-                if HF.HasAfflictionLimb(targetCharacter, "abscess", limb.type, 0) then
-                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,4,usingCharacter)
-                    HF.SetAfflictionLimb(targetCharacter, "abscess", limb.type, 0)
-
-                    if HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "limbpseudo", 0) > 0 then
-                        HF.AddAfflictionLimb(targetCharacter,"pusgreen",limb.type,2,usingCharacter)
-                    else
-                        HF.AddAfflictionLimb(targetCharacter,"pusyellow",limb.type,2,usingCharacter)
-                    end
-                end
-            else
-                HF.DMClient(HF.CharacterToClient(usingCharacter),"Culture Sampler\n\nTissue sample found.",Color(127,255,127,255))
-
-                inf = NTI.GetInfectionInfoLimb(targetCharacter, limb.type)
-
-                HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,10,usingCharacter)
-            end
-
             local function postSpawnFunc(args)
                 args.item.Condition = args.condition
             end
-            local params = {
-                condition=0
-            }
 
-            if inf ~= nil then
-                HF.GiveItemPlusFunction(inf[6],postSpawnFunc,params,usingCharacter)
+            if containedItem.HasTag("viraltest") then
+                HF.RemoveItem(containedItem)
+                local params = {
+                    condition=100
+                }
+                local inf = NTI.GetVirusInfo(targetCharacter)
+                HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nSwab sample found.",Color(127,255,127,255))
+
+                if inf ~= nil then
+                    HF.GiveItemPlusFunction(inf[8],postSpawnFunc,params,usingCharacter)
+                else
+                    HF.GiveItemPlusFunction("emptyviralunk",postSpawnFunc,params,usingCharacter)
+                end
             else
-                HF.GiveItemPlusFunction("emptytubeunk",postSpawnFunc,params,usingCharacter)
+                HF.RemoveItem(containedItem)
+                local params = {
+                    condition=0
+                }
+                local inf = nil
+
+                local puspresent = HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusyellow", 0)
+                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
+                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "abscess", 0)
+
+                if puspresent > 0 then
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nPus sample found.",Color(127,255,127,255))
+
+                    inf = NTI.GetInfectionInfoLimb(targetCharacter, limb.type)
+
+                    if HF.HasAfflictionLimb(targetCharacter, "abscess", limb.type, 0) then
+                        HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,4,usingCharacter)
+                        HF.SetAfflictionLimb(targetCharacter, "abscess", limb.type, 0)
+
+                        if HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "limbpseudo", 0) > 0 then
+                            HF.AddAfflictionLimb(targetCharacter,"pusgreen",limb.type,2,usingCharacter)
+                        else
+                            HF.AddAfflictionLimb(targetCharacter,"pusyellow",limb.type,2,usingCharacter)
+                        end
+                    end
+                elseif HF.HasAfflictionLimb(targetCharacter, "retractedskin", limb.type, 0) then
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nTissue sample found.",Color(127,255,127,255))
+
+                    inf = NTI.GetInfectionInfoLimb(targetCharacter, limb.type)
+
+                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,10,usingCharacter)
+                else
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nBlood sample found.",Color(127,255,127,255))
+
+                    inf = NTI.GetInfectionInfoBloodRandom(targetCharacter)
+                end
+
+                if inf ~= nil then
+                    HF.GiveItemPlusFunction(inf[6],postSpawnFunc,params,usingCharacter)
+                else
+                    HF.GiveItemPlusFunction("emptytubeunk",postSpawnFunc,params,usingCharacter)
+                end
             end
         else
-            HF.DMClient(HF.CharacterToClient(usingCharacter),"Culture Sampler\n\nERROR\nNo culture tube provided.",Color(127,255,127,255))
+            HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nERROR\nNo sample medium provided.",Color(127,255,127,255))
         end
     end
 

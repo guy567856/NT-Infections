@@ -4,8 +4,6 @@
   <afflictiondescription.immunodeficiency></afflictiondescription.immunodeficiency>
   <afflictionname.immuneresponse>Иммунный Ответ</afflictionname.immuneresponse>
   <afflictiondescription.immuneresponse></afflictiondescription.immuneresponse>
-  <afflictionname.infectionseverity>Тяжесть Инфекции</afflictionname.infectionseverity>
-  <afflictiondescription.infectionseverity></afflictiondescription.infectionseverity>
   <afflictionname.infectionlevel>Уровень Инфекции</afflictionname.infectionlevel>
   <afflictiondescription.infectionlevel></afflictiondescription.infectionlevel>
   <afflictionname.limbstrep>Стрептококковая Инфекция</afflictionname.limbstrep>
@@ -128,8 +126,6 @@
   <afflictiondescription.systemicresponse></afflictiondescription.systemicresponse>
   <afflictionname.europancough>Европианский Кашель</afflictionname.europancough>
   <afflictiondescription.europancough></afflictiondescription.europancough>
-  <afflictionname.viralseverity>Тяжесть Вируса</afflictionname.viralseverity>
-  <afflictiondescription.viralseverity></afflictiondescription.viralseverity>
   <entityname.dextromethorphan>Декстрометорфан</entityname.dextromethorphan>
   <entitydescription.dextromethorphan>Противокашлевый раствор, используемый для облегчения кашля.</entitydescription.dextromethorphan>
   <afflictionname.afdextromethorphan>Декстрометорфан</afflictionname.afdextromethorphan>

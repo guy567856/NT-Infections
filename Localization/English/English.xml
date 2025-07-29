@@ -4,8 +4,6 @@
     <afflictiondescription.immunodeficiency></afflictiondescription.immunodeficiency>
     <afflictionname.immuneresponse>Immune Response</afflictionname.immuneresponse>
     <afflictiondescription.immuneresponse></afflictiondescription.immuneresponse>
-    <afflictionname.infectionseverity>Infection Severity</afflictionname.infectionseverity>
-    <afflictiondescription.infectionseverity></afflictiondescription.infectionseverity>
     <afflictionname.infectionlevel>Infection Level</afflictionname.infectionlevel>
     <afflictiondescription.infectionlevel></afflictiondescription.infectionlevel>
     <afflictionname.limbstrep>Streptococcal Infection</afflictionname.limbstrep>
@@ -40,6 +38,8 @@
     <entitydescription.cotrim>A combination antibiotic used to treat a wide variety of bacterial infections.</entitydescription.cotrim>
     <entityname.imipenem>Imipenem</entityname.imipenem>
     <entitydescription.imipenem>A combination carbapenem antibiotic used against a wide variety of bacterial infections.</entitydescription.imipenem>
+    <entityname.ceftazidime>Ceftazidime</entityname.ceftazidime>
+    <entitydescription.ceftazidime>A third-generation cephalosporin antibiotic used against most gram-negative bacteria.</entitydescription.ceftazidime>
     <afflictionname.afampicillin>Ampicillin</afflictionname.afampicillin>
     <afflictiondescription.afampicillin></afflictiondescription.afampicillin>
     <afflictionname.afaugmentin>Augmentin</afflictionname.afaugmentin>
@@ -52,14 +52,16 @@
     <afflictiondescription.afcotrim></afflictiondescription.afcotrim>
     <afflictionname.afimipenem>Imipenem</afflictionname.afimipenem>
     <afflictiondescription.afimipenem></afflictiondescription.afimipenem>
+    <afflictionname.afceftazidime>Ceftazidime</afflictionname.afceftazidime>
+    <afflictiondescription.afceftazidime></afflictiondescription.afceftazidime>
     <afflictionname.pusyellow>Purulent drainage</afflictionname.pusyellow>
     <afflictiondescription.pusyellow>A yellowish-white pus oozes from the wound.</afflictiondescription.pusyellow>
     <afflictionname.pusgreen>Purulent drainage</afflictionname.pusgreen>
     <afflictiondescription.pusgreen>A greenish, foul-smelling pus oozes from the wound.</afflictiondescription.pusgreen>
     <afflictionname.abscess>Abscess</afflictionname.abscess>
     <afflictiondescription.abscess>A large pocket of pus accumulates under the skin.</afflictiondescription.abscess>
-    <entityname.cultureanalyzer>Culture sampler</entityname.cultureanalyzer>
-    <entitydescription.cultureanalyzer>Collects bacterial samples and stores it in a culture tube.</entitydescription.cultureanalyzer>
+    <entityname.cultureanalyzer>Sample collector</entityname.cultureanalyzer>
+    <entitydescription.cultureanalyzer>Collects bodily samples and stores it in a sample medium.</entitydescription.cultureanalyzer>
     <entityname.culturetube>Culture tube</entityname.culturetube>
     <entitydescription.culturetube>A tube of rich growth medium that bacterial colonies will grow in.</entitydescription.culturetube>
     <afflictionname.pneumonia>Pneumonia</afflictionname.pneumonia>
@@ -92,10 +94,10 @@
     <entitydescription.provotube>A culture tube with a provobacter sample.</entitydescription.provotube>
     <entityname.emptytubeunk>Culture sample (Unknown)</entityname.emptytubeunk>
     <entitydescription.emptytubeunk>A culture tube with an unknown sample.</entitydescription.emptytubeunk>
-    <entityname.cultureanalyzingterminal>Culture Analyzer</entityname.cultureanalyzingterminal>
-    <entitydescription.cultureanalyzingterminal>A machine that examines the biochemical signature of bacterial colonies to identify pathogens.</entitydescription.cultureanalyzingterminal>
+    <entityname.cultureanalyzingterminal>Sample Analyzer</entityname.cultureanalyzingterminal>
+    <entitydescription.cultureanalyzingterminal>A machine that examines the biochemical signature of samples to identify pathogens.</entitydescription.cultureanalyzingterminal>
     <cultureanalyzer.analyze>Analyze</cultureanalyzer.analyze>
-    <cultureanalyzer.info>Insert a full-grown culture sample to analyze the type.</cultureanalyzer.info>
+    <cultureanalyzer.info>Insert a full-grown culture or viral sample to analyze the type.</cultureanalyzer.info>
     <entityname.incubatorterminal>Incubator</entityname.incubatorterminal>
     <entitydescription.incubatorterminal>A machine capable of growing cultures by maintaining the optimal conditions for bacterial growth.</entitydescription.incubatorterminal>
     <afflictionname.afstrepvac>Streptococcus vaccine</afflictionname.afstrepvac>
@@ -128,8 +130,10 @@
     <afflictiondescription.systemicresponse></afflictiondescription.systemicresponse>
     <afflictionname.europancough>Europan Cough</afflictionname.europancough>
     <afflictiondescription.europancough></afflictiondescription.europancough>
-    <afflictionname.viralseverity>Viral Severity</afflictionname.viralseverity>
-    <afflictiondescription.viralseverity></afflictiondescription.viralseverity>
+    <afflictionname.commoncold>Common Cold</afflictionname.commoncold>
+    <afflictiondescription.commoncold></afflictiondescription.commoncold>
+    <afflictionname.influenza>Influenza</afflictionname.influenza>
+    <afflictiondescription.influenza></afflictiondescription.influenza>
     <entityname.dextromethorphan>Dextromethorphan</entityname.dextromethorphan>
     <entitydescription.dextromethorphan>An antitussive solution used to relieve a cough.</entitydescription.dextromethorphan>
     <afflictionname.afdextromethorphan>Dextromethorphan</afflictionname.afdextromethorphan>
@@ -140,4 +144,26 @@
     <afflictiondescription.afremdesivir></afflictiondescription.afremdesivir>
     <afflictionname.viralantibodies>Viral Antibodies</afflictionname.viralantibodies>
     <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
+    <afflictionname.virallevel>Viral Level</afflictionname.virallevel>
+    <afflictiondescription.virallevel></afflictiondescription.virallevel>
+    <entityname.zincsupplement>Zinc supplement</entityname.zincsupplement>
+    <entitydescription.zincsupplement>A supplement for zinc. May be useful for a cold or the flu.</entitydescription.zincsupplement>
+    <afflictionname.afzincsupplement>Zinc supplement</afflictionname.afzincsupplement>
+    <afflictiondescription.afzincsupplement></afflictiondescription.afzincsupplement>
+    <entityname.viralmedium>Viral transport medium</entityname.viralmedium>
+    <entitydescription.viralmedium>A medium for collecting a viral sample to be analyzed via PCR.</entitydescription.viralmedium>
+    <entityname.emptyviralunk>Viral sample (Unknown)</entityname.emptyviralunk>
+    <entitydescription.emptyviralunk>A viral sample with an unknown strain.</entitydescription.emptyviralunk>
+    <entityname.coldviralunk>Viral sample (Unknown)</entityname.coldviralunk>
+    <entitydescription.coldviralunk>A viral sample with an unknown strain.</entitydescription.coldviralunk>
+    <entityname.coldviralmedium>Viral sample (Common cold)</entityname.coldviralmedium>
+    <entitydescription.coldviralmedium>A viral sample with a cold strain.</entitydescription.coldviralmedium>
+    <entityname.fluviralunk>Viral sample (Unknown)</entityname.fluviralunk>
+    <entitydescription.fluviralunk>A viral sample with an unknown strain.</entitydescription.fluviralunk>
+    <entityname.fluviralmedium>Viral sample (Influenza)</entityname.fluviralmedium>
+    <entitydescription.fluviralmedium>A viral sample with an influenza strain.</entitydescription.fluviralmedium>
+    <entityname.europanviralunk>Viral sample (Unknown)</entityname.europanviralunk>
+    <entitydescription.europanviralunk>A viral sample with an unknown strain.</entitydescription.europanviralunk>
+    <entityname.europanviralmedium>Viral sample (Europan cough)</entityname.europanviralmedium>
+    <entitydescription.europanviralmedium>A viral sample with a Iovipneumoviridae strain.</entitydescription.europanviralmedium>
 </infotexts>

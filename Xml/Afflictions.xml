@@ -13,9 +13,6 @@
     <Affliction name="" identifier="immuneresponse" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="infectionseverity" description="" healableinmedicalclinic="false" targets="human" type="gaze" isbuff="false" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="5">
-        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>
     <Affliction name="" identifier="infectionlevel" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
@@ -23,21 +20,21 @@
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--vaccines-->
-    <Affliction name="" identifier="afstrepvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1200" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
+    <Affliction name="" identifier="afstrepvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1000" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />
-        <Effect minstrength="0" maxstrength="1200" strengthchange="-0.05" />
+        <Effect minstrength="0" maxstrength="1000" strengthchange="-0.02" />
     </Affliction>
-    <Affliction name="" identifier="afstaphvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1200" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
+    <Affliction name="" identifier="afstaphvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1000" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />
-        <Effect minstrength="0" maxstrength="1200" strengthchange="-0.05" />
+        <Effect minstrength="0" maxstrength="1000" strengthchange="-0.02" />
     </Affliction>
-    <Affliction name="" identifier="afpseudovac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1200" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
+    <Affliction name="" identifier="afpseudovac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1000" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />
-        <Effect minstrength="0" maxstrength="1200" strengthchange="-0.05" />
+        <Effect minstrength="0" maxstrength="1000" strengthchange="-0.02" />
     </Affliction>
-    <Affliction name="" identifier="afprovovac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1200" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
+    <Affliction name="" identifier="afprovovac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1000" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />
-        <Effect minstrength="0" maxstrength="1200" strengthchange="-0.05" />
+        <Effect minstrength="0" maxstrength="1000" strengthchange="-0.02" />
     </Affliction>
 <!--symptoms-->
     <Affliction name="" identifier="pusyellow" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="1" showinhealthscannerthreshold="700" maxstrength="2" iconcolors="250,200,50,255;250,200,50,255">
@@ -63,16 +60,23 @@
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="3,0" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--communicable disease-->
-    <Affliction name="" identifier="germlevel" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="virallevel" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="europancough" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="viralantibodies" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.02" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="viralseverity" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="5">
+    <Affliction name="" identifier="europancough" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afremdesivir" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="commoncold" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="10">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="influenza" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="10">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="afremdesivir" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.2">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
@@ -81,52 +85,52 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="viralantibodies" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
-        <Effect minstrength="0" maxstrength="100" strengthchange="-0.05" />
+    <Affliction name="" identifier="afdextromethorphan" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.1" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afdextromethorphan" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afzincsupplement" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.1" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--infections types-->
 <!--streptococcal infection-->
-    <Affliction name="" identifier="limbstrep" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="2">
+    <Affliction name="" identifier="limbstrep" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="bloodstrep" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--staphyloccocal infection-->
-    <Affliction name="" identifier="limbstaph" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="2">
+    <Affliction name="" identifier="limbstaph" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="bloodstaph" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--mrsa infection-->
-    <Affliction name="" identifier="limbmrsa" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="2">
+    <Affliction name="" identifier="limbmrsa" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="bloodmrsa" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--pseudomonas infection-->
-    <Affliction name="" identifier="limbpseudo" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="2">
+    <Affliction name="" identifier="limbpseudo" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="bloodpseudo" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--provobacter infection-->
-    <Affliction name="" identifier="limbprovo" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="2">
+    <Affliction name="" identifier="limbprovo" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="bloodprovo" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="700" showiconthreshold="700" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--antibiotics-->
-    <Affliction name="" identifier="afampicillin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afampicillin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
@@ -135,7 +139,7 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afaugmentin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afaugmentin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
@@ -144,7 +148,7 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afvancomycin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afvancomycin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
@@ -153,7 +157,7 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afgentamicin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afgentamicin" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
@@ -162,7 +166,7 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afcotrim" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afcotrim" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
@@ -171,11 +175,20 @@
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="afimipenem" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+    <Affliction name="" identifier="afimipenem" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.07" />
+            </StatusEffect>
+        </Effect>
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="afceftazidime" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="true" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="700" maxstrength="100">
+        <Effect minstrength="0" maxstrength="100" strengthchange="-0.20">
+            <StatusEffect target="Character" comparison="and">
+                <Conditional ishuman="true" />
+                <Affliction identifier="kidneydamage" strength="0.06" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />

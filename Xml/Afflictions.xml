@@ -135,6 +135,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.05" />
+                <Affliction identifier="liverdamage" strength="0.03" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
@@ -144,6 +145,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.06" />
+                <Affliction identifier="liverdamage" strength="0.04" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
@@ -153,6 +155,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.08" />
+                <Affliction identifier="liverdamage" strength="0.02" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
@@ -162,6 +165,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.09" />
+                <Affliction identifier="liverdamage" strength="0.02" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
@@ -171,6 +175,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.07" />
+                <Affliction identifier="liverdamage" strength="0.04" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
@@ -180,6 +185,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.07" />
+                <Affliction identifier="liverdamage" strength="0.04" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
@@ -189,6 +195,7 @@
             <StatusEffect target="Character" comparison="and">
                 <Conditional ishuman="true" />
                 <Affliction identifier="kidneydamage" strength="0.06" />
+                <Affliction identifier="liverdamage" strength="0.02" />
             </StatusEffect>
         </Effect>
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />

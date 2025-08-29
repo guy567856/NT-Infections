@@ -5,9 +5,8 @@ Timer.Wait(function()
     }
 
     --add all disease's bloodtags to the hematology analyzer
-    for i = 1, #NTI.InfInfo do
-        local infection = NTI.InfInfo[i]
-        NTC.AddHematologyAffliction(infection[2])
+    for _, info in pairs(NTI.Bacterias) do
+        NTC.AddHematologyAffliction(info.bloodname)
     end
 
     --add the new hematology tags into the nt hematology list
@@ -26,32 +25,30 @@ Timer.Wait(function()
 
             if containedItem.HasTag("viraltest") then
                 HF.RemoveItem(containedItem)
-                local params = {
-                    condition=100
-                }
-                local inf = NTI.GetVirusInfo(targetCharacter)
+                local params = {condition=100}
+                local name = NTI.GetCurrentVirus(targetCharacter)
+
                 HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nSwab sample found.",Color(127,255,127,255))
 
-                if inf ~= nil then
-                    HF.GiveItemPlusFunction(inf[8],postSpawnFunc,params,usingCharacter)
+                if name ~= nil then
+                    local info = NTI.Viruses[name]
+                    HF.GiveItemPlusFunction(info.sample,postSpawnFunc,params,usingCharacter)
                 else
                     HF.GiveItemPlusFunction("emptyviralunk",postSpawnFunc,params,usingCharacter)
                 end
             else
                 HF.RemoveItem(containedItem)
-                local params = {
-                    condition=0
-                }
-                local inf = nil
+                local params = {condition=0}
+                local name = nil
 
                 local puspresent = HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusyellow", 0)
-                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
-                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "abscess", 0)
+                                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
+                                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "abscess", 0)
 
                 if puspresent > 0 then
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nPus sample found.",Color(127,255,127,255))
 
-                    inf = NTI.GetInfectionInfoLimb(targetCharacter, limb.type)
+                    name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
 
                     if HF.HasAfflictionLimb(targetCharacter, "abscess", limb.type, 0) then
                         HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,4,usingCharacter)
@@ -66,17 +63,18 @@ Timer.Wait(function()
                 elseif HF.HasAfflictionLimb(targetCharacter, "retractedskin", limb.type, 0) then
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nTissue sample found.",Color(127,255,127,255))
 
-                    inf = NTI.GetInfectionInfoLimb(targetCharacter, limb.type)
+                    name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
 
-                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,10,usingCharacter)
+                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,8,usingCharacter)
                 else
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nBlood sample found.",Color(127,255,127,255))
 
-                    inf = NTI.GetInfectionInfoBloodRandom(targetCharacter)
+                    name = NTI.GetRandomWeightedBloodBacteria(targetCharacter)
                 end
 
-                if inf ~= nil then
-                    HF.GiveItemPlusFunction(inf[6],postSpawnFunc,params,usingCharacter)
+                if name ~= nil then
+                    local info = NTI.Bacterias[name]
+                    HF.GiveItemPlusFunction(info.samplename,postSpawnFunc,params,usingCharacter)
                 else
                     HF.GiveItemPlusFunction("emptytubeunk",postSpawnFunc,params,usingCharacter)
                 end

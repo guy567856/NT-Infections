@@ -32,7 +32,7 @@ Timer.Wait(function()
 
                 if name ~= nil then
                     local info = NTI.Viruses[name]
-                    HF.GiveItemPlusFunction(info.sample,postSpawnFunc,params,usingCharacter)
+                    HF.GiveItemPlusFunction(info.samplename,postSpawnFunc,params,usingCharacter)
                 else
                     HF.GiveItemPlusFunction("emptyviralunk",postSpawnFunc,params,usingCharacter)
                 end
@@ -95,7 +95,8 @@ Timer.Wait(function()
                     not NT.LimbIsAmputated(targetCharacter,limbtype)
                     and not HF.HasAfflictionLimb(targetCharacter,"gangrene",limbtype,15)
                     and not HF.HasAfflictionLimb(targetCharacter,"necfasc",limbtype,1)
-                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,10)
+                    and not HF.HasAfflictionLimb(targetCharacter,"cellulitis",limbtype,10)
+                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,25)
                 NT.SurgicallyAmputateLimb(targetCharacter,limbtype)
                 if (droplimb) then
                     local limbtoitem = {}

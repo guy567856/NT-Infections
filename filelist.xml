@@ -8,4 +8,5 @@
   <Other file="%ModDir%/Lua/Scripts/items.lua" />
   <Other file="%ModDir%/Lua/Scripts/humanupdate.lua" />
   <Other file="%ModDir%/Lua/Scripts/helperfunctions.lua" />
+  <Other file="%ModDir%/Lua/Scripts/configdata.lua" />
 </contentpackage>

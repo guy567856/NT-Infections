@@ -168,13 +168,13 @@ Timer.Wait(function()
         NTI.CheckSymptom(c.character, "fever", level, 30, 0.1)
         NTI.CheckSymptom(c.character, "sym_weakness", level, 50, 0.01)
         NTI.CheckSymptom(c.character, "dyspnea", level, 60, 0.01)
-        NTI.CheckSymptom(c.character, "sym_nausea", level, 70, 0.025)
+        NTI.CheckSymptom(c.character, "sym_nausea", level, 70, 0.02)
         if c.afflictions.respiratoryarrest.strength <= 0 then
             NTI.CheckSymptom(c.character, "sym_wheezing", level, 70, 0.01)
         end
         if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then
-            NTI.CheckSymptom(c.character, "sym_headache", level, 75, 0.025)
-            NTI.CheckSymptom(c.character, "pain_chest", level, 90, 0.025)
+            NTI.CheckSymptom(c.character, "sym_headache", level, 75, 0.02)
+            NTI.CheckSymptom(c.character, "pain_chest", level, 90, 0.02)
         end
     end}
 
@@ -190,9 +190,9 @@ Timer.Wait(function()
 
         NTI.CheckSymptom(c.character, "sym_cough", level, 15, 0.2)
         NTI.CheckSymptom(c.character, "fever", level, 30, 0.1)
-        NTI.CheckSymptom(c.character, "sym_nausea", level, 50, 0.025)
+        NTI.CheckSymptom(c.character, "sym_nausea", level, 50, 0.02)
         if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then
-            NTI.CheckSymptom(c.character, "sym_headache", level, 80, 0.025)
+            NTI.CheckSymptom(c.character, "sym_headache", level, 80, 0.02)
         end
     end}
 
@@ -210,7 +210,7 @@ Timer.Wait(function()
         if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then
             NTI.CheckSymptom(c.character, "sym_headache", level, 60, 0.05)
         end
-        NTI.CheckSymptom(c.character, "fever", level, 80, 0.025)
+        NTI.CheckSymptom(c.character, "fever", level, 80, 0.02)
     end}
 
 --current progress of a viral infection
@@ -248,7 +248,9 @@ Timer.Wait(function()
                                 + HF.BoolToNum(not targetcharacter.IsPlayer, 20)
                                 + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam, 20)
 
+                            print("viral spread chance 1/" .. chance .. ", from " .. c.character.Name .. " to " .. targetcharacter.Name)
                             if (HF.Chance(1 / chance)) then
+                                print("viral spread success")
                                 NTI.InfectCharacterViral(targetcharacter, name, 1)
                             end
                         end
@@ -256,7 +258,7 @@ Timer.Wait(function()
                 end
             end
 
-            c.afflictions[i].strength = c.afflictions[i].strength + gain - def
+            c.afflictions[i].strength = c.afflictions[i].strength + gain - defense
 
             if c.afflictions[i].strength <= 0 then
                 HF.SetAffliction(c.character, "viralantibodies", 100)
@@ -272,7 +274,7 @@ Timer.Wait(function()
                 return
             end
         end
-        
+
         if c.stats.stasis then return end
 
         if limbaff[i].strength > 0 then
@@ -292,11 +294,20 @@ Timer.Wait(function()
 
             limbaff[i].strength = limbaff[i].strength + increase
 
-            if limbaff[i].strength > 50 and (HF.Chance(((limbaff[i].strength - 50) / 120)^4) or HF.Chance(HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) / 1000)) and HF.GetAfflictionStrength(c.character, info.bloodname, 0) <= 0 then
-                HF.SetAffliction(c.character, info.bloodname, 1)
+            if limbaff[i].strength > 50 then
+                local base_chance = HF.Chance(((limbaff[i].strength - 50) / 120)^4)
+                local nec_chance = HF.Chance(HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) / 1000)
+
+                if (base_chance or nec_chance) and HF.GetAfflictionStrength(c.character, info.bloodname, 0) <= 0 then HF.SetAffliction(c.character, info.bloodname, 1) end
             end
 
-            if limbaff[i].strength > 75 and HF.Chance((((limbaff[i].strength - 75) / (300 - HF.GetAfflictionStrengthLimb(c.character, type, "infectionlevel", 0) - HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) * 2))^2) * antibiotic) then NTI.SpreadToNextLimb(c.character, type, name) end
+            if NTConfig.Get("NTI_canSpreadNextLimb", true) and limbaff[i].strength > 75 then
+                local num = limbaff[i].strength - 75
+                local den = 300 - (HF.GetAfflictionStrengthLimb(c.character, type, "cellulitis", 0) * 2) - (HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) * 2.5)
+                local chance = HF.Chance(((num / den)^2) * antibiotic * (1 - HF.BoolToNum(type == LimbType.Torso, 0.25)))
+                
+                if chance then NTI.SpreadToNextLimb(c.character, type, name) end
+            end
         end
     end}
 

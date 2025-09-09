@@ -69,38 +69,40 @@ function NTI.BacteriaInfo(_bloodname, _prevalence, _basespeed, _antibiotics, _sa
     return { bloodname = _bloodname, prevalence = _prevalence, basespeed = _basespeed, antibiotics = _antibiotics, samplename = _samplename, vaccine = _vaccine }
 end
 
-NTI.Viruses = {
-    europancough = NTI.VirusInfo(1/120, 0.4, {afremdesivir = 8}, NTI.med_viral, 0.6, 1, "europanviralunk"),
-    influenza = NTI.VirusInfo(1/100, 0.35, {afzincsupplement = 2}, NTI.med_viral, 0.4, 0.9, "fluviralunk"),
-    commoncold = NTI.VirusInfo(1/80, 0.3, {afzincsupplement = 3}, NTI.med_viral, 0.2, 0.8, "coldviralunk"),
-}
+Timer.Wait(function()
+    NTI.Viruses = {
+        europancough = NTI.VirusInfo("NTI_europanChance", 0.4, {afremdesivir = 8}, NTI.med_viral, 0.6, 1, "europanviralunk"),
+        influenza = NTI.VirusInfo("NTI_influenzaChance", 0.35, {afzincsupplement = 2}, NTI.med_viral, 0.4, 0.9, "fluviralunk"),
+        commoncold = NTI.VirusInfo("NTI_coldChance", 0.3, {afzincsupplement = 3}, NTI.med_viral, 0.2, 0.8, "coldviralunk"),
+    }
 
---[[
-probability - the odds of a bot spawning with the infection
-basespeed - the base speed the infection will increase
-antivirals - list of drugs that will decrease the speed of the virus
-medicine - list of drugs that will alleviate symptoms of the virus
-slowdown - speed multiplier to show down a character
-virulence - multiplier for infection spread chance, cannot be 0 or less
-samplename = sample to be returned when analyzing virus
-]]--
+    --[[
+    probability - the odds of a bot spawning with the infection
+    basespeed - the base speed the infection will increase
+    antivirals - list of drugs that will decrease the speed of the virus
+    medicine - list of drugs that will alleviate symptoms of the virus
+    slowdown - speed multiplier to show down a character
+    virulence - multiplier for infection spread chance, cannot be 0 or less
+    samplename = sample to be returned when analyzing virus
+    ]]--
 
-NTI.Bacterias = {
-    limbstaph = NTI.BacteriaInfo("bloodstaph", 4, 0.4, NTI.anti_staph, "staphtubeunk", "afstaphvac"),
-    limbstrep = NTI.BacteriaInfo("bloodstrep", 3, 0.4, NTI.anti_strep, "streptubeunk", "afstrepvac"),
-    limbmrsa = NTI.BacteriaInfo("bloodmrsa", 2, 0.4, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"),
-    limbprovo = NTI.BacteriaInfo("bloodprovo", 3, 0.4, NTI.anti_provo, "provotubeunk", "afprovovac"),
-    limbpseudo = NTI.BacteriaInfo("bloodpseudo", 1, 0.4, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"),
-}
+    NTI.Bacterias = {
+        limbstaph = NTI.BacteriaInfo("bloodstaph", "NTI_staphPrevalence", 0.5, NTI.anti_staph, "staphtubeunk", "afstaphvac"),
+        limbstrep = NTI.BacteriaInfo("bloodstrep", "NTI_strepPrevalence", 0.5, NTI.anti_strep, "streptubeunk", "afstrepvac"),
+        limbmrsa = NTI.BacteriaInfo("bloodmrsa", "NTI_mrsaPrevalence", 0.5, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"),
+        limbprovo = NTI.BacteriaInfo("bloodprovo", "NTI_provoPrevalence", 0.5, NTI.anti_provo, "provotubeunk", "afprovovac"),
+        limbpseudo = NTI.BacteriaInfo("bloodpseudo", "NTI_pseudoPrevalence", 0.5, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"),
+    }
 
---[[
-bloodname - the blood infection version on the infection
-prevalence - the "number of names put into the hat" that will have the chance to be pulled from the list of random infections
-basespeed - basespeed at which the infection progresses -> basespeed + (infection_severity * 0.06) clamped to a max of 1
-antibiotics - a list of antibiotics that have an effect on said disease. the number provided is the denominator, so antibiotics are calculated as: infection_speed * (1 / antibiotic_value)...
-samplename - the item that is returned when using a sample collector
-vaccine - the vaccine affliction name that will have an effect on this disease
-]]--
+    --[[
+    bloodname - the blood infection version on the infection
+    prevalence - the "number of names put into the hat" that will have the chance to be pulled from the list of random infections. change in config
+    basespeed - basespeed at which the infection progresses -> basespeed + (infection_severity * 0.06) clamped to a max of 1.05
+    antibiotics - a list of antibiotics that have an effect on said disease. the number provided is the denominator, so antibiotics are calculated as: infection_speed * (1 / antibiotic_value)...
+    samplename - the item that is returned when using a sample collector
+    vaccine - the vaccine affliction name that will have an effect on this disease
+    ]]--
+end,1)
 
 --helper functions
 
@@ -193,7 +195,7 @@ end
 
 --infect viral infection with random severity
 function NTI.InfectCharacterViral(character, virus, level)
-    local sev = math.random(10)
+    local sev = math.random(5) + math.random(5)
     HF.SetAffliction(character, virus, sev)
     HF.SetAffliction(character, "virallevel", level)
 end
@@ -279,6 +281,7 @@ function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
         end
     end
 
+    if bacteria == nil then return end
     if NTI.LimbIsInfected(character, limb) then return end
 
     HF.SetAfflictionLimb(character, bacteria, limb, severity)
@@ -305,7 +308,7 @@ function NTI.FormBacteriaList(character)
             scalar = 3
         end
 
-        for i = 1, (info.prevalence * scalar) do
+        for i = 1, (NTConfig.Get(info.prevalence, 1) * scalar) do
             table.insert(list, 1, key)
         end
     end
@@ -397,7 +400,7 @@ Hook.Add("characterCreated", "NTI.StartWithInfection", function(createdCharacter
     Timer.Wait(function()
         if (createdCharacter.IsHuman and not createdCharacter.IsDead and not createdCharacter.IsPlayer and not createdCharacter.IsOnPlayerTeam) then
             for key, info in pairs(NTI.Viruses) do
-                if (HF.Chance(info.probability)) then
+                if HF.Chance(1 / NTConfig.Get(info.probability, 1)) then
                     NTI.BotViralStarter(createdCharacter, key)
                     break
                 end

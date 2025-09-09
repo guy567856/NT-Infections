@@ -1,7 +1,7 @@
 NTI = {}
 NTI.Name = "Infections"
-NTI.Version = "1.1.3"
-NTI.VersionNum = 10100003
+NTI.Version = "1.2.0"
+NTI.VersionNum = 10200000
 NTI.Path=table.pack(...)[1]
 Timer.Wait(function() if NTC ~= nil and NTC.RegisterExpansion ~= nil then NTC.RegisterExpansion(NTI) end end,1)
 
@@ -17,3 +17,7 @@ if (Game.IsMultiplayer and SERVER) or not Game.IsMultiplayer then
         dofile(NTI.Path.."/Lua/Scripts/helperfunctions.lua")
     end,1)
 end
+
+Timer.Wait(function()
+    dofile(NTI.Path.."/Lua/Scripts/configdata.lua")
+end, 1)

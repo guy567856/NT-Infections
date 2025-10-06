@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
-<!--misc-->
+<!--viral medication-->
     <Item name="" identifier="dextromethorphan" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.4" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
@@ -362,27 +362,6 @@
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
         <SkillRequirementHint identifier="medical" level="40" />
     </Item>
-<!--culture stuff-->
-    <Item name="" identifier="incubatorcrate" tags="crate,incubating" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="false" impactsoundtag="impact_metal_heavy" waterproof="true" fireproof="true" description="">
-        <Price baseprice="120">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
-        </Price>
-        <Deconstruct time="10">
-            <Item identifier="steel" />
-        </Deconstruct>
-        <Fabricate suitablefabricators="fabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="20" />
-            <Item identifier="steel" />
-            <Item identifier="copper" />
-            <Item identifier="fpgacircuit" />
-        </Fabricate>
-        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" depth="0.54" sourcerect="10,578,146,82" origin="0.5,0.5" />
-        <Body width="145" height="85" density="50" />
-        <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" />
-        <ItemContainer capacity="12" canbeselected="false" hideitems="true" keepopenwhenequipped="true" movableframe="true">
-            <Containable items="smallitem,medical" excludeditems="toolbox,cargoscooter" />
-        </ItemContainer>
-    </Item>
 <!--strep tube-->
     <Item name="" identifier="streptubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
         <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
@@ -687,42 +666,6 @@
             <RequiredItem identifier="stabilozine" />
         </Fabricate>
     </Item>
-<!--incubator-->
-    <Item name="" identifier="incubatorterminal" tags="betterincubating" texturescale="1.0,1.0" isshootable="true" scale="0.5" category="Machine">
-        <sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sourcerect="0,0,96,94" depth="0.79" premultiplyalpha="false" origin="0.5,0.5" />
-        <Price baseprice="200">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
-        </Price>
-        <ItemContainer capacity="16" slotsperrow="4" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
-            <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" />
-            <Containable items="streptubeunk,staphtubeunk,mrsatubeunk,pseudotubeunk,provotubeunk,emptytubeunk,streptube,staphtube,mrsatube,pseudotube,provotube" />
-        </ItemContainer>
-        <Body width="96" height="94" density="40" />
-        <Holdable slots="LeftHand+RightHand" canbeselected="true" selectkey="Select" canbepicked="true" attachable="true" attachedbydefault="true" pickkey="Use" pickingtime="5" holdpos="0,0" holdangle="0" aimable="true" aimpos="0,0" aimangle="0" limitedattachable="false" origin="0.5,0.5" msg="ItemMsgDetachWrench">
-            <RequiredItem items="wrench" type="Equipped" />
-            <StatusEffect type="OnActive" target="This" interval="1">
-                <DropContainedItems />
-            </StatusEffect>
-        </Holdable>
-        <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.0" canbeselected="true" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
-            <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
-            <RequiredSkill identifier="electrical" level="40" />
-            <RequiredItem items="screwdriver" type="Equipped" />
-            <ParticleEmitter particle="spark" particleamount="5" emitinterval="2" particlespersecond="5" anglemax="360" distancemax="30" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
-        </Repairable>
-        <Deconstruct time="20">
-            <Item identifier="copper" />
-            <Item identifier="steel" />
-        </Deconstruct>
-        <Fabricate suitablefabricators="fabricator" requiredtime="40" requiresrecipe="false">
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="plastic" amount="1" />
-            <RequiredItem identifier="steel" amount="2" />
-            <RequiredItem identifier="copper" amount="2" />
-        </Fabricate>
-    </Item>
-<!--culture analyizing machine-->
     <Item name="" identifier="cultureanalyzingterminal" tags="cultureanalyzingterminal" texturescale="1.0,1.0" isshootable="true" scale="0.5" category="Machine">
         <sprite texture="Content/Map/Outposts/Art/MedBayAssets.png" sourcerect="0,0,98,126" depth="0.79" premultiplyalpha="false" origin="0.5,0.5" />
         <LightComponent range="0.0" powerconsumption="5" lightcolor="255,255,255,111" IsOn="true" castshadows="false" allowingameediting="false">
@@ -777,6 +720,61 @@
             <RequiredItem items="screwdriver" type="Equipped" />
             <ParticleEmitter particle="spark" particleamount="5" emitinterval="2" particlespersecond="5" anglemax="360" distancemax="30" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
         </Repairable>
+    </Item>
+<!--incubators-->
+    <Item name="" identifier="incubatorterminal" tags="betterincubating" texturescale="1.0,1.0" isshootable="true" scale="0.5" category="Machine">
+        <sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sourcerect="0,0,96,94" depth="0.79" premultiplyalpha="false" origin="0.5,0.5" />
+        <Price baseprice="200">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
+        </Price>
+        <ItemContainer capacity="16" slotsperrow="4" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
+            <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" />
+            <Containable items="streptubeunk,staphtubeunk,mrsatubeunk,pseudotubeunk,provotubeunk,emptytubeunk,streptube,staphtube,mrsatube,pseudotube,provotube" />
+        </ItemContainer>
+        <Body width="96" height="94" density="40" />
+        <Holdable slots="LeftHand+RightHand" canbeselected="true" selectkey="Select" canbepicked="true" attachable="true" attachedbydefault="true" pickkey="Use" pickingtime="5" holdpos="0,0" holdangle="0" aimable="true" aimpos="0,0" aimangle="0" limitedattachable="false" origin="0.5,0.5" msg="ItemMsgDetachWrench">
+            <RequiredItem items="wrench" type="Equipped" />
+            <StatusEffect type="OnActive" target="This" interval="1">
+                <DropContainedItems />
+            </StatusEffect>
+        </Holdable>
+        <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.0" canbeselected="true" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
+            <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
+            <RequiredSkill identifier="electrical" level="40" />
+            <RequiredItem items="screwdriver" type="Equipped" />
+            <ParticleEmitter particle="spark" particleamount="5" emitinterval="2" particlespersecond="5" anglemax="360" distancemax="30" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
+        </Repairable>
+        <Deconstruct time="20">
+            <Item identifier="copper" />
+            <Item identifier="steel" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="40" requiresrecipe="false">
+            <RequiredSkill identifier="mechanical" level="30" />
+            <RequiredItem identifier="fpgacircuit" />
+            <RequiredItem identifier="plastic" amount="1" />
+            <RequiredItem identifier="steel" amount="2" />
+            <RequiredItem identifier="copper" amount="2" />
+        </Fabricate>
+    </Item>
+    <Item name="" identifier="incubatorcrate" tags="crate,incubating" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="false" impactsoundtag="impact_metal_heavy" waterproof="true" fireproof="true" description="">
+        <Price baseprice="120">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
+        </Price>
+        <Deconstruct time="10">
+            <Item identifier="steel" />
+        </Deconstruct>
+        <Fabricate suitablefabricators="fabricator" requiredtime="20">
+            <RequiredSkill identifier="mechanical" level="20" />
+            <Item identifier="steel" />
+            <Item identifier="copper" />
+            <Item identifier="fpgacircuit" />
+        </Fabricate>
+        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" depth="0.54" sourcerect="10,578,146,82" origin="0.5,0.5" />
+        <Body width="145" height="85" density="50" />
+        <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" />
+        <ItemContainer capacity="12" canbeselected="false" hideitems="true" keepopenwhenequipped="true" movableframe="true">
+            <Containable items="smallitem,medical" excludeditems="toolbox,cargoscooter" />
+        </ItemContainer>
     </Item>
 <!--vaccines-->
     <Item name="" identifier="strepvac" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">

@@ -1,13 +1,8 @@
 Timer.Wait(function()
     --additional hematology tags
     NTI.MoreHematologyDetectable = {
-        "afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac","afdextromethorphan","afremdesivir","afzincsupplement","afceftazidime"
+        "bloodinfectionlevel","afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac","afdextromethorphan","afremdesivir","afzincsupplement","afceftazidime"
     }
-
-    --add all disease's bloodtags to the hematology analyzer
-    for _, info in pairs(NTI.Bacterias) do
-        NTC.AddHematologyAffliction(info.bloodname)
-    end
 
     --add the new hematology tags into the nt hematology list
     for i = 1, #NTI.MoreHematologyDetectable do
@@ -96,7 +91,7 @@ Timer.Wait(function()
                     and not HF.HasAfflictionLimb(targetCharacter,"gangrene",limbtype,15)
                     and not HF.HasAfflictionLimb(targetCharacter,"necfasc",limbtype,1)
                     and not HF.HasAfflictionLimb(targetCharacter,"cellulitis",limbtype,10)
-                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,25)
+                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,30)
                 NT.SurgicallyAmputateLimb(targetCharacter,limbtype)
                 if (droplimb) then
                     local limbtoitem = {}

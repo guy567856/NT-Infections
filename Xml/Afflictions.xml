@@ -20,6 +20,9 @@
     <Affliction name="" identifier="systemicresponse" description="" healableinmedicalclinic="false" targets="human" type="resistance" isbuff="false" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
+    <Affliction name="" identifier="bloodinfectionlevel" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="100">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
 <!--vaccines-->
     <Affliction name="" identifier="afstrepvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="1000" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />

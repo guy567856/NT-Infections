@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <infotexts language="English" nowhitespace="false" translatedname="English">
+<!--infection utility-->
     <afflictionname.immunodeficiency>Immunodeficiency</afflictionname.immunodeficiency>
     <afflictiondescription.immunodeficiency></afflictiondescription.immunodeficiency>
     <afflictionname.immuneresponse>Immune Response</afflictionname.immuneresponse>
     <afflictiondescription.immuneresponse></afflictiondescription.immuneresponse>
     <afflictionname.infectionlevel>Infection Level</afflictionname.infectionlevel>
     <afflictiondescription.infectionlevel></afflictiondescription.infectionlevel>
+    <afflictionname.bloodinfectionlevel>Blood Infection</afflictionname.bloodinfectionlevel>
+    <afflictiondescription.bloodinfectionlevel></afflictiondescription.bloodinfectionlevel>
+    <afflictionname.systemicresponse>Systemic Response</afflictionname.systemicresponse>
+    <afflictiondescription.systemicresponse></afflictiondescription.systemicresponse>
+<!--viral utility-->
+    <afflictionname.viralantibodies>Viral Antibodies</afflictionname.viralantibodies>
+    <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
+    <afflictionname.virallevel>Viral Level</afflictionname.virallevel>
+    <afflictiondescription.virallevel></afflictiondescription.virallevel>
+<!--bacterias-->
     <afflictionname.limbstrep>Streptococcal Infection</afflictionname.limbstrep>
     <afflictiondescription.limbstrep></afflictiondescription.limbstrep>
     <afflictionname.bloodstrep>Streptococcal Infection</afflictionname.bloodstrep>
@@ -26,6 +37,7 @@
     <afflictiondescription.limbprovo></afflictiondescription.limbprovo>
     <afflictionname.bloodprovo>Provobacter Infection</afflictionname.bloodprovo>
     <afflictiondescription.bloodprovo></afflictiondescription.bloodprovo>
+<!--antibiotics-->
     <entityname.ampicillin>Ampicillin</entityname.ampicillin>
     <entitydescription.ampicillin>An aminopenicillin class antibiotic used to treat various bacterial infections.</entitydescription.ampicillin>
     <entityname.augmentin>Augmentin</entityname.augmentin>
@@ -54,24 +66,34 @@
     <afflictiondescription.afimipenem></afflictiondescription.afimipenem>
     <afflictionname.afceftazidime>Ceftazidime</afflictionname.afceftazidime>
     <afflictiondescription.afceftazidime></afflictiondescription.afceftazidime>
+<!--symptoms-->
     <afflictionname.pusyellow>Purulent drainage</afflictionname.pusyellow>
     <afflictiondescription.pusyellow>A yellowish-white pus oozes from the wound.</afflictiondescription.pusyellow>
     <afflictionname.pusgreen>Purulent drainage</afflictionname.pusgreen>
     <afflictiondescription.pusgreen>A greenish, foul-smelling pus oozes from the wound.</afflictiondescription.pusgreen>
     <afflictionname.abscess>Abscess</afflictionname.abscess>
     <afflictiondescription.abscess>A large pocket of pus accumulates under the skin.</afflictiondescription.abscess>
-    <entityname.cultureanalyzer>Sample collector</entityname.cultureanalyzer>
-    <entitydescription.cultureanalyzer>Collects bodily samples and stores it in a sample medium.</entitydescription.cultureanalyzer>
-    <entityname.culturetube>Culture tube</entityname.culturetube>
-    <entitydescription.culturetube>A tube of rich growth medium that bacterial colonies will grow in.</entitydescription.culturetube>
+<!--diseases-->
     <afflictionname.pneumonia>Pneumonia</afflictionname.pneumonia>
     <afflictiondescription.pneumonia></afflictiondescription.pneumonia>
     <afflictionname.necfasc>Necrotizing fasciitis</afflictionname.necfasc>
     <afflictiondescription.necfasc>The skin shows deep discoloration and the soft tissue is dying.</afflictiondescription.necfasc>
     <afflictionname.cellulitis>Cellulitis</afflictionname.cellulitis>
     <afflictiondescription.cellulitis>The area of skin is red and painful.</afflictiondescription.cellulitis>
+<!--diagnostics-->
+    <entityname.cultureanalyzer>Sample collector</entityname.cultureanalyzer>
+    <entitydescription.cultureanalyzer>Collects bodily samples and stores it in a sample medium.</entitydescription.cultureanalyzer>
+    <entityname.cultureanalyzingterminal>Sample Analyzer</entityname.cultureanalyzingterminal>
+    <entitydescription.cultureanalyzingterminal>A machine that examines the biochemical signature of samples to identify pathogens.</entitydescription.cultureanalyzingterminal>
+    <cultureanalyzer.analyze>Analyze</cultureanalyzer.analyze>
+    <cultureanalyzer.info>Insert a full-grown culture or viral sample to analyze the type.</cultureanalyzer.info>
+<!--bacterial diagnostics-->
+    <entityname.culturetube>Culture tube</entityname.culturetube>
+    <entitydescription.culturetube>A tube of rich growth medium that bacterial colonies will grow in.</entitydescription.culturetube>
     <entityname.incubatorcrate>Incubator crate</entityname.incubatorcrate>
     <entitydescription.incubatorcrate>A crate capable of growing cultures due to its ability to regulate optimal storage conditions.</entitydescription.incubatorcrate>
+    <entityname.incubatorterminal>Incubator</entityname.incubatorterminal>
+    <entitydescription.incubatorterminal>A machine capable of growing cultures by maintaining the optimal conditions for bacterial growth.</entitydescription.incubatorterminal>
     <entityname.streptubeunk>Culture sample (Unknown)</entityname.streptubeunk>
     <entitydescription.streptubeunk>A culture tube with an unknown sample.</entitydescription.streptubeunk>
     <entityname.streptube>Culture sample (Streptococcus)</entityname.streptube>
@@ -94,62 +116,7 @@
     <entitydescription.provotube>A culture tube with a provobacter sample.</entitydescription.provotube>
     <entityname.emptytubeunk>Culture sample (Unknown)</entityname.emptytubeunk>
     <entitydescription.emptytubeunk>A culture tube with an unknown sample.</entitydescription.emptytubeunk>
-    <entityname.cultureanalyzingterminal>Sample Analyzer</entityname.cultureanalyzingterminal>
-    <entitydescription.cultureanalyzingterminal>A machine that examines the biochemical signature of samples to identify pathogens.</entitydescription.cultureanalyzingterminal>
-    <cultureanalyzer.analyze>Analyze</cultureanalyzer.analyze>
-    <cultureanalyzer.info>Insert a full-grown culture or viral sample to analyze the type.</cultureanalyzer.info>
-    <entityname.incubatorterminal>Incubator</entityname.incubatorterminal>
-    <entitydescription.incubatorterminal>A machine capable of growing cultures by maintaining the optimal conditions for bacterial growth.</entitydescription.incubatorterminal>
-    <afflictionname.afstrepvac>Streptococcus vaccine</afflictionname.afstrepvac>
-    <afflictiondescription.afstrepvac>The patient's immune system is primed and ready to fight against streptococcal infections.</afflictiondescription.afstrepvac>
-    <entityname.strepvac>Streptococcus vaccine</entityname.strepvac>
-    <entitydescription.strepvac>A vaccine that prepares the immune system to fight against streptococcus strains.</entitydescription.strepvac>
-    <afflictionname.afstaphvac>Staphylococcus vaccine</afflictionname.afstaphvac>
-    <afflictiondescription.afstaphvac>The patient's immune system is primed and ready to fight against staphylococcal infections.</afflictiondescription.afstaphvac>
-    <entityname.staphvac>Staphylococcus vaccine</entityname.staphvac>
-    <entitydescription.staphvac>A vaccine that prepares the immune system to fight against staphylococcal strains.</entitydescription.staphvac>
-    <afflictionname.afpseudovac>Pseudomonas vaccine</afflictionname.afpseudovac>
-    <afflictiondescription.afpseudovac>The patient's immune system is primed and ready to fight against pseudomonas infections.</afflictiondescription.afpseudovac>
-    <entityname.pseudovac>Pseudomonas vaccine</entityname.pseudovac>
-    <entitydescription.pseudovac>A vaccine that prepares the immune system to fight against pseudomonas strains.</entitydescription.pseudovac>
-    <afflictionname.afprovovac>Provobacter vaccine</afflictionname.afprovovac>
-    <afflictiondescription.afprovovac>The patient's immune system is primed and ready to fight against provobacter infections.</afflictiondescription.afprovovac>
-    <entityname.provovac>Provobacter vaccine</entityname.provovac>
-    <entitydescription.provovac>A vaccine that prepares the immune system to fight against provobacter strains.</entitydescription.provovac>
-    <entityname.weaponstrep>Weaponized streptococcus</entityname.weaponstrep>
-    <entitydescription.weaponstrep>A syringe filled with a strain of streptococcus with the purpose of infecting a target.</entitydescription.weaponstrep>
-    <entityname.weaponstaph>Weaponized staphylococcus</entityname.weaponstaph>
-    <entitydescription.weaponstaph>A syringe filled with a strain of staphylococcus with the purpose of infecting a target.</entitydescription.weaponstaph>
-    <entityname.weaponmrsa>Weaponized MRSA</entityname.weaponmrsa>
-    <entitydescription.weaponmrsa>A syringe filled with a strain of MRSA with the purpose of infecting a target.</entitydescription.weaponmrsa>
-    <entityname.weaponpseudo>Weaponized pseudomonas</entityname.weaponpseudo>
-    <entitydescription.weaponpseudo>A syringe filled with a strain of pseudomonas with the purpose of infecting a target.</entitydescription.weaponpseudo>
-    <entityname.weaponprovo>Weaponized provobacter</entityname.weaponprovo>
-    <entitydescription.weaponprovo>A syringe filled with a strain of provobacter with the purpose of infecting a target.</entitydescription.weaponprovo>
-    <afflictionname.systemicresponse>Systemic Response</afflictionname.systemicresponse>
-    <afflictiondescription.systemicresponse></afflictiondescription.systemicresponse>
-    <afflictionname.europancough>Europan Cough</afflictionname.europancough>
-    <afflictiondescription.europancough></afflictiondescription.europancough>
-    <afflictionname.commoncold>Common Cold</afflictionname.commoncold>
-    <afflictiondescription.commoncold></afflictiondescription.commoncold>
-    <afflictionname.influenza>Influenza</afflictionname.influenza>
-    <afflictiondescription.influenza></afflictiondescription.influenza>
-    <entityname.dextromethorphan>Dextromethorphan</entityname.dextromethorphan>
-    <entitydescription.dextromethorphan>An antitussive solution used to relieve a cough.</entitydescription.dextromethorphan>
-    <afflictionname.afdextromethorphan>Dextromethorphan</afflictionname.afdextromethorphan>
-    <afflictiondescription.afdextromethorphan></afflictiondescription.afdextromethorphan>
-    <entityname.remdesivir>Remdesivir</entityname.remdesivir>
-    <entitydescription.remdesivir>A broad-spectrum antiviral drug, commonly used to treat cases of Europan cough.</entitydescription.remdesivir>
-    <afflictionname.afremdesivir>Remdesivir</afflictionname.afremdesivir>
-    <afflictiondescription.afremdesivir></afflictiondescription.afremdesivir>
-    <afflictionname.viralantibodies>Viral Antibodies</afflictionname.viralantibodies>
-    <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
-    <afflictionname.virallevel>Viral Level</afflictionname.virallevel>
-    <afflictiondescription.virallevel></afflictiondescription.virallevel>
-    <entityname.zincsupplement>Zinc supplement</entityname.zincsupplement>
-    <entitydescription.zincsupplement>A supplement for zinc. May be useful for a cold or the flu.</entitydescription.zincsupplement>
-    <afflictionname.afzincsupplement>Zinc supplement</afflictionname.afzincsupplement>
-    <afflictiondescription.afzincsupplement></afflictiondescription.afzincsupplement>
+<!--viral diagnostics-->
     <entityname.viralmedium>Viral transport medium</entityname.viralmedium>
     <entitydescription.viralmedium>A medium for collecting a viral sample to be analyzed via PCR.</entitydescription.viralmedium>
     <entityname.emptyviralunk>Viral sample (Unknown)</entityname.emptyviralunk>
@@ -166,4 +133,52 @@
     <entitydescription.europanviralunk>A viral sample with an unknown strain.</entitydescription.europanviralunk>
     <entityname.europanviralmedium>Viral sample (Europan cough)</entityname.europanviralmedium>
     <entitydescription.europanviralmedium>A viral sample with a Iovipneumoviridae strain.</entitydescription.europanviralmedium>
+<!--vaccines-->
+    <afflictionname.afstrepvac>Streptococcus vaccine</afflictionname.afstrepvac>
+    <afflictiondescription.afstrepvac>The patient's immune system is primed and ready to fight against streptococcal infections.</afflictiondescription.afstrepvac>
+    <entityname.strepvac>Streptococcus vaccine</entityname.strepvac>
+    <entitydescription.strepvac>A vaccine that prepares the immune system to fight against streptococcus strains.</entitydescription.strepvac>
+    <afflictionname.afstaphvac>Staphylococcus vaccine</afflictionname.afstaphvac>
+    <afflictiondescription.afstaphvac>The patient's immune system is primed and ready to fight against staphylococcal infections.</afflictiondescription.afstaphvac>
+    <entityname.staphvac>Staphylococcus vaccine</entityname.staphvac>
+    <entitydescription.staphvac>A vaccine that prepares the immune system to fight against staphylococcal strains.</entitydescription.staphvac>
+    <afflictionname.afpseudovac>Pseudomonas vaccine</afflictionname.afpseudovac>
+    <afflictiondescription.afpseudovac>The patient's immune system is primed and ready to fight against pseudomonas infections.</afflictiondescription.afpseudovac>
+    <entityname.pseudovac>Pseudomonas vaccine</entityname.pseudovac>
+    <entitydescription.pseudovac>A vaccine that prepares the immune system to fight against pseudomonas strains.</entitydescription.pseudovac>
+    <afflictionname.afprovovac>Provobacter vaccine</afflictionname.afprovovac>
+    <afflictiondescription.afprovovac>The patient's immune system is primed and ready to fight against provobacter infections.</afflictiondescription.afprovovac>
+    <entityname.provovac>Provobacter vaccine</entityname.provovac>
+    <entitydescription.provovac>A vaccine that prepares the immune system to fight against provobacter strains.</entitydescription.provovac>
+<!--weaponized bacteria-->
+    <entityname.weaponstrep>Weaponized streptococcus</entityname.weaponstrep>
+    <entitydescription.weaponstrep>A syringe filled with a strain of streptococcus with the purpose of infecting a target.</entitydescription.weaponstrep>
+    <entityname.weaponstaph>Weaponized staphylococcus</entityname.weaponstaph>
+    <entitydescription.weaponstaph>A syringe filled with a strain of staphylococcus with the purpose of infecting a target.</entitydescription.weaponstaph>
+    <entityname.weaponmrsa>Weaponized MRSA</entityname.weaponmrsa>
+    <entitydescription.weaponmrsa>A syringe filled with a strain of MRSA with the purpose of infecting a target.</entitydescription.weaponmrsa>
+    <entityname.weaponpseudo>Weaponized pseudomonas</entityname.weaponpseudo>
+    <entitydescription.weaponpseudo>A syringe filled with a strain of pseudomonas with the purpose of infecting a target.</entitydescription.weaponpseudo>
+    <entityname.weaponprovo>Weaponized provobacter</entityname.weaponprovo>
+    <entitydescription.weaponprovo>A syringe filled with a strain of provobacter with the purpose of infecting a target.</entitydescription.weaponprovo>
+<!--viruses-->
+    <afflictionname.europancough>Europan Cough</afflictionname.europancough>
+    <afflictiondescription.europancough></afflictiondescription.europancough>
+    <afflictionname.commoncold>Common Cold</afflictionname.commoncold>
+    <afflictiondescription.commoncold></afflictiondescription.commoncold>
+    <afflictionname.influenza>Influenza</afflictionname.influenza>
+    <afflictiondescription.influenza></afflictiondescription.influenza>
+<!--viral medication-->
+    <entityname.dextromethorphan>Dextromethorphan</entityname.dextromethorphan>
+    <entitydescription.dextromethorphan>An antitussive solution used to relieve a cough.</entitydescription.dextromethorphan>
+    <afflictionname.afdextromethorphan>Dextromethorphan</afflictionname.afdextromethorphan>
+    <afflictiondescription.afdextromethorphan></afflictiondescription.afdextromethorphan>
+    <entityname.remdesivir>Remdesivir</entityname.remdesivir>
+    <entitydescription.remdesivir>A broad-spectrum antiviral drug, commonly used to treat cases of Europan cough.</entitydescription.remdesivir>
+    <afflictionname.afremdesivir>Remdesivir</afflictionname.afremdesivir>
+    <afflictiondescription.afremdesivir></afflictiondescription.afremdesivir>
+    <entityname.zincsupplement>Zinc supplement</entityname.zincsupplement>
+    <entitydescription.zincsupplement>A supplement for zinc. May be useful for a cold or the flu.</entitydescription.zincsupplement>
+    <afflictionname.afzincsupplement>Zinc supplement</afflictionname.afzincsupplement>
+    <afflictiondescription.afzincsupplement></afflictiondescription.afzincsupplement>
 </infotexts>

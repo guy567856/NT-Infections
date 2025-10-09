@@ -75,14 +75,15 @@ end
     samplename = sample to be returned when analyzing virus
 ]]--
 
-function NTI.BacteriaInfo(_bloodname, _prevalence, _basespeed, _antibiotics, _samplename, _vaccine)
-    return { bloodname = _bloodname, prevalence = _prevalence, basespeed = _basespeed, antibiotics = _antibiotics, samplename = _samplename, vaccine = _vaccine }
+function NTI.BacteriaInfo(_bloodname, _prevalence, _basespeed, _severityspeed, _antibiotics, _samplename, _vaccine)
+    return { bloodname = _bloodname, prevalence = _prevalence, basespeed = _basespeed, severityspeed = _severityspeed, antibiotics = _antibiotics, samplename = _samplename, vaccine = _vaccine }
 end
 
 --[[
     bloodname - the blood infection version on the infection
     prevalence - the "number of names put into the hat" that will have the chance to be pulled from the list of random infections. change in config
-    basespeed - basespeed at which the infection progresses -> basespeed + (infection_severity * 0.06) clamped to a max of 1.05
+    basespeed - basespeed at which the infection progresses
+    severityspeed - increase depending on severity level. severity level ranges from 2-10, so totalspeed = basespeed + (severity_level * severityspeed)
     antibiotics - a list of antibiotics that have an effect on said disease. the number provided is the denominator, so antibiotics are calculated as: infection_speed * (1 / antibiotic_value)...
     samplename - the item that is returned when using a sample collector
     vaccine - the vaccine affliction name that will have an effect on this disease
@@ -96,11 +97,11 @@ Timer.Wait(function()
     }
 
     NTI.Bacterias = {
-        limbstaph = NTI.BacteriaInfo("bloodstaph", "NTI_staphPrevalence", 0.5, NTI.anti_staph, "staphtubeunk", "afstaphvac"),
-        limbstrep = NTI.BacteriaInfo("bloodstrep", "NTI_strepPrevalence", 0.5, NTI.anti_strep, "streptubeunk", "afstrepvac"),
-        limbmrsa = NTI.BacteriaInfo("bloodmrsa", "NTI_mrsaPrevalence", 0.5, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"),
-        limbprovo = NTI.BacteriaInfo("bloodprovo", "NTI_provoPrevalence", 0.5, NTI.anti_provo, "provotubeunk", "afprovovac"),
-        limbpseudo = NTI.BacteriaInfo("bloodpseudo", "NTI_pseudoPrevalence", 0.5, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"),
+        limbstaph = NTI.BacteriaInfo("bloodstaph", "NTI_staphPrevalence", 0.5, 0.05, NTI.anti_staph, "staphtubeunk", "afstaphvac"),
+        limbstrep = NTI.BacteriaInfo("bloodstrep", "NTI_strepPrevalence", 0.5, 0.05, NTI.anti_strep, "streptubeunk", "afstrepvac"),
+        limbmrsa = NTI.BacteriaInfo("bloodmrsa", "NTI_mrsaPrevalence", 0.5, 0.05, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"),
+        limbprovo = NTI.BacteriaInfo("bloodprovo", "NTI_provoPrevalence", 0.5, 0.05, NTI.anti_provo, "provotubeunk", "afprovovac"),
+        limbpseudo = NTI.BacteriaInfo("bloodpseudo", "NTI_pseudoPrevalence", 0.5, 0.05, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"),
     }
 end,1)
 
@@ -124,18 +125,6 @@ function NTI.CheckSymptom(character, symptom, level, threshold, chance)
     if (NTC.GetSymptom(character, symptom) or HF.Chance(chance)) then
         NTC.SetSymptomTrue(character, symptom, 4)
     end
-end
-
---return the level that sepsis increases at
-function NTI.GetSepsisIncrease(character)
-    local result = 0
-
-    for limb in limbtypes do
-        value = math.max(80 - HF.GetAfflictionStrengthLimb(character, limb, "infectionlevel", 0), 0) / 200
-        result = result + value
-    end
-
-    return result
 end
 
 --return the total antibiotic value from a list
@@ -162,6 +151,11 @@ function NTI.GetTotalNecValue(character)
     return value
 end
 
+--return a boolean if there is sepsis
+function NTI.HasSepsis(character)
+    return HF.GetAfflictionStrength(character, "sepsis", 0) > 0
+end
+
 --decomposing the wound calculating stuff
 function NTI.HasWound(c, limbaff, type)
     local wound = limbaff.burn.strength +
@@ -183,46 +177,17 @@ end
 
 
 ---- BACTERIAL INFECTIONS ----
---return the level of blood infection for all infections
-function NTI.BloodInfectionLevel(character)
-    local result = 0
-
-    for _, info in pairs(NTI.Bacterias) do
-        result = result + HF.GetAfflictionStrength(character, info.bloodname, 0)
-    end
-
-    return result
-end
-
---decomposing the blood updating shit
-function NTI.BloodInfUpdate(character, antibiotic_list, vaccine)
-    local immune_level = HF.GetAfflictionStrength(character, "immunity", 0) / 100
-    local response = HF.GetAfflictionStrength(character, "systemicresponse", 0) / 150
-    local ab = NTI.GetAntibioticValue(character, antibiotic_list)
-    return 0.75 * ab - response - ((HF.GetAfflictionStrength(character, vaccine, 0) / 2000) * immune_level)
-end
-
 --return a boolean if a character's blood is currently infected
 function NTI.BloodIsInfected(character)
-    for _, info in pairs(NTI.Bacterias) do
-        if HF.GetAfflictionStrength(character, info.bloodname, 0) > 0 then return true end
-    end
-
-    return false
+    return HF.GetAfflictionStrength(character, "bloodinfectionlevel", 0) > 0
 end
 
---make a list for the probability of which infection is picked (already gotten infections will be more likely)
+--make a list for the probability of which infection is picked
 function NTI.FormBacteriaList(character)
     local list = {}
 
     for key, info in pairs(NTI.Bacterias) do
-        local scalar = 1
-
-        if NTI.CheckAllLimbsFor(character, key) then
-            scalar = 3
-        end
-
-        for i = 1, (NTConfig.Get(info.prevalence, 1) * scalar) do
+        for i = 1, (NTConfig.Get(info.prevalence, 1)) do
             table.insert(list, 1, key)
         end
     end
@@ -239,37 +204,33 @@ function NTI.GetCurrentBacteria(character, limb)
     return nil
 end
 
---returns random weighted name of a blood infection
-function NTI.GetRandomWeightedBloodBacteria(character)
-    local pool = {}
-    local sum = 0
-    local ind = 1
-
+--return current blood bacteria infection name
+function NTI.GetCurrentBacteriaBlood(character)
     for key, info in pairs(NTI.Bacterias) do
-        local level = HF.GetAfflictionStrength(character, info.bloodname, 0)
-        sum = sum + level
-        pool[ind] = { name = key, value = sum }
-        ind = ind + 1
-    end
-
-    local random = math.random(sum)
-
-    for i = 1, #pool do
-        local element = pool[i]
-        if random < element.value then return element.name end
+        if HF.GetAfflictionStrength(character, info.bloodname, 0) > 0 then return key end
     end
 
     return nil
 end
 
---infect character with a specific bacteria
-function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
-    if NTCyb ~= nil then
-        if NTCyb.HF.LimbIsCyber(character, limb) then
-            return
-        end
-    end
+--return sepsis increase from limb infections
+function NTI.GetLimbIncreaseSepsis(character)
+    return NTI.LimbTotalInfectionLevel(character) / 1000
+end
 
+--infect character's blood with a specific bacteria
+function NTI.InfectBlood(character, bacteria, severity)
+    if bacteria == nil then return end
+    if NTI.BloodIsInfected(character) then return end
+
+    HF.SetAffliction(character, bacteria, severity)
+    HF.SetAffliction(character, "bloodinfectionlevel", 1)
+
+    print("blood infection occurred on " .. character.Name .. " with severity of " .. severity)
+end
+
+--infect character with a specific bacteria on a limb
+function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
     if bacteria == nil then return end
     if NTI.LimbIsInfected(character, limb) then return end
 
@@ -279,7 +240,7 @@ function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
     print("infection occurred on " .. limb .. " from " .. character.Name .. " with severity of " .. severity)
 end
 
---infect the character with a random infection and severity
+--infect the character with a random infection and severity on a limb
 function NTI.InfectCharacterRandom(character, limb)
     local randomval = math.random(5) + math.random(5)
     local list = NTI.FormBacteriaList(character)

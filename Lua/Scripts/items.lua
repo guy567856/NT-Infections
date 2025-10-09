@@ -64,7 +64,7 @@ Timer.Wait(function()
                 else
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nBlood sample found.",Color(127,255,127,255))
 
-                    name = NTI.GetRandomWeightedBloodBacteria(targetCharacter)
+                    name = NTI.GetCurrentBacteriaBlood(character)
                 end
 
                 if name ~= nil then

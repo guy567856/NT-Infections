@@ -3,14 +3,14 @@ NTI.ConfigData = {
 
     NTI_strepPrevalence = {
 		name = "Streptococcal Prevalence",
-		default = 3,
+		default = 4,
 		range = { 0, 100 },
 		type = "float",
         description = "The 'number of names in the hat' for strep infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
 	},
     NTI_staphPrevalence = {
 		name = "Staphylococcal Prevalence",
-		default = 4,
+		default = 5,
 		range = { 0, 100 },
 		type = "float",
         description = "The 'number of names in the hat' for staph infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
@@ -31,7 +31,7 @@ NTI.ConfigData = {
 	},
     NTI_provoPrevalence = {
 		name = "Provobacter Prevalence",
-		default = 3,
+		default = 4,
 		range = { 0, 100 },
 		type = "float",
         description = "The 'number of names in the hat' for provobacter infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",

@@ -182,6 +182,23 @@ function NTI.BloodIsInfected(character)
     return HF.GetAfflictionStrength(character, "bloodinfectionlevel", 0) > 0
 end
 
+--kind of a dumb solution, but i didnt want to go out of my way to override a lot of the code from ntsp and ntspu as they do not specify which limb is unsterile
+function NTI.DetermineDirtiestLimb(character)
+    local choice = nil
+
+    for limb in limbtypes do
+        if not NTI.LimbIsInfected(character, limb) and HF.HasAfflictionLimb(character, "surgeryincision", limb) then
+            if not HF.HasAfflictionLimb(character, "ointmented", limb) then
+                return limb
+            end
+
+            choice = limb
+        end
+    end
+
+    return choice
+end
+
 --make a list for the probability of which infection is picked
 function NTI.FormBacteriaList(character)
     local list = {}
@@ -300,23 +317,6 @@ function NTI.TriggerUnsterilityEvent(character)
     end
 end
 
---kind of a dumb solution, but i didnt want to go out of my way to override a lot of the code from ntsp and ntspu as they do not specify which limb is unsterile
-function NTI.DetermineDirtiestLimb(character)
-    local choice = nil
-
-    for limb in limbtypes do
-        if not NTI.LimbIsInfected(character, limb) and HF.HasAfflictionLimb(character, "surgeryincision", limb) then
-            if not HF.HasAfflictionLimb(character, "ointmented", limb) then
-                return limb
-            end
-
-            choice = limb
-        end
-    end
-
-    return choice
-end
-
 
 
 ---- VIRAL INFECTIONS ----
@@ -354,6 +354,38 @@ function NTI.InfectCharacterViral(character, virus, level)
     local sev = math.random(5) + math.random(5)
     HF.SetAffliction(character, virus, sev)
     HF.SetAffliction(character, "virallevel", level)
+end
+
+--spread viral infections to other characters from an infected character
+function NTI.SpreadViralInfection(character, initial_chance, virus, meds, strength, name)
+    if not HF.Chance(initial_chance) then return end
+
+    for _, targetcharacter in pairs(Character.CharacterList) do
+        NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, meds, strength, name)
+    end
+end
+
+function NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, meds, strength, name)
+    if targetcharacter == character or not targetcharacter.IsHuman then return end
+
+    local distance = HF.CharacterDistance(character,targetcharacter)
+
+    if distance > 300 or HF.HasAffliction(targetcharacter, "virallevel") then return end
+
+    local head = NTI.WearingNeededHead(targetcharacter, NTI.head_protection) + NTI.WearingNeededHead(character, NTI.head_protection)
+    local outer = NTI.WearingNeededOuter(targetcharacter, NTI.outer_protection) + NTI.WearingNeededOuter(character, NTI.outer_protection)
+
+    local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 30) * (1 / math.max(0.1, virus.virulence)) + head + outer
+                + (meds / 50)
+                + HF.Clamp(20 - strength / 2, 0, 20)
+                + HF.BoolToNum(not targetcharacter.IsPlayer, 20)
+                + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam, 20)
+
+    print("viral spread chance 1/" .. chance .. ", from " .. character.Name .. " to " .. targetcharacter.Name)
+    if HF.Chance(1 / chance) then
+        print("viral spread success")
+        NTI.InfectCharacterViral(targetcharacter, name, 1)
+    end
 end
 
 --check if a character is wearing a specific tag from a list on their head

@@ -222,7 +222,7 @@ Timer.Wait(function()
         if HF.HasAffliction(c.character, "virallevel") then
             c.afflictions[i].strength = c.afflictions[i].strength + ((c.afflictions.immunity.strength - 50) / 100)
         else
-            c.afflictions[i].strength = c.afflictions[i].strength - 0.1
+            c.afflictions[i].strength = c.afflictions[i].strength - 0.02
         end
     end}
 
@@ -246,36 +246,9 @@ Timer.Wait(function()
 
             c.stats.speedmultiplier = c.stats.speedmultiplier * (1 - virus.slowdown * (c.afflictions[i].strength / (100 + meds)))
 
-            if (HF.Chance(0.1)) then
-                for _, targetcharacter in pairs(Character.CharacterList) do
-                    if targetcharacter ~= c.character and targetcharacter.IsHuman then
-                        local distance = HF.CharacterDistance(c.character,targetcharacter)
-
-                        if distance < 300 and not HF.HasAffliction(targetcharacter, "virallevel") then
-                            local head = NTI.WearingNeededHead(targetcharacter, NTI.head_protection) + NTI.WearingNeededHead(c.character, NTI.head_protection)
-                            local outer = NTI.WearingNeededOuter(targetcharacter, NTI.outer_protection) + NTI.WearingNeededOuter(c.character, NTI.outer_protection)
-
-                            local chance = HF.Clamp(((distance / 3) + HF.GetAfflictionStrength(targetcharacter, "immunity", 0)) / 10, 1, 30) * (1 / math.max(0.1, virus.virulence)) + head + outer
-                                + (meds / 50)
-                                + HF.Clamp(20 - c.afflictions[i].strength / 2, 0, 20)
-                                + HF.BoolToNum(not targetcharacter.IsPlayer, 20)
-                                + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam, 20)
-
-                            print("viral spread chance 1/" .. chance .. ", from " .. c.character.Name .. " to " .. targetcharacter.Name)
-                            if (HF.Chance(1 / chance)) then
-                                print("viral spread success")
-                                NTI.InfectCharacterViral(targetcharacter, name, 1)
-                            end
-                        end
-                    end
-                end
-            end
+            NTI.SpreadViralInfection(c.character, NTConfig.Get("NTI_viralSpreadChance", true), virus, meds, c.afflictions[i].strength, name)
 
             c.afflictions[i].strength = c.afflictions[i].strength + gain - defense
-
-            if c.afflictions[i].strength <= 0 then
-                HF.SetAffliction(c.character, "viralantibodies", 100)
-            end
         end
     end}
 
@@ -331,8 +304,10 @@ Timer.Wait(function()
             local increase = math.min(0.75 + HF.GetAfflictionStrength(c.character, info.bloodname, 1) * 0.05, 0.99) * antibiotic
                             - (HF.GetAfflictionStrength(c.character, "systemicresponse", 1) / 100)
                             - ((HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 2000) * (c.afflictions.immunity.strength / 100))
+            print("+"..increase)
 
             c.afflictions[i].strength = c.afflictions[i].strength + increase
+            print("end "..c.afflictions[i].strength)
 
             if HF.Chance((c.afflictions[i].strength / 150)^3) and not NTI.HasSepsis(c.character) then HF.SetAffliction(c.character, "sepsis", 1) end
         end
@@ -498,7 +473,7 @@ Timer.Wait(function()
         if c.afflictions[i].strength <= 0 then
             if not (bil > 0 or vir > 75) then return end
 
-            if HF.Chance(1 / (250 + c.afflictions.immunity.strength - bil - (vir / 2))) then
+            if HF.Chance(1 / (300 + c.afflictions.immunity.strength - bil - (vir / 2))) then
                 c.afflictions[i].strength = 1
                 return
             end

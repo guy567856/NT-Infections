@@ -925,18 +925,18 @@
             <RequiredSkill identifier="medical" level="20" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
-            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodstrep" amount="5" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodstrep" amount="10" />
             </StatusEffect>
-            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodstrep" amount="3" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodstrep" amount="8" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
-                <Remove />
+                <Remove/>
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
@@ -962,18 +962,18 @@
             <RequiredSkill identifier="medical" level="20" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
-            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodstaph" amount="5" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodstaph" amount="10" />
             </StatusEffect>
-            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodstaph" amount="3" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodstaph" amount="8" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
-                <Remove />
+                <Remove/>
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
@@ -999,18 +999,18 @@
             <RequiredSkill identifier="medical" level="20" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
-            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodmrsa" amount="5" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodmrsa" amount="10" />
             </StatusEffect>
-            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodmrsa" amount="3" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodmrsa" amount="8" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
-                <Remove />
+                <Remove/>
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
@@ -1036,18 +1036,18 @@
             <RequiredSkill identifier="medical" level="20" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
-            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodpseudo" amount="5" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodpseudo" amount="10" />
             </StatusEffect>
-            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodpseudo" amount="3" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodpseudo" amount="8" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
-                <Remove />
+                <Remove/>
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
@@ -1073,18 +1073,18 @@
             <RequiredSkill identifier="medical" level="20" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
-            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodprovo" amount="5" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodprovo" amount="10" />
             </StatusEffect>
-            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="1">
+            <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodprovo" amount="3" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
-                <Affliction identifier="bloodprovo" amount="8" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
-                <Remove />
+                <Remove/>
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />

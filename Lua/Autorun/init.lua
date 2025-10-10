@@ -1,7 +1,7 @@
 NTI = {}
 NTI.Name = "Infections"
-NTI.Version = "1.3.0"
-NTI.VersionNum = 10300000
+NTI.Version = "1.3.1"
+NTI.VersionNum = 10300001
 NTI.Path=table.pack(...)[1]
 Timer.Wait(function() if NTC ~= nil and NTC.RegisterExpansion ~= nil then NTC.RegisterExpansion(NTI) end end,1)
 

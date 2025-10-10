@@ -37,6 +37,13 @@ NTI.ConfigData = {
         description = "The 'number of names in the hat' for provobacter infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
 	},
 
+	NTI_viralSpreadChance = {
+		name = "Viral Spread Chance",
+		default = 0.1,
+		range = { 0, 1 },
+		type = "float",
+        description = "The chance every NT tick that an infection spread occurs. The higher the more likely viruses will spread. Also expect worse server performance.",
+	},
     NTI_europanChance = {
 		name = "Europan Cough Chance Denominator",
 		default = 120,

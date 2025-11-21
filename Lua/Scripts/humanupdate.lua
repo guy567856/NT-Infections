@@ -269,7 +269,8 @@ Timer.Wait(function()
 
             local info = NTI.Bacterias[name]
             local severity = HF.GetAfflictionStrengthLimb(c.character, type, name, 1)
-            local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, info.resistant)
+            local resistant = NTI.IsResistant(c.character, name, type)
+            local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, resistant)
             local increase = math.min(info.basespeed + severity * info.severityspeed, 0.99) * antibiotic
                             - (HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100)
                             - ((HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
@@ -447,7 +448,8 @@ Timer.Wait(function()
             local increase = -1
             if name ~= nil then
                 local info = NTI.Bacterias[name]
-                local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, info.resistant)
+                local resistant = NTI.IsResistant(c.character, name, type)
+                local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, resistant)
                 increase = math.min(info.basespeed + HF.GetAfflictionStrengthLimb(c.character, type, name, 1) * info.severityspeed, 0.99) * antibiotic
                             - (HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100)
                             - ((HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
@@ -477,7 +479,8 @@ Timer.Wait(function()
             local increase = 0.05
             if name ~= nil then
                 local info = NTI.Bacterias[name]
-                local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, info.resistant)
+                local resistant = NTI.IsResistant(c.character, name, type)
+                local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, resistant)
                 increase = HF.Clamp(info.basespeed + HF.GetAfflictionStrengthLimb(c.character, type, name, 1) * info.severityspeed, 0.05, 1) * antibiotic
             end
 
@@ -513,6 +516,7 @@ Timer.Wait(function()
 
             if name ~= nil then
                 local info = NTI.Bacterias[name]
+                local resistant = NTI.IsResistantBlood(c.character, name)
                 local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics, info.resistant)
                 local bacteria = math.min(0.5 + HF.GetAfflictionStrength(c.character, info.bloodname, 1) * 0.1, 0.99) * antibiotic
                                 - (HF.GetAfflictionStrength(c.character, "systemicresponse", 1) / 100)

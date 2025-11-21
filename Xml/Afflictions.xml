@@ -29,7 +29,7 @@
     <Affliction name="" identifier="bloodinfectionlevel" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="100">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="mrrisk" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="100">
+    <Affliction name="" identifier="mrrisk" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.01" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>

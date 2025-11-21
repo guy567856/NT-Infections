@@ -36,6 +36,13 @@ NTI.ConfigData = {
 		type = "float",
         description = "The 'number of names in the hat' for aeroganella infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
 	},
+	NTI_mrsaChance = {
+		name = "Base MRSA Chance",
+		default = 0.3,
+		range = { 0, 1 },
+		type = "float",
+        description = "The base percentage change for staph to become MRSA given antimicrobial resistance risk.",
+	},
 
 	NTI_viralSpreadChance = {
 		name = "Viral Spread Chance",

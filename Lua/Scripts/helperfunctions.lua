@@ -19,7 +19,6 @@ NTI.anti_strep = {
 
 NTI.anti_staph = {
     afgentamicin = 4/5,
-    afantibiotics = 3/4,
     afimipenem = 1/4,
     afampicillin = 1/4,
     afcotrim = 1/5,
@@ -68,6 +67,7 @@ NTI.outer_protection = {
 }
 
 NTI.beta_lactams = {afampicillin=true, afaugmentin=true, afimipenem=true}
+NTI.mr = {limbstaph=true}
 
 NTI.pus_yellow_causes = {"limbstrep", "limbstaph", "limbprovo"}
 NTI.pus_green_causes = {"limbpseudo", "limbaero"}
@@ -120,17 +120,6 @@ end,1)
 
 
 ---- HELPER FUNCTIONS ----
---return a boolean if the body has a certain limb affliction yet
-function NTI.CheckAllLimbsFor(character, tag)
-    for limb in limbtypes do
-        if HF.GetAfflictionStrengthLimb(character, limb, tag, 0) > 0 then
-            return true
-        end
-    end
-
-    return false
-end
-
 --symptom dealing
 function NTI.CheckSymptom(character, symptom, level, threshold, chance)
     if (level < threshold) then return end
@@ -155,17 +144,6 @@ function NTI.GetAntibioticValue(character, list, resistant)
     end
 
     return result
-end
-
---return full body necrotizing fasciitis level
-function NTI.GetTotalNecValue(character)
-    local value = 0
-
-    for limb in limbtypes do
-        value = value + HF.GetAfflictionStrengthLimb(character, limb, "necfasc", 0)
-    end
-
-    return value
 end
 
 --return a boolean if there is sepsis
@@ -214,8 +192,8 @@ function NTI.BloodInfUpdate(c)
 
     for key, value in pairs(infections) do
         local info = NTI.Bacterias[key]
-        local mr = (HF.GetAfflictionStrength(c.character, "mresistantblood", 0) > 0 and key == "limbstaph")
-        local increase = (value / total) * NTI.GetAntibioticValue(c.character, info.antibiotics, mr)
+        local resistant = NTI.IsResistantBlood(c.character, key)
+        local increase = (value / total) * NTI.GetAntibioticValue(c.character, info.antibiotics, resistant)
                         - ((HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100) * (value / total))
         
         --print(key, ": ", increase)
@@ -322,8 +300,8 @@ function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
     local mrrisk = HF.GetAfflictionStrength(character, "mrrisk", 0)
 
     if bacteria == "limbstaph" and mrrisk > 0 then
-        if HF.Chance(0.25 * (mrrisk / 100)) then
-            HF.SetAffliction(character, "mresistant", 2)
+        if HF.Chance(NTConfig.Get("NTI_mrsaChance", 1) * (mrrisk / 100)) then
+            HF.SetAfflictionLimb(character, "mresistant", limb, 2)
         end
     end
 
@@ -348,6 +326,16 @@ function NTI.InfectCharacterRandom(character, limb)
     local randomval = math.random(5) + math.random(5)
     local list = NTI.FormBacteriaList(character)
     NTI.InfectCharacterBacteria(character, limb, list[math.random(#list)], randomval)
+end
+
+--returns if a current limb disease is resistant to beta-lactams
+function NTI.IsResistant(character, bacteria, limb)
+    return (HF.GetAfflictionStrengthLimb(character, limb, "mresistant", 0) > 0 and NTI.mr[bacteria] ~= nil)
+end
+
+--returns if a current blood disease is resistant to beta-lactams
+function NTI.IsResistantBlood(character, bacteria)
+    return (HF.GetAfflictionStrength(character, "mresistantblood", 0) > 0 and NTI.mr[bacteria] ~= nil)
 end
 
 --return the infection level of a limb from a list of infections

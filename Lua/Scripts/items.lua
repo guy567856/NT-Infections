@@ -1,7 +1,18 @@
 Timer.Wait(function()
     --additional hematology tags
     NTI.MoreHematologyDetectable = {
-        "bloodinfectionlevel","afampicillin", "afaugmentin", "afvancomycin", "afgentamicin","afcotrim","afimipenem","afstrepvac","afstaphvac","afpseudovac","afprovovac","afdextromethorphan","afremdesivir","afzincsupplement","afceftazidime"
+        "afampicillin",
+        "afaugmentin",
+        "afvancomycin",
+        "afgentamicin",
+        "afcotrim",
+        "afimipenem",
+        "afdextromethorphan",
+        "afremdesivir",
+        "afzincsupplement",
+        "afceftazidime",
+        "afcorticosteroids",
+        "bloodinfectionlevel",
     }
 
     --add the new hematology tags into the nt hematology list
@@ -9,7 +20,7 @@ Timer.Wait(function()
         NTC.AddHematologyAffliction(NTI.MoreHematologyDetectable[i])
     end
 
-    --culture analyzer item
+    --the sampler tool item
     NT.ItemMethods.cultureanalyzer = function(item, usingCharacter, targetCharacter, limb)
         local containedItem = item.OwnInventory.GetItemAt(0)
 
@@ -19,11 +30,8 @@ Timer.Wait(function()
             end
 
             if containedItem.HasTag("viraltest") then
-                HF.RemoveItem(containedItem)
                 local params = {condition=100}
                 local name = NTI.GetCurrentVirus(targetCharacter)
-
-                HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nSwab sample found.",Color(127,255,127,255))
 
                 if name ~= nil then
                     local info = NTI.Viruses[name]
@@ -31,40 +39,27 @@ Timer.Wait(function()
                 else
                     HF.GiveItemPlusFunction("emptyviralunk",postSpawnFunc,params,usingCharacter)
                 end
+
+                HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nSwab sample found.",Color(127,255,127,255))
             else
-                HF.RemoveItem(containedItem)
                 local params = {condition=0}
                 local name = nil
+                local pus = HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusyellow", 0) + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
 
-                local puspresent = HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusyellow", 0)
-                                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
-                                + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "abscess", 0)
-
-                if puspresent > 0 then
-                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nPus sample found.",Color(127,255,127,255))
-
+                if pus > 0 then
                     name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
-
-                    if HF.HasAfflictionLimb(targetCharacter, "abscess", limb.type, 0) then
-                        HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,4,usingCharacter)
-                        HF.SetAfflictionLimb(targetCharacter, "abscess", limb.type, 0)
-
-                        if HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "limbpseudo", 0) > 0 then
-                            HF.AddAfflictionLimb(targetCharacter,"pusgreen",limb.type,2,usingCharacter)
-                        else
-                            HF.AddAfflictionLimb(targetCharacter,"pusyellow",limb.type,2,usingCharacter)
-                        end
-                    end
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nPus sample found.",Color(127,255,127,255))
+                elseif HF.HasAfflictionLimb(targetCharacter, "abscess", limb.type, 0) then
+                    name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
+                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,2,usingCharacter)
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nPus sample found.",Color(127,255,127,255))
                 elseif HF.HasAfflictionLimb(targetCharacter, "retractedskin", limb.type, 0) then
-                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nTissue sample found.",Color(127,255,127,255))
-
                     name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
-
                     HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,8,usingCharacter)
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nTissue sample found.",Color(127,255,127,255))
                 else
-                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nBlood sample found.",Color(127,255,127,255))
-
-                    name = NTI.GetCurrentBacteriaBlood(character)
+                    name = NTI.GetCurrentBacteriaBlood(targetCharacter)
+                    HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nBlood sample found.",Color(127,255,127,255))
                 end
 
                 if name ~= nil then
@@ -74,8 +69,32 @@ Timer.Wait(function()
                     HF.GiveItemPlusFunction("emptytubeunk",postSpawnFunc,params,usingCharacter)
                 end
             end
+
+            HF.RemoveItem(containedItem)
         else
-            HF.DMClient(HF.CharacterToClient(usingCharacter),"Sample Collector\n\nERROR\nNo sample medium provided.",Color(127,255,127,255))
+            local string = "Sampler tool\nBloodwork readout:\n"
+            local total = 0
+            local infections = {}
+
+            for key, info in pairs(NTI.Bacterias) do
+                local strength = HF.GetAfflictionStrength(targetCharacter, info.bloodname, 0)
+
+                if strength > 0 then
+                    infections[key] = strength
+                    total = total + strength
+                end
+            end
+
+            if total <= 0 then
+                string = string .. "\nNo bacterial presence in blood."
+            else
+                for key, value in pairs(infections) do
+                    local affliction = targetCharacter.CharacterHealth.GetAffliction(NTI.Bacterias[key].bloodname)
+                    string = string .. "\n" .. affliction.Prefab.Name.Value .. ": " .. HF.Round((value / total) * 100) .. "%"
+                end
+            end
+
+            HF.DMClient(HF.CharacterToClient(usingCharacter),string,Color(127,255,127,255))
         end
     end
 
@@ -90,8 +109,6 @@ Timer.Wait(function()
                     not NT.LimbIsAmputated(targetCharacter,limbtype)
                     and not HF.HasAfflictionLimb(targetCharacter,"gangrene",limbtype,15)
                     and not HF.HasAfflictionLimb(targetCharacter,"necfasc",limbtype,1)
-                    and not HF.HasAfflictionLimb(targetCharacter,"cellulitis",limbtype,10)
-                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,30)
                 NT.SurgicallyAmputateLimb(targetCharacter,limbtype)
                 if (droplimb) then
                     local limbtoitem = {}
@@ -117,16 +134,6 @@ Timer.Wait(function()
         local limbtype = HF.NormalizeLimbType(limb.type)
 
         if(HF.HasAffliction(targetCharacter,"stasis",0.1)) then return end
-
-        if HF.HasAfflictionLimb(targetCharacter, "abscess", limbtype, 0) then
-            HF.SetAfflictionLimb(targetCharacter, "abscess", limbtype, 0)
-
-            if HF.HasAfflictionLimb(targetCharacter, "limbpseudo", limbtype, 0) then
-                HF.SetAfflictionLimb(targetCharacter, "pusgreen", limbtype, 2)
-            else
-                HF.SetAfflictionLimb(targetCharacter, "pusyellow", limbtype, 2)
-            end
-        end
 
         if not HF.HasAfflictionLimb(targetCharacter, "necfasc", limbtype, 0) or not HF.HasAfflictionLimb(targetCharacter,"retractedskin",limbtype,0.1) then
             return

@@ -8,41 +8,47 @@ local limbtypes = {
 }
 
 NTI.anti_strep = {
-    afceftazidime = 3,
-    afantibiotics = 4,
-    afimipenem = 4,
-    afampicillin = 8,
-    afcotrim = 8,
-    afaugmentin = 16,
-    afvancomycin = 16,
+    afantibiotics = 3/4,
+    afceftazidime = 3/4,
+    afcotrim = 1/3,
+    afimipenem = 1/5,
+    afampicillin = 1/10,
+    afaugmentin = 1/16,
+    afvancomycin = 1/20,
 }
 
 NTI.anti_staph = {
-    afantibiotics = 2,
-    afgentamicin = 2,
-    afimipenem = 4,
-    afampicillin = 4,
-    afaugmentin = 12,
-    afcotrim = 12,
-    afvancomycin = 16,
-}
-
-NTI.anti_mrsa = {
-    afcotrim = 4,
-    afvancomycin = 16,
+    afgentamicin = 4/5,
+    afantibiotics = 3/4,
+    afimipenem = 1/4,
+    afampicillin = 1/4,
+    afcotrim = 1/5,
+    afaugmentin = 1/10,
+    afvancomycin = 1/50,
 }
 
 NTI.anti_pseudo = {
-    afimipenem = 5,
-    afceftazidime = 8,
-    afgentamicin = 16,
+    afimipenem = 1/5,
+    afceftazidime = 1/8,
+    afgentamicin = 1/20,
 }
 
 NTI.anti_provo = {
-    afimipenem = 3,
-    afaugmentin = 5,
-    afceftazidime = 6,
-    afgentamicin = 16,
+    afampicillin = 3/5,
+    afaugmentin = 2/5,
+    afimipenem = 1/3,
+    afceftazidime = 1/5,
+    afgentamicin = 1/20,
+}
+
+NTI.anti_aero = {
+    afampicillin = 4/5,
+    afaugmentin = 3/4,
+    afimipenem = 1/2,
+    afvancomycin = 1/2,
+    afcotrim = 2/5,
+    afceftazidime = 1/4,
+    afgentamicin = 1/20,
 }
 
 NTI.med_viral = {
@@ -61,8 +67,13 @@ NTI.outer_protection = {
     divinghelmet = 14,
 }
 
-function NTI.VirusInfo(_probability, _basespeed, _antivirals, _medicine, _slowdown, _virulence, _samplename)
-    return { probability = _probability, basespeed = _basespeed, antivirals = _antivirals, medicine = _medicine, slowdown = _slowdown, virulence = _virulence, samplename = _samplename }
+NTI.beta_lactams = {afampicillin=true, afaugmentin=true, afimipenem=true}
+
+NTI.pus_yellow_causes = {"limbstrep", "limbstaph", "limbprovo"}
+NTI.pus_green_causes = {"limbpseudo", "limbaero"}
+
+function NTI.VirusInfo(_probability, _basespeed, _antivirals, _medicine, _slowdown, _virulence, _samplename, _vaccine)
+    return { probability = _probability, basespeed = _basespeed, antivirals = _antivirals, medicine = _medicine, slowdown = _slowdown, virulence = _virulence, samplename = _samplename, vaccine = _vaccine }
 end
 
 --[[
@@ -72,11 +83,12 @@ end
     medicine - list of drugs that will alleviate symptoms of the virus
     slowdown - speed multiplier to show down a character
     virulence - multiplier for infection spread chance, cannot be 0 or less
-    samplename = sample to be returned when analyzing virus
+    samplename - sample to be returned when analyzing virus
+    vaccine - the vaccine affliction acting against this virus
 ]]--
 
-function NTI.BacteriaInfo(_bloodname, _prevalence, _basespeed, _severityspeed, _antibiotics, _samplename, _vaccine)
-    return { bloodname = _bloodname, prevalence = _prevalence, basespeed = _basespeed, severityspeed = _severityspeed, antibiotics = _antibiotics, samplename = _samplename, vaccine = _vaccine }
+function NTI.BacteriaInfo(_bloodname, _prevalence, _basespeed, _severityspeed, _antibiotics, _samplename, _vaccine, _resistant)
+    return { bloodname = _bloodname, prevalence = _prevalence, basespeed = _basespeed, severityspeed = _severityspeed, antibiotics = _antibiotics, samplename = _samplename, vaccine = _vaccine, resistant = _resistant }
 end
 
 --[[
@@ -87,21 +99,22 @@ end
     antibiotics - a list of antibiotics that have an effect on said disease. the number provided is the denominator, so antibiotics are calculated as: infection_speed * (1 / antibiotic_value)...
     samplename - the item that is returned when using a sample collector
     vaccine - the vaccine affliction name that will have an effect on this disease
+    resistant - ability to resist beta-lactam antibiotics
 ]]--
 
 Timer.Wait(function()
     NTI.Viruses = {
-        europancough = NTI.VirusInfo("NTI_europanChance", 0.4, {afremdesivir = 8}, NTI.med_viral, 0.6, 1, "europanviralunk"),
-        influenza = NTI.VirusInfo("NTI_influenzaChance", 0.35, {afzincsupplement = 2}, NTI.med_viral, 0.4, 0.9, "fluviralunk"),
-        commoncold = NTI.VirusInfo("NTI_coldChance", 0.3, {afzincsupplement = 3}, NTI.med_viral, 0.2, 0.8, "coldviralunk"),
+        europancough = NTI.VirusInfo("NTI_europanChance", 0.4, {afremdesivir = 1/10}, NTI.med_viral, 0.6, 1, "europanviralunk", "afeuropanvac"),
+        influenza = NTI.VirusInfo("NTI_influenzaChance", 0.35, {afzincsupplement = 3/4}, NTI.med_viral, 0.4, 0.9, "fluviralunk", "affluvac"),
+        commoncold = NTI.VirusInfo("NTI_coldChance", 0.3, {afzincsupplement = 1/2}, NTI.med_viral, 0.2, 0.8, "coldviralunk", "NONE"),
     }
 
     NTI.Bacterias = {
-        limbstaph = NTI.BacteriaInfo("bloodstaph", "NTI_staphPrevalence", 0.5, 0.05, NTI.anti_staph, "staphtubeunk", "afstaphvac"),
-        limbstrep = NTI.BacteriaInfo("bloodstrep", "NTI_strepPrevalence", 0.5, 0.05, NTI.anti_strep, "streptubeunk", "afstrepvac"),
-        limbmrsa = NTI.BacteriaInfo("bloodmrsa", "NTI_mrsaPrevalence", 0.5, 0.05, NTI.anti_mrsa, "mrsatubeunk", "afstaphvac"),
-        limbprovo = NTI.BacteriaInfo("bloodprovo", "NTI_provoPrevalence", 0.5, 0.05, NTI.anti_provo, "provotubeunk", "afprovovac"),
-        limbpseudo = NTI.BacteriaInfo("bloodpseudo", "NTI_pseudoPrevalence", 0.5, 0.05, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac"),
+        limbstaph = NTI.BacteriaInfo("bloodstaph", "NTI_staphPrevalence", 0.5, 0.05, NTI.anti_staph, "staphtubeunk", "afstaphvac", true),
+        limbstrep = NTI.BacteriaInfo("bloodstrep", "NTI_strepPrevalence", 0.5, 0.05, NTI.anti_strep, "streptubeunk", "afstrepvac", false),
+        limbprovo = NTI.BacteriaInfo("bloodprovo", "NTI_provoPrevalence", 0.5, 0.05, NTI.anti_provo, "provotubeunk", "afprovovac", false),
+        limbpseudo = NTI.BacteriaInfo("bloodpseudo", "NTI_pseudoPrevalence", 0.5, 0.05, NTI.anti_pseudo, "pseudotubeunk", "afpseudovac", false),
+        limbaero = NTI.BacteriaInfo("bloodaero", "NTI_aeroPrevalence", 0.5, 0.05, NTI.anti_aero, "aerotubeunk", "afaerovac", false),
     }
 end,1)
 
@@ -128,12 +141,16 @@ function NTI.CheckSymptom(character, symptom, level, threshold, chance)
 end
 
 --return the total antibiotic value from a list
-function NTI.GetAntibioticValue(character, list)
+function NTI.GetAntibioticValue(character, list, resistant)
     local result = 1
     
     for key, value in pairs(list) do
         if HF.GetAfflictionStrength(character, key, 0) > 0 then
-            result = result * (1 / value)
+            if resistant and NTI.beta_lactams[key] ~= nil then
+                result = result
+            else
+                result = result * value
+            end
         end
     end
 
@@ -177,9 +194,54 @@ end
 
 
 ---- BACTERIAL INFECTIONS ----
---return a boolean if a character's blood is currently infected
+--returns the increase at which blood infection should increase
+function NTI.BloodInfUpdate(c)
+    local total = 0
+    local infections = {}
+
+    for key, info in pairs(NTI.Bacterias) do
+        local severity = HF.GetAfflictionStrength(c.character, info.bloodname, 0)
+
+        if severity > 0 then
+            local base = 0.5 + (severity * 0.05)
+            total = total + base
+            infections[key] = base
+        end
+    end
+
+    if total < 1 then total = 1 end
+    local result = 0
+
+    for key, value in pairs(infections) do
+        local info = NTI.Bacterias[key]
+        local mr = (HF.GetAfflictionStrength(c.character, "mresistantblood", 0) > 0 and key == "limbstaph")
+        local increase = (value / total) * NTI.GetAntibioticValue(c.character, info.antibiotics, mr)
+                        - ((HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100) * (value / total))
+        
+        --print(key, ": ", increase)
+
+        result = result + increase
+    end
+
+    --print("result: ", result)
+    --print("-")
+    return result
+end
+
+--returns if the blood is infected
 function NTI.BloodIsInfected(character)
     return HF.GetAfflictionStrength(character, "bloodinfectionlevel", 0) > 0
+end
+
+--return the total blood infection in the body
+function NTI.BloodSeverityTotal(character)
+    local result = 0
+
+    for _, info in pairs(NTI.Bacterias) do
+        result = result + HF.GetAfflictionStrength(character, info.bloodname, 0)
+    end
+
+    return result
 end
 
 --kind of a dumb solution, but i didnt want to go out of my way to override a lot of the code from ntsp and ntspu as they do not specify which limb is unsterile
@@ -221,10 +283,27 @@ function NTI.GetCurrentBacteria(character, limb)
     return nil
 end
 
---return current blood bacteria infection name
+--return random blood bacteria infection name
 function NTI.GetCurrentBacteriaBlood(character)
+    local total = 0
+    local infections = {}
+
     for key, info in pairs(NTI.Bacterias) do
-        if HF.GetAfflictionStrength(character, info.bloodname, 0) > 0 then return key end
+        local strength = HF.GetAfflictionStrength(character, info.bloodname, 0)
+
+        if strength > 0 then
+            infections[key] = strength
+            total = total + strength
+        end
+    end
+
+    local cumulative = 0
+    local random = math.random(total)
+
+    for key, value in pairs(infections) do
+        cumulative = cumulative + value
+
+        if random <= cumulative then return key end
     end
 
     return nil
@@ -235,26 +314,33 @@ function NTI.GetLimbIncreaseSepsis(character)
     return NTI.LimbTotalInfectionLevel(character) / 1000
 end
 
---infect character's blood with a specific bacteria
-function NTI.InfectBlood(character, bacteria, severity)
-    if bacteria == nil then return end
-    if NTI.BloodIsInfected(character) then return end
-
-    HF.SetAffliction(character, bacteria, severity)
-    HF.SetAffliction(character, "bloodinfectionlevel", 1)
-
-    print("blood infection occurred on " .. character.Name .. " with severity of " .. severity)
-end
-
 --infect character with a specific bacteria on a limb
 function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
     if bacteria == nil then return end
     if NTI.LimbIsInfected(character, limb) then return end
 
+    local mrrisk = HF.GetAfflictionStrength(character, "mrrisk", 0)
+
+    if bacteria == "limbstaph" and mrrisk > 0 then
+        if HF.Chance(0.25 * (mrrisk / 100)) then
+            HF.SetAffliction(character, "mresistant", 2)
+        end
+    end
+
     HF.SetAfflictionLimb(character, bacteria, limb, severity)
     HF.SetAfflictionLimb(character, "infectionlevel", limb, 1)
 
     print("infection occurred on " .. limb .. " from " .. character.Name .. " with severity of " .. severity)
+end
+
+--infect a character's blood with a specific bacteria
+function NTI.InfectCharacterBlood(character, bacteria, severity, resistant)
+    if bacteria == nil then return end
+
+    HF.AddAffliction(character, "bloodinfectionlevel", 1)
+    HF.SetAffliction(character, bacteria, severity)
+
+    if resistant then HF.SetAffliction(character, "mresistantblood", 2) end
 end
 
 --infect the character with a random infection and severity on a limb
@@ -307,6 +393,21 @@ function NTI.SpreadToNextLimb(character, limb, bacteria)
     NTI.InfectCharacterBacteria(character, next_limb, bacteria, severity)
 end
 
+--returns the correct pus color depending on infection type
+function NTI.ReturnPusColor(character, limb)
+    print("call for color")
+    for bacteria in NTI.pus_yellow_causes do
+        if HF.GetAfflictionStrengthLimb(character, limb, bacteria, 0) > 0 then print("yellow!") return "pusyellow" end
+    end
+
+    for bacteria in NTI.pus_green_causes do
+        if HF.GetAfflictionStrengthLimb(character, limb, bacteria, 0) > 0 then print("green!") return "pusgreen" end
+    end
+
+    print("no color found")
+    return nil
+end
+
 --NTI override for surgery plus stuff
 function NTI.TriggerUnsterilityEvent(character)
     local type = NTI.DetermineDirtiestLimb(character)
@@ -323,7 +424,8 @@ end
 --for when a new ai npc spawns, give a chance to randomly infect them
 function NTI.BotViralStarter(character, virus)
     local val = math.random(40)
-    NTI.InfectCharacterViral(character, virus, val)
+    local sev = math.random(10)
+    NTI.InfectCharacterViral(character, virus, val, sev)
     HF.SetAffliction(character, "systemicresponse", val / 2)
 end
 
@@ -350,22 +452,21 @@ function NTI.GetTotalMedValue(character, list)
 end
 
 --infect viral infection with random severity
-function NTI.InfectCharacterViral(character, virus, level)
-    local sev = math.random(5) + math.random(5)
-    HF.SetAffliction(character, virus, sev)
+function NTI.InfectCharacterViral(character, virus, level, severity)
+    HF.SetAffliction(character, virus, severity)
     HF.SetAffliction(character, "virallevel", level)
 end
 
 --spread viral infections to other characters from an infected character
-function NTI.SpreadViralInfection(character, initial_chance, virus, meds, strength, name)
+function NTI.SpreadViralInfection(character, initial_chance, virus, meds, strength, name, level)
     if not HF.Chance(initial_chance) then return end
 
     for _, targetcharacter in pairs(Character.CharacterList) do
-        NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, meds, strength, name)
+        NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, meds, strength, name, level)
     end
 end
 
-function NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, meds, strength, name)
+function NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, meds, strength, name, level)
     if targetcharacter == character or not targetcharacter.IsHuman then return end
 
     local distance = HF.CharacterDistance(character,targetcharacter)
@@ -384,7 +485,7 @@ function NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, m
     print("viral spread chance 1/" .. chance .. ", from " .. character.Name .. " to " .. targetcharacter.Name)
     if HF.Chance(1 / chance) then
         print("viral spread success")
-        NTI.InfectCharacterViral(targetcharacter, name, 1)
+        NTI.InfectCharacterViral(targetcharacter, name, 1, level)
     end
 end
 
@@ -419,6 +520,7 @@ Hook.Add("characterCreated", "NTI.StartWithInfection", function(createdCharacter
         if (createdCharacter.IsHuman and not createdCharacter.IsDead and not createdCharacter.IsPlayer and not createdCharacter.IsOnPlayerTeam) then
             for key, info in pairs(NTI.Viruses) do
                 if HF.Chance(1 / NTConfig.Get(info.probability, 1)) then
+                    print("viral at start")
                     NTI.BotViralStarter(createdCharacter, key)
                     break
                 end

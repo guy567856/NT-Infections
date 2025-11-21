@@ -10,17 +10,10 @@ NTI.ConfigData = {
 	},
     NTI_staphPrevalence = {
 		name = "Staphylococcal Prevalence",
-		default = 5,
+		default = 6,
 		range = { 0, 100 },
 		type = "float",
         description = "The 'number of names in the hat' for staph infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
-	},
-    NTI_mrsaPrevalence = {
-		name = "MRSA Prevalence",
-		default = 2,
-		range = { 0, 100 },
-		type = "float",
-        description = "The 'number of names in the hat' for MRSA infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
 	},
     NTI_pseudoPrevalence = {
 		name = "Pseudomonas Prevalence",
@@ -35,6 +28,13 @@ NTI.ConfigData = {
 		range = { 0, 100 },
 		type = "float",
         description = "The 'number of names in the hat' for provobacter infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
+	},
+	NTI_aeroPrevalence = {
+		name = "Aeroganella Prevalence",
+		default = 2,
+		range = { 0, 100 },
+		type = "float",
+        description = "The 'number of names in the hat' for aeroganella infections to be picked randomly. The higher the number, the more common it is. Should be an integer value.",
 	},
 
 	NTI_viralSpreadChance = {

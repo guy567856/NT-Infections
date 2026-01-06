@@ -18,12 +18,6 @@
 
     <afflictionname.mrrisk>Methicillin Resistance Risk</afflictionname.mrrisk>
     <afflictiondescription.mrrisk></afflictiondescription.mrrisk>
-
-    <afflictionname.mresistant>Methicillin Resistant</afflictionname.mresistant>
-    <afflictiondescription.mresistant></afflictiondescription.mresistant>
-
-    <afflictionname.mresistantblood>Methicillin Resistant (Blood)</afflictionname.mresistantblood>
-    <afflictiondescription.mresistantblood></afflictiondescription.mresistantblood>
 <!--viral utility-->
     <afflictionname.viralantibodies>Viral Antibodies</afflictionname.viralantibodies>
     <afflictiondescription.viralantibodies></afflictiondescription.viralantibodies>
@@ -55,6 +49,11 @@
     <afflictiondescription.limbaero></afflictiondescription.limbaero>
     <afflictionname.bloodaero>Aeroganella</afflictionname.bloodaero>
     <afflictiondescription.bloodaero></afflictiondescription.bloodaero>
+
+    <afflictionname.limbmrsa>MRSA Infection</afflictionname.limbmrsa>
+    <afflictiondescription.limbmrsa></afflictiondescription.limbmrsa>
+    <afflictionname.bloodmrsa>MRSA</afflictionname.bloodmrsa>
+    <afflictiondescription.bloodmrsa></afflictiondescription.bloodmrsa>
 <!--antibiotics-->
     <entityname.ampicillin>Unasyn</entityname.ampicillin>
     <entitydescription.ampicillin>A fixed-dose combination antibiotic of ampicillin and sulbactam, used to treat various bacterial infections.</entitydescription.ampicillin>
@@ -63,13 +62,13 @@
     <entitydescription.augmentin>A combination antibiotic of amoxicillin and clavulanic acid, used to treat various bacterial infections.</entitydescription.augmentin>
     
     <entityname.vancomycin>Vancomycin</entityname.vancomycin>
-    <entitydescription.vancomycin>A glycopeptide antibiotic used to treat various gram-positive bacterial infections.</entitydescription.vancomycin>
+    <entitydescription.vancomycin>A glycopeptide antibiotic primarily used to treat various gram-positive bacterial infections.</entitydescription.vancomycin>
     
     <entityname.gentamicin>Gentamicin</entityname.gentamicin>
-    <entitydescription.gentamicin>An aminoglycoside antibiotic used to treat various gram-negative bacterial infections.</entitydescription.gentamicin>
+    <entitydescription.gentamicin>An aminoglycoside antibiotic primarily used to treat various gram-negative bacterial infections.</entitydescription.gentamicin>
     
     <entityname.cotrim>Co-trimoxazole</entityname.cotrim>
-    <entitydescription.cotrim>A fixed-dose combination antibiotic used to treat a variety of bacterial infections.</entitydescription.cotrim>
+    <entitydescription.cotrim>A fixed-dose combination antibiotic of trimethoprim and sulfamethoxazole, used to treat a variety of bacterial infections.</entitydescription.cotrim>
     
     <entityname.imipenem>Primaxin</entityname.imipenem>
     <entitydescription.imipenem>A combination antibiotic of imipenem and cilastatin, used against a wide variety of bacterial infections.</entitydescription.imipenem>
@@ -110,6 +109,12 @@
     <afflictionname.pneumonia>Pneumonia</afflictionname.pneumonia>
     <afflictiondescription.pneumonia></afflictiondescription.pneumonia>
     
+    <afflictionname.pneumoniabacteria>Pneumonia Bacteria</afflictionname.pneumoniabacteria>
+    <afflictiondescription.pneumoniabacteria></afflictiondescription.pneumoniabacteria>
+
+    <afflictionname.pneumoniavirus>Pneumonia Virus</afflictionname.pneumoniavirus>
+    <afflictiondescription.pneumoniavirus></afflictiondescription.pneumoniavirus>
+
     <afflictionname.necfasc>Necrotizing fasciitis</afflictionname.necfasc>
     <afflictiondescription.necfasc>The skin shows deep discoloration and the soft tissue is dying.</afflictiondescription.necfasc>
     
@@ -128,41 +133,35 @@
     <entityname.cultureanalyzer>Sampling tool</entityname.cultureanalyzer>
     <entitydescription.cultureanalyzer>Collects bodily samples to allow for analysis.</entitydescription.cultureanalyzer>
 
-    <entityname.incubatorcrate>Incubator crate</entityname.incubatorcrate>
-    <entitydescription.incubatorcrate>A crate capable of growing cultures due to its ability to regulate optimal storage conditions.</entitydescription.incubatorcrate>
-
-    <entityname.incubatorterminal>Incubator</entityname.incubatorterminal>
-    <entitydescription.incubatorterminal>A machine capable of growing cultures by maintaining the optimal conditions for bacterial growth.</entitydescription.incubatorterminal>
-
     <entityname.streptubeunk>Culture sample (Unknown)</entityname.streptubeunk>
     <entitydescription.streptubeunk>A culture tube with an unknown sample.</entitydescription.streptubeunk>
-
     <entityname.streptube>Culture sample (Streptococcus)</entityname.streptube>
     <entitydescription.streptube>A culture tube with a streptococcus strain.</entitydescription.streptube>
 
     <entityname.staphtubeunk>Culture sample (Unknown)</entityname.staphtubeunk>
     <entitydescription.staphtubeunk>A culture tube with an unknown sample.</entitydescription.staphtubeunk>
-
     <entityname.staphtube>Culture sample (Staphylococcus)</entityname.staphtube>
     <entitydescription.staphtube>A culture tube with a staphyloccocus strain.</entitydescription.staphtube>
 
     <entityname.pseudotubeunk>Culture sample (Unknown)</entityname.pseudotubeunk>
     <entitydescription.pseudotubeunk>A culture tube with an unknown sample.</entitydescription.pseudotubeunk>
-
     <entityname.pseudotube>Culture sample (Pseudomonas)</entityname.pseudotube>
     <entitydescription.pseudotube>A culture tube with a pseudomonas sample.</entitydescription.pseudotube>
 
     <entityname.provotubeunk>Culture sample (Unknown)</entityname.provotubeunk>
     <entitydescription.provotubeunk>A culture tube with an unknown sample.</entitydescription.provotubeunk>
-
     <entityname.provotube>Culture sample (Provobacter)</entityname.provotube>
     <entitydescription.provotube>A culture tube with a provobacter sample.</entitydescription.provotube>
 
     <entityname.aerotubeunk>Culture sample (Unknown)</entityname.aerotubeunk>
     <entitydescription.aerotubeunk>A culture tube with an unknown sample.</entitydescription.aerotubeunk>
-
     <entityname.aerotube>Culture sample (Aeroganella)</entityname.aerotube>
     <entitydescription.aerotube>A culture tube with a aeroganella sample.</entitydescription.aerotube>
+
+    <entityname.mrsatubeunk>Culture sample (Unknown)</entityname.mrsatubeunk>
+    <entitydescription.mrsatubeunk>A culture tube with an unknown sample.</entitydescription.mrsatubeunk>
+    <entityname.mrsatube>Culture sample (MRSA)</entityname.mrsatube>
+    <entitydescription.mrsatube>A culture tube with an MRSA sample.</entitydescription.mrsatube>
 
     <entityname.emptytubeunk>Culture sample (Unknown)</entityname.emptytubeunk>
     <entitydescription.emptytubeunk>A culture tube with an unknown sample.</entitydescription.emptytubeunk>
@@ -193,43 +192,36 @@
 <!--vaccines-->
     <afflictionname.afstrepvac>Streptococcus vaccine</afflictionname.afstrepvac>
     <afflictiondescription.afstrepvac>The patient's immune system is primed and ready to fight against streptococcal infections.</afflictiondescription.afstrepvac>
-
     <entityname.strepvac>Streptococcus vaccine</entityname.strepvac>
     <entitydescription.strepvac>A vaccine that prepares the immune system to fight against streptococcus strains.</entitydescription.strepvac>
 
     <afflictionname.afstaphvac>Staphylococcus vaccine</afflictionname.afstaphvac>
     <afflictiondescription.afstaphvac>The patient's immune system is primed and ready to fight against staphylococcal infections.</afflictiondescription.afstaphvac>
-
     <entityname.staphvac>Staphylococcus vaccine</entityname.staphvac>
     <entitydescription.staphvac>A vaccine that prepares the immune system to fight against staphylococcal strains.</entitydescription.staphvac>
 
     <afflictionname.afpseudovac>Pseudomonas vaccine</afflictionname.afpseudovac>
     <afflictiondescription.afpseudovac>The patient's immune system is primed and ready to fight against pseudomonas infections.</afflictiondescription.afpseudovac>
-
     <entityname.pseudovac>Pseudomonas vaccine</entityname.pseudovac>
     <entitydescription.pseudovac>A vaccine that prepares the immune system to fight against pseudomonas strains.</entitydescription.pseudovac>
 
     <afflictionname.afprovovac>Provobacter vaccine</afflictionname.afprovovac>
     <afflictiondescription.afprovovac>The patient's immune system is primed and ready to fight against provobacter infections.</afflictiondescription.afprovovac>
-
     <entityname.provovac>Provobacter vaccine</entityname.provovac>
     <entitydescription.provovac>A vaccine that prepares the immune system to fight against provobacter strains.</entitydescription.provovac>
 
     <afflictionname.afaerovac>Aeroganella vaccine</afflictionname.afaerovac>
     <afflictiondescription.afaerovac>The patient's immune system is primed and ready to fight against aeroganella infections.</afflictiondescription.afaerovac>
-
     <entityname.aerovac>Aeroganella vaccine</entityname.aerovac>
     <entitydescription.aerovac>A vaccine that prepares the immune system to fight against aeroganella strains.</entitydescription.aerovac>
 
     <afflictionname.affluvac>Influenza vaccine</afflictionname.affluvac>
     <afflictiondescription.affluvac>The patient's immune system is primed and ready to fight against influenza infections.</afflictiondescription.affluvac>
-
     <entityname.fluvac>Influenza vaccine</entityname.fluvac>
     <entitydescription.fluvac>A vaccine that prepares the immune system to fight against influenza strains.</entitydescription.fluvac>
 
     <afflictionname.afeuropanvac>Iovipneumoviridae vaccine</afflictionname.afeuropanvac>
     <afflictiondescription.afeuropanvac>The patient's immune system is primed and ready to fight against the Europan cough.</afflictiondescription.afeuropanvac>
-
     <entityname.europanvac>Iovipneumoviridae vaccine</entityname.europanvac>
     <entitydescription.europanvac>A vaccine that prepares the immune system to fight against the Europan cough.</entitydescription.europanvac>
 <!--weaponized bacteria-->
@@ -247,6 +239,9 @@
 
     <entityname.weaponaero>Weaponized aeroganella</entityname.weaponaero>
     <entitydescription.weaponaero>A syringe filled with a strain of aeroganella with the purpose of infecting a target.</entitydescription.weaponaero>
+
+    <entityname.weaponmrsa>Weaponized MRSA</entityname.weaponmrsa>
+    <entitydescription.weaponmrsa>A syringe filled with a strain of MRSA with the purpose of infecting a target.</entitydescription.weaponmrsa>
 <!--viruses-->
     <afflictionname.europancough>Europan Cough</afflictionname.europancough>
     <afflictiondescription.europancough></afflictiondescription.europancough>

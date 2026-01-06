@@ -2,8 +2,8 @@
 <Items>
 <!--medication-->
     <Item name="" identifier="dextromethorphan" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.4" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
-        <PreferredContainer primary="medcab" spawnprobability="0.2" />
-        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer primary="medcab" spawnprobability="0.1" />
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.05" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
         <Price baseprice="30" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
@@ -14,8 +14,8 @@
             <RequiredItem identifier="opium" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="468,6,32,62" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="468,6,32,62" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="64,384,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="26,390,26,49" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="10" />
@@ -35,23 +35,23 @@
         <SkillRequirementHint identifier="medical" level="10" />
     </Item>
     <Item name="" identifier="remdesivir" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
-        <PreferredContainer primary="medcab" spawnprobability="0.2" />
-        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer primary="medcab" spawnprobability="0.1" />
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.05" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
         <Price baseprice="60" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="2">
             <RequiredSkill identifier="medical" level="40" />
             <RequiredItem identifier="carbon" />
             <RequiredItem identifier="cyanide" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="472,80,24,48" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="472,80,24,48" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="0,384,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="0,378,26,61" depth="0.6" origin="0.5,0.5" />
         <Body width="24" height="48" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-            <RequiredSkill identifier="medical" level="50" />
+            <RequiredSkill identifier="medical" level="40" />
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
             <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
@@ -66,11 +66,11 @@
                 <Remove />
             </StatusEffect>
         </MeleeWeapon>
-        <SkillRequirementHint identifier="medical" level="50" />
+        <SkillRequirementHint identifier="medical" level="40" />
     </Item>
     <Item name="" identifier="zincsupplement" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical" description="" useinhealthinterface="true" scale="0.3" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
-        <PreferredContainer primary="medcab" spawnprobability="0.2" />
-        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer primary="medcab" spawnprobability="0.1" />
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.05" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
         <Price baseprice="30" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
@@ -81,8 +81,8 @@
             <RequiredItem identifier="carbon" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="469,143,29,58" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="469,143,29,58" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="192,384,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="79,397,25,42" depth="0.6" origin="0.5,0.5" />
         <Body width="24" height="48" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="20" />
@@ -112,17 +112,17 @@
         <Price baseprice="40" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="2">
             <RequiredSkill identifier="medical" level="20" />
             <RequiredItem identifier="adrenalinegland" />
             <RequiredItem identifier="carbon" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="458,324,36,50" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="458,324,36,50" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,384,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="52,397,27,42" depth="0.6" origin="0.5,0.5" />
         <Body width="24" height="48" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
             <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
                 <Sound file="%ModDir:3190189044%/Sound/pills1.ogg" range="500" />
@@ -140,7 +140,7 @@
                 <Remove />
             </StatusEffect>
         </MeleeWeapon>
-        <SkillRequirementHint identifier="medical" level="40" />
+        <SkillRequirementHint identifier="medical" level="30" />
     </Item>
 <!--antibiotics-->
     <Item name="" identifier="ampicillin" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
@@ -156,8 +156,8 @@
             <RequiredItem identifier="antibiotics" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="1,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="0,0,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="0,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="0,0,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="30" />
@@ -185,7 +185,7 @@
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="80" soldbydefault="false">
+        <Price baseprice="70" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="2">
@@ -194,11 +194,11 @@
             <RequiredItem identifier="antibiotics" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="65,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="39,0,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="64,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="39,0,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
@@ -217,13 +217,13 @@
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
-        <SkillRequirementHint identifier="medical" level="40" />
+        <SkillRequirementHint identifier="medical" level="30" />
     </Item>
     <Item name="" identifier="vancomycin" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="100" soldbydefault="false">
+        <Price baseprice="90" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
@@ -233,8 +233,8 @@
             <RequiredItem identifier="slimebacteria" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="129,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="78,0,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="78,0,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="50" />
@@ -260,21 +260,21 @@
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="100" soldbydefault="false">
+        <Price baseprice="90" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
-            <RequiredSkill identifier="medical" level="50" />
+            <RequiredSkill identifier="medical" level="40" />
             <RequiredItem identifier="carbon" />
             <RequiredItem identifier="antibiotics" />
             <RequiredItem identifier="yeastshroom" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="193,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="117,0,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="192,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="117,0,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-            <RequiredSkill identifier="medical" level="60" />
+            <RequiredSkill identifier="medical" level="50" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
@@ -284,43 +284,6 @@
             <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
                 <Affliction identifier="afgentamicin" amount="5" />
-                <Affliction identifier="kidneydamage" amount="0.5" />
-            </StatusEffect>
-            <StatusEffect type="OnBroken" target="This">
-                <Remove />
-            </StatusEffect>
-        </MeleeWeapon>
-        <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
-        <SkillRequirementHint identifier="medical" level="60" />
-    </Item>
-    <Item name="" identifier="cotrim" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
-        <PreferredContainer primary="medcab" spawnprobability="0.2" />
-        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
-        <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="80" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
-        </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
-            <RequiredSkill identifier="medical" level="50" />
-            <RequiredItem identifier="carbon" />
-            <RequiredItem identifier="sodium" />
-            <RequiredItem identifier="sulphuricacid" />
-        </Fabricate>
-        <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="257,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="156,0,39,69" depth="0.6" origin="0.5,0.5" />
-        <Body width="35" height="70" density="20" />
-        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-            <RequiredSkill identifier="medical" level="50" />
-            <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
-            <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
-            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
-                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="afcotrim" amount="5" />
-            </StatusEffect>
-            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
-                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="afcotrim" amount="5" />
                 <Affliction identifier="kidneydamage" amount="0.5" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
@@ -330,6 +293,43 @@
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
         <SkillRequirementHint identifier="medical" level="50" />
     </Item>
+    <Item name="" identifier="cotrim" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
+        <PreferredContainer primary="medcab" spawnprobability="0.2" />
+        <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
+        <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
+        <Price baseprice="70" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        </Price>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
+            <RequiredSkill identifier="medical" level="40" />
+            <RequiredItem identifier="carbon" />
+            <RequiredItem identifier="sodium" />
+            <RequiredItem identifier="sulphuricacid" />
+        </Fabricate>
+        <Deconstruct />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="156,0,39,70" depth="0.6" origin="0.5,0.5" />
+        <Body width="35" height="70" density="20" />
+        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+            <RequiredSkill identifier="medical" level="40" />
+            <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
+            <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
+            <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="afcotrim" amount="5" />
+            </StatusEffect>
+            <StatusEffect tags="medical" type="OnFailure" target="UseTarget" duration="10">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="afcotrim" amount="5" />
+                <Affliction identifier="kidneydamage" amount="0.5" />
+            </StatusEffect>
+            <StatusEffect type="OnBroken" target="This">
+                <Remove />
+            </StatusEffect>
+        </MeleeWeapon>
+        <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+        <SkillRequirementHint identifier="medical" level="40" />
+    </Item>
     <Item name="" identifier="imipenem" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
@@ -337,15 +337,15 @@
         <Price baseprice="100" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
-            <RequiredSkill identifier="medical" level="50" />
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="2">
+            <RequiredSkill identifier="medical" level="40" />
             <RequiredItem identifier="carbon" />
             <RequiredItem identifier="sodium" />
             <RequiredItem identifier="slimebacteria" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="321,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="194,0,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="320,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="195,0,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="50" />
@@ -373,20 +373,20 @@
         <PreferredContainer primary="medcab" spawnprobability="0.2" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="70" soldbydefault="false">
+        <Price baseprice="65" soldbydefault="false">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="3">
-            <RequiredSkill identifier="medical" level="50" />
+            <RequiredSkill identifier="medical" level="30" />
             <RequiredItem identifier="carbon" />
             <RequiredItem identifier="slimebacteria" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="385,71,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="233,0,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="384,0,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="234,0,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect tags="medical" type="OnSuccess" target="UseTarget" duration="10">
@@ -403,298 +403,214 @@
             </StatusEffect>
         </MeleeWeapon>
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
-        <SkillRequirementHint identifier="medical" level="40" />
+        <SkillRequirementHint identifier="medical" level="30" />
     </Item>
 <!--strep tube-->
-    <Item name="" identifier="streptubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+    <Item name="" identifier="streptubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
-            <Item identifier="streptube" mincondition="1" />
+            <Item identifier="streptube" />
         </Deconstruct>
     </Item>
-    <Item name="" identifier="streptube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
+    <Item name="" identifier="streptube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
         <Price baseprice="60">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="2" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="2">
             <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="streptube" mincondition="1" />
+            <RequiredItem identifier="streptube" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1">
             <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="weaponstrep" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
     </Item>
 <!--staph tube-->
-    <Item name="" identifier="staphtubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+    <Item name="" identifier="staphtubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
-            <Item identifier="staphtube" mincondition="1" />
+            <Item identifier="staphtube" />
         </Deconstruct>
     </Item>
-    <Item name="" identifier="staphtube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
+    <Item name="" identifier="staphtube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
         <Price baseprice="60">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="2" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="2">
             <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="staphtube" mincondition="1" />
+            <RequiredItem identifier="staphtube" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1">
             <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="weaponstaph" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
     </Item>
 <!--pseudo tube-->
-    <Item name="" identifier="pseudotubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+    <Item name="" identifier="pseudotubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
-            <Item identifier="pseudotube" mincondition="1" />
+            <Item identifier="pseudotube" />
         </Deconstruct>
     </Item>
-    <Item name="" identifier="pseudotube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
+    <Item name="" identifier="pseudotube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
         <Price baseprice="60">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="2" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="2" >
             <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="pseudotube" mincondition="1" />
+            <RequiredItem identifier="pseudotube" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" >
             <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="weaponpseudo" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
     </Item>
 <!--provo tube-->
-    <Item name="" identifier="provotubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+    <Item name="" identifier="provotubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
-            <Item identifier="provotube" mincondition="1" />
+            <Item identifier="provotube" />
         </Deconstruct>
     </Item>
-    <Item name="" identifier="provotube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
+    <Item name="" identifier="provotube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
         <Price baseprice="60">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="2" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="2" >
             <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="provotube" mincondition="1" />
+            <RequiredItem identifier="provotube" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" >
             <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="weaponprovo" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
     </Item>
 <!--aero tube-->
-    <Item name="" identifier="aerotubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+    <Item name="" identifier="aerotubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
-            <Item identifier="aerotube" mincondition="1" />
+            <Item identifier="aerotube" />
         </Deconstruct>
     </Item>
-    <Item name="" identifier="aerotube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
+    <Item name="" identifier="aerotube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
         <Price baseprice="60">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="2" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="2" >
             <RequiredSkill identifier="medical" level="40" />
-            <RequiredItem identifier="aerotube" mincondition="1" />
+            <RequiredItem identifier="aerotube" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
-        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" outcondition="0.0">
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" >
             <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="weaponaero" />
             <RequiredItem identifier="culturetube" />
         </Fabricate>
     </Item>
+<!--mrsa tube-->
+    <Item name="" identifier="mrsatubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
+        <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
+            <Item identifier="mrsatube" />
+        </Deconstruct>
+    </Item>
+    <Item name="" identifier="mrsatube" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
+        <Price baseprice="60">
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
+        </Price>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
+        <Deconstruct />
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="2" >
+            <RequiredSkill identifier="medical" level="40" />
+            <RequiredItem identifier="mrsatube" />
+            <RequiredItem identifier="culturetube" />
+        </Fabricate>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="5" amount="1" >
+            <RequiredSkill identifier="medical" level="50" />
+            <RequiredItem identifier="weaponmrsa" />
+            <RequiredItem identifier="culturetube" />
+        </Fabricate>
+    </Item>
 <!--empty tube-->
-    <Item name="" identifier="emptytubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="incubatorcrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="58,142,70,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <Holdable slots="Any" msg="ItemMsgPickUpSelect">
-            <StatusEffect type="Always" target="This" condition="0.25">
-                <Conditional hastag="neq incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="2">
-                <Conditional hastag="incubating" targetcontainer="true" />
-            </StatusEffect>
-            <StatusEffect type="OnContained" target="This" condition="3.25">
-                <Conditional hastag="betterincubating" targetcontainer="true" />
-            </StatusEffect>
-        </Holdable>
+    <Item name="" identifier="emptytubeunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
+        <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="5" requireddeconstructor="cultureanalyzingterminal">
         </Deconstruct>
     </Item>
 <!--sampling-->
     <Item name="" identifier="culturetube" category="Equipment" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" useinhealthinterface="true" scale="0.4" maxstacksize="32" maxstacksizecharacterinventory="8">
-        <PreferredContainer primary="medcab" minamount="1" maxamount="2" spawnprobability="1" />
+        <PreferredContainer primary="medcab" minamount="2" maxamount="3" spawnprobability="1" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="30">
+        <Price baseprice="20">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="14,142,30,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="14,142,30,64" />
-        <Body width="16" height="24" density="20" />
-        <ItemComponent>
-            <StatusEffect type="OnUse" target="This, Character">
-                <Sound file="Content/Items/Medical/Syringe.ogg" />
-            </StatusEffect>
-        </ItemComponent>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="64,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="98,493,52,19" />
+        <Body width="50" height="20" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="4">
@@ -716,21 +632,20 @@
             <StatusEffect type="InWater" target="This" condition="-0.5" />
         </Deconstructor>
         <ItemContainer capacity="1" maxstacksize="1" canbeselected="true" hideitems="true" hudpos="0, 0" slotsperrow="1" uilabel="" allowuioverlap="true">
-            <Containable items="streptubeunk,staphtubeunk,pseudotubeunk,provotubeunk,aerotubeunk,emptytubeunk,emptyviralunk,coldviralunk,fluviralunk,europanviralunk" />
+            <Containable items="streptubeunk,staphtubeunk,pseudotubeunk,provotubeunk,aerotubeunk,mrsatubeunk,emptytubeunk,emptyviralunk,coldviralunk,fluviralunk,europanviralunk" />
         </ItemContainer>
         <ItemContainer capacity="1" maxstacksize="1" canbeselected="true" hideitems="true" hudpos="0, 0" slotsperrow="1" uilabel="" allowuioverlap="true">
-            <Containable items="streptube,staphtube,pseudotube,provotube,aerotube,culturetube,coldviralmedium,fluviralmedium,europanviralmedium" />
+            <Containable items="streptube,staphtube,pseudotube,provotube,aerotube,mrsatube,culturetube,coldviralmedium,fluviralmedium,europanviralmedium" />
         </ItemContainer>
         <Deconstruct time="20">
             <Item identifier="zinc" />
             <Item identifier="steel" />
         </Deconstruct>
-        <Fabricate suitablefabricators="fabricator" requiredtime="40" requiresrecipe="false">
+        <Fabricate suitablefabricators="fabricator" requiredtime="30" requiresrecipe="false">
             <RequiredSkill identifier="medical" level="40" />
             <RequiredItem identifier="fpgacircuit" />
             <RequiredItem identifier="plastic" />
-            <RequiredItem identifier="steel" amount="2" />
-            <RequiredItem identifier="zinc" amount="2" />
+            <RequiredItem identifier="steel" />
         </Fabricate>
         <Body width="98" height="126" density="40" />
         <Holdable slots="LeftHand+RightHand" canbeselected="true" selectkey="Select" canbepicked="true" attachable="true" attachedbydefault="true" pickkey="Use" pickingtime="5" holdpos="0,0" holdangle="0" aimable="true" aimpos="0,0" aimangle="0" limitedattachable="false" origin="0.5,0.5" msg="ItemMsgDetachWrench">
@@ -762,7 +677,7 @@
     <Item name="" description="" identifier="cultureanalyzer" category="Equipment" cargocontaineridentifier="mediccrate" tags="smallitem,medical" useinhealthinterface="true" impactsoundtag="impact_metal_light" scale="0.4">
         <PreferredContainer primary="medcab" minamount="1" maxamount="1" spawnprobability="1" />
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="1" spawnprobability="0.25" />
-        <Price baseprice="275">
+        <Price baseprice="250">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
         </Price>
         <Deconstruct time="10">
@@ -770,76 +685,21 @@
             <Item identifier="fpgacircuit" />
         </Deconstruct>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20">
-            <RequiredSkill identifier="medical" level="50" />
+            <RequiredSkill identifier="medical" level="40" />
             <RequiredItem identifier="bloodanalyzer" />
             <RequiredItem identifier="fpgacircuit" />
         </Fabricate>
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="16,224,92,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="16,224,92,64" depth="0.6" origin="0.5,0.5" />
-        <Body width="60" height="40" density="40" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="0,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="0,444,94,68" depth="0.6" origin="0.5,0.5" />
+        <Body width="90" height="60" density="40" />
         <ItemComponent>
             <StatusEffect type="OnUse" target="This, Character">
-                <Sound file="%ModDir%/Sound/hypospray.ogg" />
+                <Sound file="%ModDir:3190189044%/Sound/hypospray.ogg" />
             </StatusEffect>
         </ItemComponent>
         <Pickable msg="ItemMsgPickUpSelect" />
         <ItemContainer capacity="1" maxstacksize="1" canbeselected="false" hideitems="true" drawinventory="true">
             <Containable items="culturetube,viralmedium" />
-        </ItemContainer>
-    </Item>
-<!--incubators-->
-    <Item name="" identifier="incubatorterminal" tags="betterincubating" texturescale="1.0,1.0" isshootable="true" scale="0.5" category="Machine">
-        <sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" sourcerect="0,0,96,94" depth="0.79" premultiplyalpha="false" origin="0.5,0.5" />
-        <Price baseprice="200">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
-        </Price>
-        <ItemContainer capacity="16" slotsperrow="4" canbeselected="true" hideitems="true" msg="ItemMsgInteractSelect">
-            <GuiFrame relativesize="0.25,0.45" anchor="Center" style="ItemUI" />
-            <Containable items="streptubeunk,staphtubeunk,pseudotubeunk,provotubeunk,aerotubeunk,emptytubeunk,streptube,staphtube,pseudotube,provotube,aerotube" />
-        </ItemContainer>
-        <Body width="96" height="94" density="40" />
-        <Holdable slots="LeftHand+RightHand" canbeselected="true" selectkey="Select" canbepicked="true" attachable="true" attachedbydefault="true" pickkey="Use" pickingtime="5" holdpos="0,0" holdangle="0" aimable="true" aimpos="0,0" aimangle="0" limitedattachable="false" origin="0.5,0.5" msg="ItemMsgDetachWrench">
-            <RequiredItem items="wrench" type="Equipped" />
-            <StatusEffect type="OnActive" target="This" interval="1">
-                <DropContainedItems />
-            </StatusEffect>
-        </Holdable>
-        <Repairable selectkey="Action" header="electricalrepairsheader" deteriorationspeed="0.0" canbeselected="true" RepairThreshold="80" fixDurationHighSkill="5" fixDurationLowSkill="25" msg="ItemMsgRepairScrewdriver" hudpriority="10">
-            <GuiFrame relativesize="0.2,0.16" minsize="400,180" maxsize="480,280" anchor="Center" relativeoffset="0.0,0.27" style="ItemUI" />
-            <RequiredSkill identifier="electrical" level="40" />
-            <RequiredItem items="screwdriver" type="Equipped" />
-            <ParticleEmitter particle="spark" particleamount="5" emitinterval="2" particlespersecond="5" anglemax="360" distancemax="30" velocitymin="100" velocitymax="500" scalemin="0.5" scalemax="1" mincondition="0.0" maxcondition="15.0" />
-        </Repairable>
-        <Deconstruct time="20">
-            <Item identifier="copper" />
-            <Item identifier="steel" />
-        </Deconstruct>
-        <Fabricate suitablefabricators="fabricator" requiredtime="40" requiresrecipe="false">
-            <RequiredSkill identifier="mechanical" level="30" />
-            <RequiredItem identifier="fpgacircuit" />
-            <RequiredItem identifier="plastic" amount="1" />
-            <RequiredItem identifier="steel" amount="2" />
-            <RequiredItem identifier="copper" amount="2" />
-        </Fabricate>
-    </Item>
-    <Item name="" identifier="incubatorcrate" tags="crate,incubating" scale="0.5" linkable="true" pickdistance="150" showcontentsintooltip="false" impactsoundtag="impact_metal_heavy" waterproof="true" fireproof="true" description="">
-        <Price baseprice="120">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="8" />
-        </Price>
-        <Deconstruct time="10">
-            <Item identifier="steel" />
-        </Deconstruct>
-        <Fabricate suitablefabricators="fabricator" requiredtime="20">
-            <RequiredSkill identifier="mechanical" level="20" />
-            <Item identifier="steel" />
-            <Item identifier="copper" />
-            <Item identifier="fpgacircuit" />
-        </Fabricate>
-        <Sprite texture="%ModDir%/Images/InGameItemIconAtlas.png" depth="0.54" sourcerect="10,578,146,82" origin="0.5,0.5" />
-        <Body width="145" height="85" density="50" />
-        <Holdable slots="RightHand+LeftHand" holdpos="0,-80" handle1="-20,14" handle2="20,14" aimable="false" msg="ItemMsgPickUpSelect" />
-        <ItemContainer capacity="12" canbeselected="false" hideitems="true" keepopenwhenequipped="true" movableframe="true">
-            <Containable items="smallitem,medical" excludeditems="toolbox,cargoscooter" />
         </ItemContainer>
     </Item>
 <!--bacterial vaccines-->
@@ -848,17 +708,17 @@
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.01" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.001" />
         <Price baseprice="350" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="80" />
+            <RequiredSkill identifier="medical" level="60" />
             <RequiredItem identifier="streptube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="0,380,56,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="0,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="78,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
@@ -877,17 +737,23 @@
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.01" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.001" />
         <Price baseprice="350" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="80" />
+            <RequiredSkill identifier="medical" level="60" />
             <RequiredItem identifier="staphtube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
+            <RequiredSkill identifier="medical" level="60" />
+            <RequiredItem identifier="mrsatube" amount="3" />
+            <RequiredItem identifier="antiparalysis" />
+            <RequiredItem identifier="antibloodloss1" />
+        </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="56,380,56,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="39,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="0,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="0,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
@@ -906,17 +772,17 @@
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.01" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.001" />
         <Price baseprice="350" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="80" />
+            <RequiredSkill identifier="medical" level="60" />
             <RequiredItem identifier="pseudotube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="112,380,56,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="78,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="64,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="39,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
@@ -935,17 +801,17 @@
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.01" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.001" />
         <Price baseprice="350" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="80" />
+            <RequiredSkill identifier="medical" level="60" />
             <RequiredItem identifier="provotube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="171,380,56,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="117,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="192,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="117,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
@@ -964,17 +830,17 @@
         <PreferredContainer primary="wreckmedcab,abandonedmedcab" minamount="0" maxamount="2" spawnprobability="0.01" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.001" />
         <Price baseprice="350" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="80" />
+            <RequiredSkill identifier="medical" level="60" />
             <RequiredItem identifier="aerotube" amount="3" />
             <RequiredItem identifier="antiparalysis" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="0,450,60,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="156,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="156,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
@@ -993,17 +859,17 @@
         <PreferredContainer primary="toxcontainer" spawnprobability="0.05" />
         <PreferredContainer primary="wrecktoxcontainer" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="200" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        <Price baseprice="100" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <RequiredItem identifier="streptube" amount="2" />
             <RequiredItem identifier="stabilozine" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="174,236,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="175,158,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="128,64,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="78,70,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="20" />
@@ -1030,17 +896,17 @@
         <PreferredContainer primary="toxcontainer" spawnprobability="0.05" />
         <PreferredContainer primary="wrecktoxcontainer" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="200" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        <Price baseprice="100" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <RequiredItem identifier="staphtube" amount="2" />
             <RequiredItem identifier="stabilozine" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="291,236,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="214,158,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="0,64,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="0,70,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="20" />
@@ -1067,17 +933,17 @@
         <PreferredContainer primary="toxcontainer" spawnprobability="0.05" />
         <PreferredContainer primary="wrecktoxcontainer" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="200" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        <Price baseprice="100" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <RequiredItem identifier="pseudotube" amount="2" />
             <RequiredItem identifier="stabilozine" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="350,236,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="292,158,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="64,64,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="39,70,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="20" />
@@ -1104,17 +970,17 @@
         <PreferredContainer primary="toxcontainer" spawnprobability="0.05" />
         <PreferredContainer primary="wrecktoxcontainer" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="200" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        <Price baseprice="100" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <RequiredItem identifier="provotube" amount="2" />
             <RequiredItem identifier="stabilozine" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="410,236,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="331,158,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="192,64,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="117,70,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="20" />
@@ -1141,17 +1007,17 @@
         <PreferredContainer primary="toxcontainer" spawnprobability="0.05" />
         <PreferredContainer primary="wrecktoxcontainer" spawnprobability="0.1" />
         <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
-        <Price baseprice="200" soldbydefault="false">
-            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
+        <Price baseprice="100" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
-            <RequiredSkill identifier="medical" level="40" />
+            <RequiredSkill identifier="medical" level="30" />
             <RequiredItem identifier="aerotube" amount="2" />
             <RequiredItem identifier="stabilozine" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="115,236,64,64" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="370,158,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,64,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="156,70,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <RequiredSkill identifier="medical" level="20" />
@@ -1174,6 +1040,43 @@
         <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
         <SkillRequirementHint identifier="medical" level="20" />
     </Item>
+    <Item name="" identifier="weaponmrsa" category="Medical" cargocontaineridentifier="chemicalcrate" Tags="smallitem,chem,medical,syringe" description="" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" maxstacksize="32" maxstacksizecharacterinventory="8">
+        <PreferredContainer primary="toxcontainer" spawnprobability="0.05" />
+        <PreferredContainer primary="wrecktoxcontainer" spawnprobability="0.1" />
+        <PreferredContainer primary="outposttrashcan" minamount="0" maxamount="1" spawnprobability="0.01" />
+        <Price baseprice="100" soldbydefault="false">
+            <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="0" />
+        </Price>
+        <Fabricate suitablefabricators="medicalfabricator" requiredtime="20" amount="1">
+            <RequiredSkill identifier="medical" level="30" />
+            <RequiredItem identifier="mrsatube" amount="2" />
+            <RequiredItem identifier="stabilozine" />
+        </Fabricate>
+        <Deconstruct />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="0,64,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="0,70,39,70" depth="0.6" origin="0.5,0.5" />
+        <Body width="35" height="70" density="20" />
+        <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+            <RequiredSkill identifier="medical" level="20" />
+            <StatusEffect type="OnSuccess" target="This" Condition="-100.0" />
+            <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
+            <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodmrsa" amount="3" />
+                <Affliction identifier="bloodinfectionlevel" amount="1" />
+            </StatusEffect>
+            <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
+                <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+                <Affliction identifier="bloodmrsa" amount="2" />
+                <Affliction identifier="bloodinfectionlevel" amount="1" />
+            </StatusEffect>
+            <StatusEffect type="OnBroken" target="This">
+                <Remove/>
+            </StatusEffect>
+        </MeleeWeapon>
+        <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="true" launchrotation="-90" inheritstatuseffectsfrom="MeleeWeapon" inheritrequiredskillsfrom="MeleeWeapon" />
+        <SkillRequirementHint identifier="medical" level="20" />
+    </Item>
 <!--viral stuff-->
     <Item name="" identifier="viralmedium" category="Equipment" description="" Tags="smallitem,medical,viraltest" cargocontaineridentifier="mediccrate" useinhealthinterface="true" scale="0.4" maxstacksize="32" maxstacksizecharacterinventory="8">
         <PreferredContainer primary="medcab" minamount="1" maxamount="2" spawnprobability="1" />
@@ -1182,14 +1085,9 @@
         <Price baseprice="30">
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="2" />
         </Price>
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="270,405,80,70" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="270,405,80,70" />
-        <Body width="16" height="24" density="20" />
-        <ItemComponent>
-            <StatusEffect type="OnUse" target="This, Character">
-                <Sound file="Content/Items/Medical/Syringe.ogg" />
-            </StatusEffect>
-        </ItemComponent>
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="192,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="151,461,61,51" />
+        <Body width="60" height="50" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="10" amount="4">
@@ -1201,70 +1099,70 @@
         </Fabricate>
     </Item>
     <Item name="" identifier="emptyviralunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="15" requireddeconstructor="cultureanalyzingterminal">
         </Deconstruct>
     </Item>
     <Item name="" identifier="coldviralunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="15" requireddeconstructor="cultureanalyzingterminal">
             <Item identifier="coldviralmedium" />
         </Deconstruct>
     </Item>
     <Item name="" identifier="coldviralmedium" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
         <Price baseprice="50">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
     </Item>
     <Item name="" identifier="fluviralunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="15" requireddeconstructor="cultureanalyzingterminal">
             <Item identifier="fluviralmedium" />
         </Deconstruct>
     </Item>
     <Item name="" identifier="fluviralmedium" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
         <Price baseprice="50">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
     </Item>
     <Item name="" identifier="europanviralunk" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct time="15" requireddeconstructor="cultureanalyzingterminal">
             <Item identifier="europanviralmedium" />
         </Deconstruct>
     </Item>
     <Item name="" identifier="europanviralmedium" category="Medical" description="" Tags="smallitem,medical" cargocontaineridentifier="mediccrate" scale="0.4" maxstacksize="16" maxstacksizecharacterinventory="4">
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="426,400,84,78" origin="0.5,0.5" />
         <Price baseprice="50">
-            <Price storeidentifier="merchantmedical" multiplier="1.5"/>
-            <Price storeidentifier="merchantresearch" multiplier="1.5"/>
+            <Price storeidentifier="merchantmedical" sold="false" multiplier="2"/>
+            <Price storeidentifier="merchantresearch" sold="false" multiplier="3"/>
         </Price>
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" depth="0.8" sourcerect="374,426,32,54" />
-        <Body width="16" height="24" density="20" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="256,448,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" depth="0.8" sourcerect="212,470,26,42" />
+        <Body width="20" height="40" density="20" />
         <Holdable slots="Any" msg="ItemMsgPickUpSelect" />
         <Deconstruct />
     </Item>
@@ -1277,14 +1175,14 @@
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="60" />
+            <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="fluviralmedium" />
             <RequiredItem identifier="tonicliquid" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="120,450,60,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="233,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="384,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="234,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />
@@ -1306,14 +1204,14 @@
             <Price storeidentifier="merchantmedical" sold="true" multiplier="0.9" minavailable="1" />
         </Price>
         <Fabricate suitablefabricators="medicalfabricator" requiredtime="30" amount="2">
-            <RequiredSkill identifier="medical" level="60" />
+            <RequiredSkill identifier="medical" level="50" />
             <RequiredItem identifier="europanviralmedium" />
             <RequiredItem identifier="tonicliquid" />
             <RequiredItem identifier="antibloodloss1" />
         </Fabricate>
         <Deconstruct />
-        <InventoryIcon texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="60,450,60,60" origin="0.5,0.5" />
-        <Sprite texture="%ModDir%/Images/InventoryItemIconAtlas.png" sourcerect="194,308,39,69" depth="0.6" origin="0.5,0.5" />
+        <InventoryIcon texture="%ModDir%/Images/InventoryIconAtlas.png" sourcerect="320,128,64,64" origin="0.5,0.5" />
+        <Sprite texture="%ModDir%/Images/InGameIconAtlas.png" sourcerect="195,140,39,70" depth="0.6" origin="0.5,0.5" />
         <Body width="35" height="70" density="20" />
         <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
             <StatusEffect type="OnUse" target="This" Condition="-100.0" disabledeltatime="true" />

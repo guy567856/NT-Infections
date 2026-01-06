@@ -42,7 +42,7 @@ Timer.Wait(function()
 
                 HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nSwab sample found.",Color(127,255,127,255))
             else
-                local params = {condition=0}
+                local params = {condition=100}
                 local name = nil
                 local pus = HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusyellow", 0) + HF.GetAfflictionStrengthLimb(targetCharacter, limb.type, "pusgreen", 0)
 
@@ -51,14 +51,14 @@ Timer.Wait(function()
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nPus sample found.",Color(127,255,127,255))
                 elseif HF.HasAfflictionLimb(targetCharacter, "abscess", limb.type, 0) then
                     name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
-                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,2,usingCharacter)
+                    HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,4,usingCharacter)
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nPus sample found.",Color(127,255,127,255))
                 elseif HF.HasAfflictionLimb(targetCharacter, "retractedskin", limb.type, 0) then
                     name = NTI.GetCurrentBacteria(targetCharacter, limb.type)
                     HF.AddAfflictionLimb(targetCharacter,"lacerations",limb.type,8,usingCharacter)
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nTissue sample found.",Color(127,255,127,255))
                 else
-                    name = NTI.GetCurrentBacteriaBlood(targetCharacter)
+                    name = NTI.GetCurrentBacteriaBloodRandom(targetCharacter)
                     HF.DMClient(HF.CharacterToClient(usingCharacter),"Sampler tool\n\nBlood sample found.",Color(127,255,127,255))
                 end
 
@@ -88,6 +88,9 @@ Timer.Wait(function()
             if total <= 0 then
                 string = string .. "\nNo bacterial presence in blood."
             else
+                local bacteremia = targetCharacter.CharacterHealth.GetAffliction("bloodinfectionlevel")
+                local bil = HF.GetAfflictionStrength(targetCharacter, "bloodinfectionlevel", 0)
+                if bacteremia ~= nil then string = string .. bacteremia.Prefab.Name.Value .. ": " .. HF.Round(bil) .. "%" .. "\n" end
                 for key, value in pairs(infections) do
                     local affliction = targetCharacter.CharacterHealth.GetAffliction(NTI.Bacterias[key].bloodname)
                     string = string .. "\n" .. affliction.Prefab.Name.Value .. ": " .. HF.Round((value / total) * 100) .. "%"
@@ -101,13 +104,18 @@ Timer.Wait(function()
     --override suture function and add it so that a necrotized limb is not dropped during amputation
     local tempSutureFunction = NT.ItemMethods.suture
     NT.ItemMethods.suture = function(item, usingCharacter, targetCharacter, limb)
-        local limbtype = HF.NormalizeLimbType(limb.type)
-
         if(HF.GetSkillRequirementMet(usingCharacter,"medical",30)) then
+            local limbtype = HF.NormalizeLimbType(limb.type)
+
             if HF.HasAfflictionLimb(targetCharacter,"bonecut",limbtype,1) then
+                local previtem = HF.GetHeadWear(targetCharacter)
+                if previtem ~= nil and limbtype == LimbType.Head then
+                    previtem.Drop(usingCharacter, true)
+                end
                 local droplimb =
                     not NT.LimbIsAmputated(targetCharacter,limbtype)
                     and not HF.HasAfflictionLimb(targetCharacter,"gangrene",limbtype,15)
+                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,30)
                     and not HF.HasAfflictionLimb(targetCharacter,"necfasc",limbtype,1)
                 NT.SurgicallyAmputateLimb(targetCharacter,limbtype)
                 if (droplimb) then
@@ -116,9 +124,10 @@ Timer.Wait(function()
                     limbtoitem[LimbType.LeftLeg] = "lleg"
                     limbtoitem[LimbType.RightArm] = "rarm"
                     limbtoitem[LimbType.LeftArm] = "larm"
+                    limbtoitem[LimbType.Head] = "headsa"
                     if limbtoitem[limbtype] ~= nil then
-                        HF.GiveItem(usingCharacter,limbtoitem[limbtype])
-                        if NTSP ~= nil and NTConfig.Get("NTSP_enableSurgerySkill",true) then HF.GiveSkill(usingCharacter,"surgery",0.5) end
+                        HF.GiveItem(usingCharacter, limbtoitem[limbtype])
+                        HF.GiveSurgerySkill(usingCharacter, 0.5)
                     end
                 end
             end
@@ -143,14 +152,14 @@ Timer.Wait(function()
                 local healedamount = math.min(affAmount,healamount)
                 HF.AddAfflictionLimb(targetCharacter,identifier,limbtype,-healamount,usingCharacter)
                 
-                if NTSP ~= nil and usecase=="surgery" and NTConfig.Get("NTSP_enableSurgerySkill",true) then 
+                if NTSP ~= nil and NTConfig.Get("NTSP_enableSurgerySkill",true) then 
                     HF.GiveSkillScaled(usingCharacter,"surgery",healedamount*skillgain)
                 else 
                     HF.GiveSkillScaled(usingCharacter,"medical",healedamount*skillgain/2)
                 end
             end
 
-            if(HF.GetSkillRequirementMet(usingCharacter,"medical",50)) then
+            if HF.GetSkillRequirementMet(usingCharacter,"medical",50) then
                 healAfflictionGiveSkill("necfasc", 5, 20)
                 HF.AddAfflictionLimb(targetCharacter,"lacerations",limbtype,8,usingCharacter)
             else

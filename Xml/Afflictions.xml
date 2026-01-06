@@ -33,12 +33,6 @@
         <Effect minstrength="0" maxstrength="100" strengthchange="-0.01" />
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
-    <Affliction name="" identifier="mresistant" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="2">
-        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>
-    <Affliction name="" identifier="mresistantblood" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="2">
-        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
-    </Affliction>
 <!--vaccines-->
     <Affliction name="" identifier="afstrepvac" description="" hideiconafterdelay="true" healableinmedicalclinic="false" targets="human" limbspecific="false" indicatorlimb="Torso" maxstrength="100" type="resistance" isbuff="true" showiconthreshold="1" showinhealthscannerthreshold="2000" iconcolors="10,193,114,255;10,193,114,255">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="0,4" sheetelementsize="128,128" origin="0,0" />
@@ -81,6 +75,12 @@
 <!--diseases-->
     <Affliction name="" identifier="pneumonia" description="" healableinmedicalclinic="false" targets="human" type="gaze" isbuff="false" causeofdeathdescription="" selfcauseofdeathdescription="" limbspecific="False" indicatorlimb="Torso" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="100">
         <Effect minstrength="0" maxstrength="100" multiplybymaxvitality="true" minvitalitydecrease="0" maxvitalitydecrease="0.5" />
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="pneumoniabacteria" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="1" showiconthreshold="700" maxstrength="6">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="pneumoniavirus" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="1" showiconthreshold="700" maxstrength="3">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="necfasc" description="" healableinmedicalclinic="false" limbspecific="true" maxstrength="100" showinhealthscannerthreshold="700" showiconthreshold="1" type="gaze" isbuff="false" iconcolors="200,50,0,255;200,50,0,255">
@@ -162,6 +162,13 @@
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
     <Affliction name="" identifier="bloodaero" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="1" showiconthreshold="700" maxstrength="10">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+<!--mrsa infection-->
+    <Affliction name="" identifier="limbmrsa" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="true" showiconthreshold="700" showinhealthscannerthreshold="1" maxstrength="10">
+        <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
+    </Affliction>
+    <Affliction name="" identifier="bloodmrsa" description="" healableinmedicalclinic="false" type="gaze" isbuff="false" targets="human" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="1" showiconthreshold="700" maxstrength="10">
         <icon texture="%ModDir%/Images/AfflictionIcons.png" sheetindex="4,4" sheetelementsize="128,128" origin="0,0" />
     </Affliction>
 <!--antibiotics-->

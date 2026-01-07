@@ -117,9 +117,6 @@
 
     <afflictionname.necfasc>Necrotizing fasciitis</afflictionname.necfasc>
     <afflictiondescription.necfasc>The skin shows deep discoloration and the soft tissue is dying.</afflictiondescription.necfasc>
-    
-    <afflictionname.cellulitis>Cellulitis</afflictionname.cellulitis>
-    <afflictiondescription.cellulitis>The area of skin is red and painful.</afflictiondescription.cellulitis>
 <!--diagnostics-->
     <entityname.cultureanalyzingterminal>Sample Analyzer</entityname.cultureanalyzingterminal>
     <entitydescription.cultureanalyzingterminal>A machine that examines the biochemical signature of samples to identify pathogens.</entitydescription.cultureanalyzingterminal>

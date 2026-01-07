@@ -327,15 +327,12 @@ function NTI.InfectCharacterBacteria(character, limb, bacteria, severity)
 
     if mrrisk > 0 and mrname ~= "NONE" then
         if HF.Chance(NTConfig.Get("NTI_mrChance", 1) * (mrrisk / 100)) then
-            print("bug resistance!")
             truename = mrname
         end
     end
 
     HF.SetAfflictionLimb(character, truename, limb, severity)
     HF.SetAfflictionLimb(character, "infectionlevel", limb, 1)
-
-    print("infection occurred on " .. limb .. " from " .. character.Name .. " with severity of " .. severity)
 end
 
 --infect a character's blood with a specific bacteria
@@ -348,7 +345,7 @@ end
 
 --infect the character with a random infection and severity on a limb
 function NTI.InfectCharacterRandom(character, limb)
-    local randomval = math.random(5) + math.random(5)
+    local randomval = 10--math.random(5) + math.random(5)
     local list = NTI.FormBacteriaList(character)
     NTI.InfectCharacterBacteria(character, limb, list[math.random(#list)], randomval)
 end
@@ -393,7 +390,6 @@ function NTI.TriggerUnsterilityEvent(character)
     local type = NTI.DetermineDirtiestLimb(character)
 
     if type ~= nil then
-        print("surgical infection occurred")
         NTI.InfectCharacterRandom(character, type)
     end
 end
@@ -461,9 +457,7 @@ function NTI.HelperSpreadViralInfectionLoop(character, targetcharacter, virus, m
                 + HF.BoolToNum(not targetcharacter.IsPlayer, 20)
                 + HF.BoolToNum(not targetcharacter.IsOnPlayerTeam, 20)
 
-    print("viral spread chance 1/" .. chance .. ", from " .. character.Name .. " to " .. targetcharacter.Name)
     if HF.Chance(1 / chance) then
-        print("viral spread success")
         NTI.InfectCharacterViral(targetcharacter, name, 1, level)
     end
 end
@@ -499,7 +493,6 @@ Hook.Add("characterCreated", "NTI.StartWithInfection", function(createdCharacter
         if (createdCharacter.IsHuman and not createdCharacter.IsDead and not createdCharacter.IsPlayer and not createdCharacter.IsOnPlayerTeam) then
             for key, info in pairs(NTI.Viruses) do
                 if HF.Chance(1 / NTConfig.Get(info.probability, 1)) then
-                    print("viral at start")
                     NTI.BotViralStarter(createdCharacter, key)
                     break
                 end

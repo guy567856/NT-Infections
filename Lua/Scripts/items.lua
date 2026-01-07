@@ -115,7 +115,7 @@ Timer.Wait(function()
                 local droplimb =
                     not NT.LimbIsAmputated(targetCharacter,limbtype)
                     and not HF.HasAfflictionLimb(targetCharacter,"gangrene",limbtype,15)
-                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,30)
+                    and not HF.HasAfflictionLimb(targetCharacter,"infectionlevel",limbtype,20)
                     and not HF.HasAfflictionLimb(targetCharacter,"necfasc",limbtype,1)
                 NT.SurgicallyAmputateLimb(targetCharacter,limbtype)
                 if (droplimb) then

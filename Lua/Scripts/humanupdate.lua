@@ -76,7 +76,10 @@ Timer.Wait(function()
 
 --override to how inflammation accumulates
     NT.LimbAfflictions.inflammation={update=function(c,limbaff,i,type)
-        limbaff[i].strength = HF.BoolToNum(NTI.LimbIsInfected(c.character, type), 0.5) + (1.5 * (HF.GetAfflictionStrengthLimb(c.character, type, "infectionlevel", 0) / 100))
+        limbaff[i].strength = HF.Round(
+            HF.BoolToNum(NTI.LimbIsInfected(c.character, type), 0.75) + 
+            (1.25 * (HF.GetAfflictionStrengthLimb(c.character, type, "infectionlevel", 0) / 100))
+            , 1) + 0.01
         
         if limbaff.foreignbody.strength > 15 then
             limbaff[i].strength = 2
@@ -244,15 +247,6 @@ Timer.Wait(function()
             c.stats.speedmultiplier = c.stats.speedmultiplier * (1 - virus.slowdown * (c.afflictions[i].strength / (100 + meds)))
 
             NTI.SpreadViralInfection(c.character, NTConfig.Get("NTI_viralSpreadChance", true), virus, meds, c.afflictions[i].strength, name, HF.GetAfflictionStrength(c.character, name, 0))
-
-            if c.character.IsPlayer then
-                print("level: ", c.afflictions[i].strength)
-                print("inc: ", gain)
-                print("def: ", defense)
-                print("gain: ", gain - defense)
-                print("med: ", meds)
-                print("------")
-            end
         end
     end}
 
@@ -277,11 +271,11 @@ Timer.Wait(function()
             limbaff[i].strength = limbaff[i].strength + increase
 
             if limbaff[i].strength > 50 and not (HF.GetAfflictionStrength(c.character, info.bloodname, 0) > 0) then
-                if HF.Chance(((limbaff[i].strength - 50) / 150)^3) then NTI.InfectCharacterBlood(c.character, info.bloodname, severity) end
+                if HF.Chance(((limbaff[i].strength - 50) / 150)^2) then NTI.InfectCharacterBlood(c.character, info.bloodname, severity) end
             end
 
             if limbaff[i].strength > 75 and not NTI.HasSepsis(c.character) then 
-                if HF.Chance(((limbaff[i].strength - 75) / 100)^3) then HF.SetAffliction(c.character, "sepsis", 1) end
+                if HF.Chance(((limbaff[i].strength - 75) / 150)^2) then HF.SetAffliction(c.character, "sepsis", 1) end
             end
         end
     end}
@@ -377,33 +371,6 @@ Timer.Wait(function()
     end}
 
 --diseases
-    NT.LimbAfflictions.cellulitis={update=function(c,limbaff,i,type)
-        if NTI.LimbAmputatedOrCybernetic(c.character, type) or HF.GetAfflictionStrengthLimb(c.character, type, "necfasc", 0) > 0 then
-            limbaff[i].strength = 0
-            return
-        end
-
-        if c.stats.stasis then return end
-
-        if limbaff[i].strength <= 0 then
-            local inflev = HF.GetAfflictionStrengthLimb(c.character, type, "infectionlevel", 0)
-            if HF.Chance(1 / (inflev + 20)) then limbaff[i].strength = 1 end
-        else
-            local name = NTI.GetCurrentBacteria(c.character, type)
-            local increase = -1
-            if name ~= nil then
-                local info = NTI.Bacterias[name]
-                local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics)
-                increase = (math.min(info.basespeed + HF.GetAfflictionStrengthLimb(c.character, type, name, 1) * info.severityspeed, 0.99)
-                            * (1 - (HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
-                            * antibiotic)
-                            - (HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100)
-            end
-
-            limbaff[i].strength = limbaff[i].strength + increase
-        end
-    end}
-
     NT.LimbAfflictions.necfasc={update=function(c,limbaff,i,type)
         if not NTI.NotHead(type, false) or NTI.LimbAmputatedOrCybernetic(c.character, type) then
             limbaff[i].strength = 0
@@ -416,7 +383,6 @@ Timer.Wait(function()
             local inflev = HF.GetAfflictionStrengthLimb(c.character, type, "infectionlevel", 0)
             if HF.Chance((inflev / 1500) * ((100 - c.afflictions.immunity.strength) / 1500)) then
                 limbaff[i].strength = 1
-                HF.SetAfflictionLimb(c.character, "cellulitis", type, 0)
             end
         else
             local name = NTI.GetCurrentBacteria(c.character, type)
@@ -445,30 +411,50 @@ Timer.Wait(function()
     }
 
     NT.Afflictions.pneumonia={update=function(c,i)
+        if HF.HasAffliction(c.character, "ntc_cyberlung") then c.afflictions[i].strength = 0 return end
+
         if c.stats.stasis then return end
 
         if c.afflictions[i].strength <= 0 then
             local bil = HF.GetAfflictionStrength(c.character, "bloodinfectionlevel", 0)
+            local vil = HF.GetAfflictionStrength(c.character, "virallevel", 0)
 
-            if HF.Chance(1 / (300 + c.afflictions.immunity.strength - bil)) then
+            if bil > 0 and HF.Chance(1 / (300 + c.afflictions.immunity.strength - bil)) then
                 local name = NTI.GetCurrentBacteriaBloodRandom(c.character)
 
                 if name ~= nil and pneumoniacauses[name] then
                     local info = NTI.Bacterias[name]
                     c.afflictions[i].strength = 1
-                    HF.SetAffliction(c.character, "pneumoniatype", info.id)
+                    HF.SetAffliction(c.character, "pneumoniabacteria", info.id)
+                end
+            end
+
+            if vil > 50 and HF.Chance(1 / (500 + c.afflictions.immunity.strength - vil)) then
+                local name = NTI.GetCurrentVirus(c.character)
+
+                if name ~= nil and pneumoniacauses[name] then
+                    local info = NTI.Viruses[name]
+                    c.afflictions[i].strength = 1
+                    HF.SetAffliction(c.character, "pneumoniavirus", info.id)
                 end
             end
         else
+            NTI.CheckSymptom(c.character, "sym_cough", c.afflictions[i].strength, 5, 0.2)
+            NTI.CheckSymptom(c.character, "dyspnea", c.afflictions[i].strength, 10, 0.1)
+            if c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then 
+                NTI.CheckSymptom(c.character, "pain_chest", c.afflictions[i].strength, 40, 0.1)
+            end
+            NTI.CheckSymptom(c.character, "triggersym_respiratoryarrest", c.afflictions[i].strength, 80, 0.1)
+
             local info = nil
-            local index = HF.GetAfflictionStrength(c.character, "pneumoniabacteria", 0)
+            local index = HF.Round(HF.GetAfflictionStrength(c.character, "pneumoniabacteria", 0))
             local defense = 0
             if index > 0 then
                 info = NTI.BacteriasIndex[index]
-                defense = HF.GetAfflictionStrength(c.character, "systemicresponse", 1) / 100
+                defense = HF.GetAfflictionStrength(c.character, "systemicresponse", 0) / 100
             end
 
-            index = HF.GetAfflictionStrength(c.character, "pneumoniavirus", 0)
+            index = HF.Round(HF.GetAfflictionStrength(c.character, "pneumoniavirus", 0))
             if index > 0 then
                 info = NTI.VirusesIndex[index]
                 defense = HF.GetAfflictionStrength(c.character, "viralantibodies", 0) / 100
@@ -477,7 +463,7 @@ Timer.Wait(function()
             if info == nil then c.afflictions[i].strength = 0 return end
 
             local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics)
-            increase = (math.min(info.basespeed + 7 * info.severityspeed, 0.99)
+            increase = (math.min(info.basespeed + 10 * info.severityspeed, 0.99)
                         * (1 - (HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
                         * antibiotic)
                         - defense

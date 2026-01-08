@@ -78,8 +78,8 @@ NTI.resistant = {limbstaph=true}
 NTI.pus_yellow_causes = {"limbstrep", "limbstaph", "limbprovo", "limbmrsa"}
 NTI.pus_green_causes = {"limbpseudo", "limbaero"}
 
-function NTI.VirusInfo(_id, _probability, _basespeed, _severityspeed, _antibiotics, _medicine, _slowdown, _virulence, _samplename, _vaccine)
-    return { id = _id, probability = _probability, basespeed = _basespeed, severityspeed = _severityspeed, antibiotics = _antibiotics, medicine = _medicine, slowdown = _slowdown, virulence = _virulence, samplename = _samplename, vaccine = _vaccine }
+function NTI.VirusInfo(_id, _probability, _basespeed, _severityspeed, _antibiotics, _medicine, _slowdown, _virulence, _samplename, _vaccine, _name)
+    return { id = _id, probability = _probability, basespeed = _basespeed, severityspeed = _severityspeed, antibiotics = _antibiotics, medicine = _medicine, slowdown = _slowdown, virulence = _virulence, samplename = _samplename, vaccine = _vaccine, name = _name }
 end
 
 --[[
@@ -93,6 +93,7 @@ end
     virulence - multiplier for infection spread chance, cannot be 0 or less
     samplename - sample to be returned when analyzing virus
     vaccine - the vaccine affliction acting against this virus
+    name - stopgap way to identify virus in sampling tool
 ]]--
 
 function NTI.BacteriaInfo(_id, _bloodname, _prevalence, _basespeed, _severityspeed, _antibiotics, _samplename, _vaccine, _resistant)
@@ -113,9 +114,9 @@ end
 
 Timer.Wait(function()
     NTI.Viruses = {
-        europancough = NTI.VirusInfo(1, "NTI_europanChance", 0.4, 0.05, {afremdesivir = 1/10}, NTI.med_viral, 0.6, 1, "europanviralunk", "afeuropanvac"),
-        influenza = NTI.VirusInfo(2, "NTI_influenzaChance", 0.35, 0.05, {afzincsupplement = 4/5}, NTI.med_viral, 0.4, 0.9, "fluviralunk", "affluvac"),
-        commoncold = NTI.VirusInfo(3, "NTI_coldChance", 0.3, 0.05, {afzincsupplement = 3/4}, NTI.med_viral, 0.2, 0.8, "coldviralunk", "NONE"),
+        europancough = NTI.VirusInfo(1, "NTI_europanChance", 0.4, 0.05, {afremdesivir = 1/10}, NTI.med_viral, 0.6, 1, "europanviralunk", "afeuropanvac", "europancough"),
+        influenza = NTI.VirusInfo(2, "NTI_influenzaChance", 0.35, 0.05, {afzincsupplement = 4/5}, NTI.med_viral, 0.4, 0.9, "fluviralunk", "affluvac", "influenza"),
+        commoncold = NTI.VirusInfo(3, "NTI_coldChance", 0.3, 0.05, {afzincsupplement = 3/4}, NTI.med_viral, 0.2, 0.8, "coldviralunk", "NONE", "commoncold"),
     }
 
     NTI.Bacterias = {
@@ -421,6 +422,17 @@ function NTI.GetTotalMedValue(character, list)
         if HF.GetAfflictionStrength(character, key, 0) > 0 then
             result = result + value
         end
+    end
+
+    return result
+end
+
+--return full body necrotizing fasciitis level
+function NTI.GetTotalNecValue(character)
+    local result = 0
+
+    for limb in limbtypes do
+        result = result + HF.GetAfflictionStrengthLimb(character, limb, "necfasc", 0)
     end
 
     return result

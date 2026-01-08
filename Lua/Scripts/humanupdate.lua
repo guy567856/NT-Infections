@@ -49,7 +49,11 @@ Timer.Wait(function()
         if c.afflictions[i].strength > 10 and c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then NTC.SetSymptomTrue(c.character, "sym_confusion", 2) end
 
         if c.afflictions[i].strength > 0 then
-            local increase = (HF.GetAfflictionStrength(c.character, "bloodinfectionlevel", 0) / 250) + NTI.GetLimbIncreaseSepsis(c.character)
+            local increase = (HF.GetAfflictionStrength(c.character, "bloodinfectionlevel", 0) / 250) 
+                            + NTI.GetLimbIncreaseSepsis(c.character)
+                            + (HF.GetAfflictionStrength(c.character, "pneumonia", 0) / 1000)
+                            + (NTI.GetTotalNecValue(c.character) / 1000)
+
             increase = increase * (1 - HF.BoolToNum(c.afflictions.immunity.strength <= 85, 0.5))
             if not (increase > 0.003) then increase = -NT.Deltatime end
 
@@ -394,6 +398,10 @@ Timer.Wait(function()
             end
 
             limbaff[i].strength = limbaff[i].strength + increase
+
+            if not NTI.HasSepsis(c.character) then 
+                if HF.Chance((limbaff[i].strength / 400)^2) then HF.SetAffliction(c.character, "sepsis", 1) end
+            end
         end
     end}
 
@@ -467,6 +475,10 @@ Timer.Wait(function()
                         - defense
 
             c.afflictions[i].strength = c.afflictions[i].strength + increase
+
+            if not NTI.HasSepsis(c.character) then 
+                if HF.Chance((c.afflictions[i].strength / 300)^3) then HF.SetAffliction(c.character, "sepsis", 1) end
+            end
         end
     end}
 

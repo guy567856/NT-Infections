@@ -97,6 +97,25 @@ Timer.Wait(function()
                 end
             end
 
+            --this is a stopgap solution to diagnosing pneumonia. will probably change in the future
+            if HF.GetAfflictionStrength(targetCharacter, "pneumonia", 0) > 0 then
+                string = string .. "\n\nLung Biopsy Positive For:"
+
+                local index = HF.Round(HF.GetAfflictionStrength(targetCharacter, "pneumoniabacteria", 0))
+                if index > 0 then
+                    info = NTI.BacteriasIndex[index]
+                    local affliction = targetCharacter.CharacterHealth.GetAffliction(info.bloodname)
+                    string = string .. " " .. affliction.Prefab.Name.Value
+                end
+
+                index = HF.Round(HF.GetAfflictionStrength(targetCharacter, "pneumoniavirus", 0))
+                if index > 0 then
+                    info = NTI.VirusesIndex[index]
+                    local affliction = targetCharacter.CharacterHealth.GetAffliction(info.name)
+                    string = string .. " " .. affliction.Prefab.Name.Value
+                end
+            end
+
             HF.DMClient(HF.CharacterToClient(usingCharacter),string,Color(127,255,127,255))
         end
     end

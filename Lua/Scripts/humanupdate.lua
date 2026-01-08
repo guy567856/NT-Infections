@@ -69,7 +69,7 @@ Timer.Wait(function()
 
         -- infection chance
         local infchance = HF.Minimum(limbaff.gangrene.strength,15,0) / 400 + HF.Minimum(limbaff.infectedwound.strength,20) / 1000 + foreignbodycutchance
-        if(HF.Chance(infchance)) then
+        if(not NTI.LimbIsInfected(c.character, type) and HF.Chance(infchance)) then
             NTI.InfectCharacterRandom(c.character, type)
         end
     end}
@@ -84,8 +84,6 @@ Timer.Wait(function()
         if limbaff.foreignbody.strength > 15 then
             limbaff[i].strength = 2
         end
-
-        limbaff[i].strength = limbaff[i].strength * (c.afflictions.immunity.strength / 100)
     end}
 
 --fasciitis causes pain
@@ -429,7 +427,7 @@ Timer.Wait(function()
                 end
             end
 
-            if vil > 50 and HF.Chance(1 / (500 + c.afflictions.immunity.strength - vil)) then
+            if vil > 0 and HF.Chance((vil / (500 + c.afflictions.immunity.strength))^3) then
                 local name = NTI.GetCurrentVirus(c.character)
 
                 if name ~= nil and pneumoniacauses[name] then

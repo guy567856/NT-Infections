@@ -877,12 +877,12 @@
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodstrep" amount="3" />
+                <Affliction identifier="bloodstrep" amount="10" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodstrep" amount="2" />
+                <Affliction identifier="bloodstrep" amount="8" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
@@ -914,12 +914,12 @@
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodstaph" amount="3" />
+                <Affliction identifier="bloodstaph" amount="10" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodstaph" amount="2" />
+                <Affliction identifier="bloodstaph" amount="8" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
@@ -951,12 +951,12 @@
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodpseudo" amount="3" />
+                <Affliction identifier="bloodpseudo" amount="10" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodpseudo" amount="2" />
+                <Affliction identifier="bloodpseudo" amount="8" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
@@ -988,12 +988,12 @@
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodprovo" amount="3" />
+                <Affliction identifier="bloodprovo" amount="10" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodprovo" amount="2" />
+                <Affliction identifier="bloodprovo" amount="8" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
@@ -1025,12 +1025,12 @@
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodaero" amount="3" />
+                <Affliction identifier="bloodaero" amount="10" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodaero" amount="2" />
+                <Affliction identifier="bloodaero" amount="8" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">
@@ -1062,12 +1062,12 @@
             <StatusEffect type="OnFailure" target="This" Condition="-100.0" />
             <StatusEffect statuseffecttags="medical" type="OnSuccess" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodmrsa" amount="3" />
+                <Affliction identifier="bloodmrsa" amount="10" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect statuseffecttags="medical" type="OnFailure" target="UseTarget" disabledeltatime="true" allowwhenbroken="true">
                 <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
-                <Affliction identifier="bloodmrsa" amount="2" />
+                <Affliction identifier="bloodmrsa" amount="8" />
                 <Affliction identifier="bloodinfectionlevel" amount="1" />
             </StatusEffect>
             <StatusEffect type="OnBroken" target="This">

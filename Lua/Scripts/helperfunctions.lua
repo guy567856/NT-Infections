@@ -345,7 +345,7 @@ end
 
 --infect the character with a random infection and severity on a limb
 function NTI.InfectCharacterRandom(character, limb)
-    local randomval = 10--math.random(5) + math.random(5)
+    local randomval = math.random(5) + math.random(5)
     local list = NTI.FormBacteriaList(character)
     NTI.InfectCharacterBacteria(character, limb, list[math.random(#list)], randomval)
 end

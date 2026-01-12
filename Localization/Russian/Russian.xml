@@ -73,7 +73,7 @@
     <entityname.cotrim>Ко-тримоксазол</entityname.cotrim>
     <entitydescription.cotrim>Комбинированный антибиотик (триметоприм + сульфаметоксазол), применяется при различных бактериальных инфекциях.</entitydescription.cotrim>
     
-    <entityname.imipenem>Приаксим</entityname.imipenem>
+    <entityname.imipenem>Примаксин</entityname.imipenem>
     <entitydescription.imipenem>Комбинированный антибиотик (имипенем + циластатин), активен против широкого спектра бактерий.</entitydescription.imipenem>
     
     <entityname.ceftazidime>Цефтазидим</entityname.ceftazidime>
@@ -94,7 +94,7 @@
     <afflictionname.afcotrim>Ко-тримоксазол</afflictionname.afcotrim>
     <afflictiondescription.afcotrim></afflictiondescription.afcotrim>
     
-    <afflictionname.afimipenem>Приаксим</afflictionname.afimipenem>
+    <afflictionname.afimipenem>Примаксин</afflictionname.afimipenem>
     <afflictiondescription.afimipenem></afflictiondescription.afimipenem>
     
     <afflictionname.afceftazidime>Цефтазидим</afflictionname.afceftazidime>
@@ -128,7 +128,7 @@
     <entitydescription.cultureanalyzingterminal>Устройство, определяющее биохимическую сигнатуру образцов для идентификации возбудителей.</entitydescription.cultureanalyzingterminal>
     
     <cultureanalyzer.analyze>Анализировать</cultureanalyzer.analyze>
-    <cultureanalyzer.info>Вставьте полностью выросшую культуру или вирусный образец для определения типа.</cultureanalyzer.info>
+    <cultureanalyzer.info>Вставьте культуру или вирусный образец для определения типа.</cultureanalyzer.info>
 
 <!-- Бактериальная диагностика -->
     <entityname.culturetube>Пробирка с питательной средой</entityname.culturetube>

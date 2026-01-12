@@ -122,7 +122,7 @@
     <entitydescription.cultureanalyzingterminal>A machine that examines the biochemical signature of samples to identify pathogens.</entitydescription.cultureanalyzingterminal>
     
     <cultureanalyzer.analyze>Analyze</cultureanalyzer.analyze>
-    <cultureanalyzer.info>Insert a full-grown culture or viral sample to analyze the type.</cultureanalyzer.info>
+    <cultureanalyzer.info>Insert a culture or viral sample to analyze the type.</cultureanalyzer.info>
 <!--bacterial diagnostics-->
     <entityname.culturetube>Culture tube</entityname.culturetube>
     <entitydescription.culturetube>A tube of rich growth medium that bacterial colonies will grow in.</entitydescription.culturetube>

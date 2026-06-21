@@ -344,6 +344,18 @@ function NTI.InfectCharacterBlood(character, bacteria, severity)
     HF.SetAffliction(character, bacteria, severity)
 end
 
+--infect a character's blood with a random bacteria
+function NTI.InfectCharacterBloodRandom(character)
+    local randomval = math.random(5) + math.random(5)
+    local list = NTI.FormBacteriaList(character)
+    local bacteria = list[math.random(#list)]
+    local info = NTI.Bacterias[bacteria]
+
+    if HF.GetAfflictionStrength(character, info.bloodname, 0) > 0 then return end
+
+    NTI.InfectCharacterBlood(character, info.bloodname, randomval);
+end
+
 --infect the character with a random infection and severity on a limb
 function NTI.InfectCharacterRandom(character, limb)
     local randomval = math.random(5) + math.random(5)

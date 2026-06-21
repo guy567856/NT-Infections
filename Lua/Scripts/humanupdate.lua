@@ -9,6 +9,18 @@ local limbtypes = {
 
 Timer.Wait(function()
 --affliction overrides
+--override infected cavity to use nti infections
+    local infectedcavity_temp = NT.Afflictions.infectedcavity.update
+    NT.Afflictions.infectedcavity={update = function(c, i)
+        infectedcavity_temp(c, i)
+
+        if c.stats.stasis then return end
+
+        if c.afflictions[i].strength > 25 and HF.Chance(((c.afflictions[i].strength - 25) / 100)^10) then
+            NTI.InfectCharacterBloodRandom(c.character)
+        end
+    end}
+
 --override the bloodpressure affliction to allow sepsis to lower bloodpressure
     NT.Afflictions.bloodpressure={min=5,max=200,default=100,update=function(c,i)
         -- fix people not having a blood pressure
@@ -51,14 +63,12 @@ Timer.Wait(function()
     NT.Afflictions.sepsis={update=function(c,i)
         if c.stats.stasis then return end
         if c.afflictions[i].strength > 20 and c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then NTC.SetSymptomTrue(c.character, "pain_abdominal", 2) end
-        if c.afflictions[i].strength > 10 and c.afflictions.sym_unconsciousness.strength<=0 and not c.stats.sedated then NTC.SetSymptomTrue(c.character, "sym_confusion", 2) end
 
         if c.afflictions[i].strength > 0 then
             local increase = (HF.GetAfflictionStrength(c.character, "bloodinfectionlevel", 0) / 250) 
                             + NTI.GetLimbIncreaseSepsis(c.character)
                             + (HF.GetAfflictionStrength(c.character, "pneumonia", 0) / 1000)
                             + (NTI.GetTotalNecValue(c.character) / 1000)
-                            + (HF.GetAfflictionStrength(c.character, "infectedcavity", 0) / 500)
 
             increase = increase * (1 - HF.BoolToNum(c.afflictions.immunity.strength <= 85, 0.5))
             if not (increase > 0.003) then increase = -NT.Deltatime end

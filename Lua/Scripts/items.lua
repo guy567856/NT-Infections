@@ -13,6 +13,7 @@ Timer.Wait(function()
         "afceftazidime",
         "afcorticosteroids",
         "bloodinfectionlevel",
+        "afascorbicacid",
     }
 
     --add the new hematology tags into the nt hematology list

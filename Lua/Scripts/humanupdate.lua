@@ -12,34 +12,39 @@ Timer.Wait(function()
 --override the bloodpressure affliction to allow sepsis to lower bloodpressure
     NT.Afflictions.bloodpressure={min=5,max=200,default=100,update=function(c,i)
         -- fix people not having a blood pressure
-        if not HF.HasAffliction(c.character,i) then HF.SetAffliction(c.character,i,100) end
+        if not HF.HasAffliction(c.character, i) then HF.SetAffliction(c.character, i, 100) end
 
         if c.stats.stasis then return end
         -- calculate new blood pressure
-        local desiredbloodpressure =
-            (c.stats.bloodamount
-            - c.afflictions.tamponade.strength/2                            -- -50 if full tamponade
-            - HF.Clamp(c.afflictions.afpressuredrug.strength*5,0,45)        -- -45 if blood pressure medication
-            - HF.Clamp(c.afflictions.anesthesia.strength,0,15)              -- -15 if propofol (fuck propofol)
-            - c.afflictions.sepsis.strength --sepsis will lower bloodpressure
-            + HF.Clamp(c.afflictions.afadrenaline.strength*10,0,30)         -- +30 if adrenaline
-            + HF.Clamp(c.afflictions.afsaline.strength*5,0,30)              -- +30 if saline
-            + HF.Clamp(c.afflictions.afringerssolution.strength*5,0,30)     -- +30 if ringers
-            ) * 
-            (1+0.5*((c.afflictions.liverdamage.strength/100)^2)) *              -- elevated if full liver damage
-            (1+0.5*((c.afflictions.kidneydamage.strength/100)^2)) *             -- elevated if full kidney damage
-            (1 + c.afflictions.alcoholwithdrawal.strength/200 ) *               -- elevated if alcohol withdrawal
-            HF.Clamp((100-c.afflictions.traumaticshock.strength*2)/100,0,1) *   -- none if half or more traumatic shock
-            ((100-c.afflictions.fibrillation.strength)/100) *                   -- lowered if fibrillated
-            (1-math.min(1,c.afflictions.cardiacarrest.strength)) *              -- none if cardiac arrest
-            NTC.GetMultiplier(c.character,"bloodpressure")
+        local desiredbloodpressure = (
+				c.stats.bloodamount
+				- c.afflictions.tamponade.strength / 2 -- -50 if full tamponade
+				- HF.Clamp(c.afflictions.afpressuredrug.strength * 5, 0, 45) -- -45 if blood pressure medication
+				- HF.Clamp(c.afflictions.anesthesia.strength, 0, 15) -- -15 if propofol (fuck propofol)
+                - c.afflictions.sepsis.strength -- sepsis lowers bloodpressure
+				+ HF.Clamp(c.afflictions.afadrenaline.strength * 10, 0, 30) -- +30 if adrenaline
+				+ HF.Clamp(c.afflictions.afsaline.strength * 5, 0, 30) -- +30 if saline
+				+ HF.Clamp(c.afflictions.afringerssolution.strength * 5, 0, 30) -- +30 if ringers
+			)
+				* (1 + 0.5 * ((c.afflictions.liverdamage.strength / 100) ^ 2)) -- elevated if full liver damage
+				* (1 + 0.5 * ((c.afflictions.kidneydamage.strength / 100) ^ 2)) -- elevated if full kidney damage
+				* (1 + c.afflictions.alcoholwithdrawal.strength / 200) -- elevated if alcohol withdrawal
+				* HF.Clamp((100 - c.afflictions.traumaticshock.strength * 2) / 100, 0, 1) -- none if half or more traumatic shock
+				* ((100 - c.afflictions.fibrillation.strength) / 100) -- lowered if fibrillated
+				* (1 - math.min(1, c.afflictions.cardiacarrest.strength)) -- none if cardiac arrest
+				* NTC.GetMultiplier(c.character, "bloodpressure")
+
             
-        local bloodpressurelerp = 0.2
+        local bloodpressurelerp = 0.2 * NTC.GetMultiplier(c.character, "bloodpressurerate")
         -- adjust three times slower to heightened blood pressure
-        if(desiredbloodpressure>c.afflictions.bloodpressure.strength) then bloodpressurelerp = bloodpressurelerp/3 end
-        c.afflictions.bloodpressure.strength = HF.Clamp(HF.Round(
-            HF.Lerp(c.afflictions.bloodpressure.strength,desiredbloodpressure,bloodpressurelerp),2)
-            ,5,200)
+        if desiredbloodpressure > c.afflictions.bloodpressure.strength then
+            bloodpressurelerp = bloodpressurelerp / 3
+        end
+        c.afflictions.bloodpressure.strength = HF.Clamp(
+            HF.Round(HF.Lerp(c.afflictions.bloodpressure.strength, desiredbloodpressure, bloodpressurelerp), 2),
+            5,
+            200
+        )
     end}
 
 --override for sepsis to increase by nti infections and no longer affected by antibiotics directly
@@ -53,6 +58,7 @@ Timer.Wait(function()
                             + NTI.GetLimbIncreaseSepsis(c.character)
                             + (HF.GetAfflictionStrength(c.character, "pneumonia", 0) / 1000)
                             + (NTI.GetTotalNecValue(c.character) / 1000)
+                            + (HF.GetAfflictionStrength(c.character, "infectedcavity", 0) / 500)
 
             increase = increase * (1 - HF.BoolToNum(c.afflictions.immunity.strength <= 85, 0.5))
             if not (increase > 0.003) then increase = -NT.Deltatime end
@@ -63,12 +69,14 @@ Timer.Wait(function()
 
 --override to change how infections are received (no longer directly to sepsis)
     NT.LimbAfflictions.foreignbody={update=function(c,limbaff,i,type)
-        if limbaff[i].strength < 15 then limbaff[i].strength = limbaff[i].strength - 0.05 * c.stats.healingrate * NT.Deltatime end
+        if limbaff[i].strength < 15 then
+            limbaff[i].strength = limbaff[i].strength - 0.05 * c.stats.healingrate * NT.Deltatime
+        end
 
         -- check for arterial cut triggers and foreign body sepsis
-        local foreignbodycutchance = ((HF.Minimum(limbaff[i].strength,20)/100)^6)*0.5
-        if (limbaff.bleeding.strength > 80 or HF.Chance(foreignbodycutchance)) then
-            NT.ArteryCutLimb(c.character,type)
+        local foreignbodycutchance = ((HF.Minimum(limbaff[i].strength, 20) / 100) ^ 6) * 0.5
+        if limbaff.bleeding.strength > 80 or HF.Chance(foreignbodycutchance) then
+            NT.ArteryCutLimb(c.character, type)
         end
 
         -- infection chance
@@ -244,7 +252,7 @@ Timer.Wait(function()
                         * (1 - (HF.GetAfflictionStrength(c.character, virus.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
             local defense = (gain + 0.1) * (HF.GetAfflictionStrength(c.character, "viralantibodies", 0) / 100)
 
-            c.afflictions[i].strength = c.afflictions[i].strength + gain - defense
+            c.afflictions[i].strength = c.afflictions[i].strength + (gain * NTConfig.Get("NTI_infectionDifficulty", true)) - defense
 
             c.stats.speedmultiplier = c.stats.speedmultiplier * (1 - virus.slowdown * (c.afflictions[i].strength / (100 + meds)))
 
@@ -266,11 +274,12 @@ Timer.Wait(function()
             local info = NTI.Bacterias[name]
             local severity = HF.GetAfflictionStrengthLimb(c.character, type, name, 1)
             local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics)
-            local increase = (math.min(info.basespeed + severity * info.severityspeed, 0.99) * antibiotic
-                            * (1 - (HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100)))
-                            - (HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100)
+            local gain = math.min(info.basespeed + severity * info.severityspeed, 0.99) 
+                        * antibiotic
+                        * (1 - (HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
+            local defense = HF.GetAfflictionStrengthLimb(c.character, type, "immuneresponse", 0) / 100
 
-            limbaff[i].strength = limbaff[i].strength + increase
+            limbaff[i].strength = limbaff[i].strength + (gain * NTConfig.Get("NTI_infectionDifficulty", true)) - defense
 
             if limbaff[i].strength > 50 and not (HF.GetAfflictionStrength(c.character, info.bloodname, 0) > 0) then
                 if HF.Chance(((limbaff[i].strength - 50) / 150)^2) then NTI.InfectCharacterBlood(c.character, info.bloodname, severity) end
@@ -289,10 +298,10 @@ Timer.Wait(function()
         if c.afflictions[i].strength > 0 then
             if NTI.BloodSeverityTotal(c.character) <= 0 then c.afflictions[i].strength = 0 return end
 
-            local increase = NTI.BloodInfUpdate(c)
-                            - (HF.GetAfflictionStrength(c.character, "systemicresponse", 0) / 100)
+            local gain = NTI.BloodInfUpdate(c)
+            local defense = (HF.GetAfflictionStrength(c.character, "systemicresponse", 0) / 100)
 
-            c.afflictions[i].strength = c.afflictions[i].strength + increase
+            c.afflictions[i].strength = c.afflictions[i].strength + (gain * NTConfig.Get("NTI_infectionDifficulty", true)) - defense
 
             if HF.Chance((c.afflictions[i].strength / 150)^3) and not NTI.HasSepsis(c.character) then HF.SetAffliction(c.character, "sepsis", 1) end
         end
@@ -393,6 +402,7 @@ Timer.Wait(function()
                 local info = NTI.Bacterias[name]
                 local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics)
                 increase = HF.Clamp(info.basespeed + HF.GetAfflictionStrengthLimb(c.character, type, name, 1) * info.severityspeed, 0.05, 1)
+                            * NTConfig.Get("NTI_necFascSpeed", true)
                             * (1 - (HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
                             * antibiotic
             end
@@ -470,6 +480,7 @@ Timer.Wait(function()
 
             local antibiotic = NTI.GetAntibioticValue(c.character, info.antibiotics)
             increase = (math.min(info.basespeed + 10 * info.severityspeed, 0.99)
+                        * NTConfig.Get("NTI_pneumoniaSpeed", true)
                         * (1 - (HF.GetAfflictionStrength(c.character, info.vaccine, 0) / 200) * (c.afflictions.immunity.strength / 100))
                         * antibiotic)
                         - defense

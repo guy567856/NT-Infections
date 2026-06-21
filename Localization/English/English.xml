@@ -268,4 +268,9 @@
     <entitydescription.hydrocortisone>A corticosteroid used to reduce inflammation by suppressing the immune system.</entitydescription.hydrocortisone>
     <afflictionname.afcorticosteroids>Corticosteroids</afflictionname.afcorticosteroids>
     <afflictiondescription.afcorticosteroids></afflictiondescription.afcorticosteroids>
+
+    <entityname.ascorbicacid>Ascorbic Acid</entityname.ascorbicacid>
+    <entitydescription.ascorbicacid>A supplement of vitamin C, an essential nutrient for body health and immunity.</entitydescription.ascorbicacid>
+    <afflictionname.afascorbicacid>Ascorbic Acid</afflictionname.afascorbicacid>
+    <afflictiondescription.afascorbicacid></afflictiondescription.afascorbicacid>
 </infotexts>

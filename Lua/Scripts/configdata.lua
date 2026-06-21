@@ -1,6 +1,27 @@
 NTI.ConfigData = {
     NTI_header1 = {name=NTI.Name,type="category"},
 
+	NTI_infectionDifficulty = {
+		name = "Global Infection Difficulty",
+		default = 1,
+		range = { 0, 10 },
+		type = "float",
+        description = "Difficulty multiplier for all infections by affecting infection speed. 1 is the default. Any value below 1 will make infections much easier, and anything above it will make infections too difficult.",
+	},
+	NTI_necFascSpeed = {
+		name = "Necrotizing Fasciitis Difficulty",
+		default = 1,
+		range = { 0, 10 },
+		type = "float",
+        description = "Difficulty multiplier for necrotizing fasciitis. 1 is the default. Any value below 1 will make it easier, and anything above it will make it too difficult.",
+	},
+	NTI_pneumoniaSpeed = {
+		name = "Pneumonia Difficulty",
+		default = 1,
+		range = { 0, 10 },
+		type = "float",
+        description = "Difficulty multiplier for pneumonia. 1 is the default. Any value below 1 will make it easier, and anything above it will make it more difficult.",
+	},
     NTI_strepPrevalence = {
 		name = "Streptococcal Prevalence",
 		default = 4,
@@ -50,7 +71,6 @@ NTI.ConfigData = {
 		type = "float",
         description = "The base percentage change for an infection to become methicillin-resistant given antimicrobial resistance risk.",
 	},
-
 	NTI_viralSpreadChance = {
 		name = "Viral Spread Chance",
 		default = 0.1,
